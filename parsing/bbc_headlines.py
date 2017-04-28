@@ -2,6 +2,8 @@
 
 
 import re
+import json
+import datetime as dt
 from collections import Counter
 
 import feedparser
@@ -11,6 +13,10 @@ from functional.pythonic_pipes import (is_not_in,
                                        map_over)
 
 
+DATE = dt.datetime.today().strftime("%d_%m_%Y")
+NAME = 'headline_words.json'
+TODAYS_WORDS = '_'.join([DATE, NAME])
+
 URL = 'http://feeds.bbci.co.uk/news/uk/rss.xml'
 
 IGNORE = ['and', 'a', 'if', 'on', 'no', 'yes', 'by', 'for', 'to', 'in',
@@ -19,6 +25,8 @@ IGNORE = ['and', 'a', 'if', 'on', 'no', 'yes', 'by', 'for', 'to', 'in',
           'says', 'over', 'just', 'that', 'do', 'does']
 
 SHORT_WORD = 2
+
+TOP_WORDS = 10
 
 
 def no_numbers(x):
@@ -60,9 +68,14 @@ def filter_words(words):
     return filtered_words
 
 
+def save_words(words):
+    with open(TODAYS_WORDS, 'w') as outfile:
+        json.dump(words, outfile)
+
+
 def main():
     word_frequencies = Counter(filter_words(get_words(URL)))
-    return word_frequencies
+    save_words(word_frequencies.most_common(TOP_WORDS))
 
 
 if __name__ == '__main__':
