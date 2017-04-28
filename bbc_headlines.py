@@ -75,7 +75,7 @@ def save_words(words):
 
 def main():
     word_frequencies = Counter(filter_words(get_words(URL)))
-    save_words(word_frequencies.most_common(TOP_WORDS))
+    save_words(word_frequencies.most_common())
 
 
 if __name__ == '__main__':
