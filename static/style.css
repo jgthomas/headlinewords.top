@@ -1,9 +1,48 @@
-h1 { text-align: center; 
-     }
+body {
+        font-family: sans-serif;
+}
 
-#data { margin-top: 3em;
+h1 {
+        text-align: center;
+        font-size: 10vw;
+}
+
+#data_table {
+        margin-top: 3em;
         margin-left: auto;
         margin-right: auto;
-        width: 15em;
-        border:1px solid black;
-        }
+        margin-bottom: 3em;
+        width: 65%;
+}
+
+div.left {
+        float: left;
+        clear: both;
+        width: 55%;
+        padding: 0.25em;
+}
+
+div.right {
+        float: right;
+        width: 25%;
+        text-align: right;
+        padding: 0.25em;
+}
+
+div.left, div.right {
+        font-size: 2em;
+}
+
+/* Changes for HiDPi */
+@media
+    only screen and (-webkit-min-device-pixel-ratio: 1.3),
+	only screen and (-o-min-device-pixel-ratio: 13/10),
+	only screen and (min-resolution: 120dpi)
+	{
+            div.left, div.right { font-size: 4em; }
+            #data_table { width: 75% }
+
+            /* Better font rendering */
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+}

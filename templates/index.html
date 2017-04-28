@@ -7,13 +7,10 @@
 </head>
 <body>
   <h1>Headline Words</h1>
-    <table id="data">
-      <caption>BBC News</caption>
-      {% for word, count in words %}
-      <tr>
-        <td>{{word}}</td>
-        <td>{{count}}</td>
-      </tr>
-      {% endfor %}
-    </table>
+   <div id='data_table'>
+     {% for word, count in words %}
+       <div class='left'>{{word}}</div>
+       <div class='right'>{{count}}</div>
+     {% endfor %}
+   </div>
 </body>
