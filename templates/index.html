@@ -6,11 +6,13 @@
   {% endblock %}
 </head>
 <body>
-  <h1>Headline Words</h1>
+  <h1 class="rounded_card">Headline Words</h1>
    <div id='data_table'>
      {% for word, count in words %}
+     <div class='line rounded_card'>
        <div class='left'>{{word}}</div>
        <div class='right'>{{count}}</div>
+     </div>
      {% endfor %}
    </div>
 </body>

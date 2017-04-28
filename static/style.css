@@ -2,9 +2,20 @@ body {
         font-family: sans-serif;
 }
 
+html {
+        background: #e6e6e6;
+        color: #777D80;
+        font-weight: bold;
+}
+
 h1 {
         text-align: center;
-        font-size: 10vw;
+        font-size: 5vw;
+        background: #fff;
+        width: 65%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0.25em;
 }
 
 #data_table {
@@ -15,18 +26,39 @@ h1 {
         width: 65%;
 }
 
+.rounded_card {
+        border-radius:8px;
+	    -webkit-border-radius:8px;
+	    -moz-border-radius:8px
+	    box-shadow:0 2px 5px rgba(0,0,0,0.2);
+        -webkit-box-shadow:0 2px 5px rgba(0,0,0,0.2);
+	    -moz-box-shadow:0 2px 5px rgba(0,0,0,0.2);
+}
+
+div.line {
+        width: 100%;
+        background: #fff;
+        clear: both;
+        overflow: auto;
+        padding 0.25em;
+        margin-bottom: 0.50em;
+        border-radius:8px;
+}
+
 div.left {
         float: left;
         clear: both;
         width: 55%;
-        padding: 0.25em;
+        padding: 0.50em;
 }
 
 div.right {
         float: right;
         width: 25%;
         text-align: right;
-        padding: 0.25em;
+        padding: 0.50em;
+        background: #645FC2;
+        color: #fff;
 }
 
 div.left, div.right {
@@ -41,6 +73,7 @@ div.left, div.right {
 	{
             div.left, div.right { font-size: 4em; }
             #data_table { width: 75% }
+            h1 { font-size: 9vw; }
 
             /* Better font rendering */
             -moz-osx-font-smoothing: grayscale;
