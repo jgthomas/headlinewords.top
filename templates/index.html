@@ -1,15 +1,17 @@
 <!doctype html>
 <head>
+  {% block head %}
   <title>Headline Words</title>
-  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+  <link rel=stylesheet href="{{ url_for('static', filename='style.css') }}">
+  {% endblock %}
 </head>
 <body>
-    <h1>Headline Words</h1>
-        <div id='data'>     
-            <ol id="words">
-            {% for word, count in words %}
-                <li>{{word}} <span>{{count}}</span></li>
-            {% endfor %}
-            </ol>
-        </div>
+  <h1>Headline Words</h1>
+    <div id='data'>     
+      <ol id="words">
+        {% for word, count in words %}
+        <li>{{word}} <span>{{count}}</span></li>
+        {% endfor %}
+      </ol>
+    </div>
 </body>

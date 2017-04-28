@@ -1,12 +1,25 @@
 #!/usr/bin/env python
 
 
+import json
+
 from flask import Flask, render_template
+
+from bbc_headlines import TODAYS_WORDS
+
 
 app = Flask(__name__)
 
-words = [('cat', 6), ('dog', 3), ('duck', 2)]
+
+def load_words(words):
+    with open(words, 'r') as infile:
+        todays_words = json.load(infile)
+    return todays_words
+
+
+WORDS = load_words(TODAYS_WORDS)
+
 
 @app.route('/')
-def display_words(words=words):
+def display_words(words=WORDS):
     return render_template('index.html', words=words)
