@@ -5,7 +5,7 @@ import sqlite3
 import json
 import datetime as dt
 
-from funcs import load_words
+from funcs import load_words, date_object
 
 
 DATABASE = 'data/headline_words.db'
@@ -23,11 +23,11 @@ def close_up():
     conn.close()
 
 
-def date_object():
-    """ Return date object for today with only year, month and day. """
-    now = dt.datetime.now()
-    today = dt.date(now.year, now.month, now.day)
-    return today
+#def date_object():
+#    """ Return date object for today with only year, month and day. """
+#    now = dt.datetime.now()
+#    today = dt.date(now.year, now.month, now.day)
+#    return today
 
 
 # Basic query strings
