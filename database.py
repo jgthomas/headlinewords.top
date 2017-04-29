@@ -5,10 +5,13 @@ import sqlite3
 import json
 import datetime as dt
 
+from funcs import load_words
 
-conn = sqlite3.connect('headline_words.db', 
+
+DATABASE = 'data/headline_words.db'
+
+conn = sqlite3.connect(DATABASE, 
                         detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
-
 cur = conn.cursor()
 
 
@@ -49,16 +52,11 @@ def query(sql, opts=None):
     return cur.fetchall()
 
 
-def load_words(words):
-    with open(words, 'r') as infile:
-        todays_words = json.load(infile)
-    return todays_words
-
-
 TODAY = date_object()
 YESTERDAY = dt.date(2017, 4, 28)
 TWOBACK = dt.date(2017, 4, 27)
 THREEBACK = dt.date(2017, 4, 26)
+
 
 def add_words(words, date=TODAY):
     for data in words:
@@ -74,7 +72,7 @@ NAME = 'headline_words.json'
 TODAYS_WORDS = '_'.join([DATE, NAME])
 
 
-WORDS = load_words(TODAYS_WORDS)
+#WORDS = load_words(TODAYS_WORDS)
 
 with conn:
     print(query(since_date, (TWOBACK,)))
