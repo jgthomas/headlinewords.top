@@ -37,12 +37,14 @@ def query(sql, opts=None):
     return cur.fetchall()
 
 
-# For testing to be deleted
 TODAY = date_object()
-YESTERDAY = dt.date(2017, 4, 28)
-TWOBACK = dt.date(2017, 4, 27)
-THREEBACK = dt.date(2017, 4, 26)
-FOURBACK = dt.date(2017, 4, 25)
+YESTERDAY = TODAY - dt.timedelta(days=1)
+WEEK = TODAY - dt.timedelta(days=7)
+MONTH = TODAY - dt.timedelta(days=30)
+
+
+def date_factory(number_of_days):
+    return TODAY - dt.timedelta(days=number_of_days)
 
 
 def main():
