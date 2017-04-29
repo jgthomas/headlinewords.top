@@ -8,9 +8,9 @@ from collections import Counter
 
 import feedparser
 
-from functional.pythonic_pipes import (is_not_in,
-                                       filter_by,
-                                       map_over)
+from pythonic_pipes import (is_not_in,
+                            filter_by,
+                            map_over)
 
 
 DATE = dt.datetime.today().strftime("%d_%m_%Y")
