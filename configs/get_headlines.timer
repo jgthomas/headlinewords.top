@@ -1,0 +1,10 @@
+[Unit]
+Description=Get headlines from BBC News
+
+[Timer]
+OnCalendar=*-*-* 09:30:00
+Persistent=True
+Unit=get_headlines.service
+
+[Install]
+WantedBy=timers.target
