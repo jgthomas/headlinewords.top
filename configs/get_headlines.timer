@@ -2,7 +2,7 @@
 Description=Get headlines from BBC News
 
 [Timer]
-OnCalendar=*-*-* 09:30:00
+OnCalendar=*:0/15
 Persistent=True
 Unit=get_headlines.service
 
