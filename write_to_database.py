@@ -1,10 +1,11 @@
 
 
+import sqlite3
+#import datetime as dt
 from funcs import load_words, date_object
-from constants import TODAYS_WORDS
+from constants import DATABASE, TODAYS_WORDS
 
 
-DATABASE = 'data/headline_words.db'
 TODAY = date_object()
 WORDS = load_words(TODAYS_WORDS)
 
@@ -20,7 +21,7 @@ def create_table():
 def add_words(words):
     for data in words:
         word, count = data
-        data_to_add = (word, count, TODAY)
+        data_to_add = (word, count, FOURBACK)
         conn.execute('INSERT INTO hw VALUES (?,?,?)', data_to_add)
 
 
@@ -28,7 +29,7 @@ def main():
     with conn:
         create_table()
         add_words(WORDS)
-        conn.close()
+    conn.close()
 
 
 if __name__ == '__main__':

@@ -6,28 +6,12 @@ import json
 import datetime as dt
 
 from funcs import load_words, date_object
+from constants import DATABASE
 
-
-DATABASE = 'data/headline_words.db'
 
 conn = sqlite3.connect(DATABASE, 
                         detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
 cur = conn.cursor()
-
-
-def create_table():
-    conn.execute('CREATE TABLE IF NOT EXISTS hw(word TEXT, count INTEGER, date DATE)')
-
-
-def close_up():
-    conn.close()
-
-
-#def date_object():
-#    """ Return date object for today with only year, month and day. """
-#    now = dt.datetime.now()
-#    today = dt.date(now.year, now.month, now.day)
-#    return today
 
 
 # Basic query strings
@@ -36,6 +20,7 @@ total = 'GROUP BY word ORDER BY SUM(count) DESC'
 date = 'WHERE "[date]"=?'
 since = 'WHERE "[date]">?'
 timespan = 'WHERE "[date]">? AND "[date]"<?'
+
 
 # Compound query strings
 overall_total = ' '.join([base, total])
@@ -52,29 +37,23 @@ def query(sql, opts=None):
     return cur.fetchall()
 
 
+# For testing to be deleted
 TODAY = date_object()
 YESTERDAY = dt.date(2017, 4, 28)
 TWOBACK = dt.date(2017, 4, 27)
 THREEBACK = dt.date(2017, 4, 26)
+FOURBACK = dt.date(2017, 4, 25)
 
 
-def add_words(words, date=TODAY):
-    for data in words:
-        word, count = data
-        data_to_add = (word, count, date)
-        conn.execute('INSERT INTO hw VALUES (?,?,?)', data_to_add)
+def main():
+    with conn:
+        print(query(overall_total))
+        #print(query(specific_data, (YESTERDAY,)))
+        #print(query(since_date, (TWOBACK,)))
+        #print(query(date_range, (TWOBACK, TODAY)))
+    conn.close()
 
 
-create_table()
+if __name__ == '__main__':
 
-DATE = dt.datetime.today().strftime("%d_%m_%Y")
-NAME = 'headline_words.json'
-TODAYS_WORDS = '_'.join([DATE, NAME])
-
-
-#WORDS = load_words(TODAYS_WORDS)
-
-with conn:
-    print(query(since_date, (TWOBACK,)))
-
-close_up()
+    main()

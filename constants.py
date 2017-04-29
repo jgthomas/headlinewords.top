@@ -3,6 +3,8 @@
 import datetime as dt
 
 
+DATABASE = 'data/headline_words.db'
+
 DATE = dt.datetime.today().strftime("%d_%m_%Y")
 
 NAME = 'headline_words.json'
