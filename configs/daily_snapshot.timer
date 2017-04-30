@@ -4,7 +4,7 @@ Description=save snapshot to database
 [Timer]
 OnCalendar=*-*-* 07:20:00
 Persistent=True
-Unit=get_headlines.service
+Unit=daily_snapshot.service
 
 [Install]
 WantedBy=timers.target
