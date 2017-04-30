@@ -102,7 +102,7 @@ div.left, div.right {
             div.left, div.right { font-size: 4em; }
             #data_table { width: 75% }
             h1 { font-size: 9vw; }
-            #navigation { font-size: 3vw; }
+            #navigation { width: 85%; font-size: 3vw; }
 
             /* Better font rendering */
             -moz-osx-font-smoothing: grayscale;
