@@ -15,3 +15,12 @@ def date_object():
     now = dt.datetime.now()
     today = dt.date(now.year, now.month, now.day)
     return today
+
+
+def date_object_factory(number_of_days):
+    return TODAY - dt.timedelta(days=number_of_days)
+
+
+def name_factory(date, name):
+    date = date.strftime("%d_%m_%Y")
+    return '_'.join([date, name])

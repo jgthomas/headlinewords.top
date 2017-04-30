@@ -5,8 +5,14 @@ import sqlite3
 import json
 import datetime as dt
 
-from funcs import load_words, date_object
-from constants import DATABASE
+from funcs import (load_words,
+                   date_object)
+
+from constants import (DATABASE,
+                       TODAY,
+                       YESTERDAY,
+                       WEEK,
+                       MONTH)
 
 
 conn = sqlite3.connect(DATABASE, 
@@ -35,17 +41,6 @@ def query(sql, opts=None):
     else:
         cur.execute(sql)
     return cur.fetchall()
-
-
-# Common query options
-TODAY = date_object()
-YESTERDAY = TODAY - dt.timedelta(days=1)
-WEEK = TODAY - dt.timedelta(days=7)
-MONTH = TODAY - dt.timedelta(days=30)
-
-
-def date_factory(number_of_days):
-    return TODAY - dt.timedelta(days=number_of_days)
 
 
 def main():

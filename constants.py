@@ -2,7 +2,13 @@
 
 import datetime as dt
 
+from funcs import date_object
 
+
+TODAY = date_object()
+YESTERDAY = TODAY - dt.timedelta(days=1)
+WEEK = TODAY - dt.timedelta(days=7)
+MONTH = TODAY - dt.timedelta(days=30)
 
 DATABASE = 'data/headline_words.db'
 

@@ -1,0 +1,8 @@
+[Unit]
+Description=save snapshot to database
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/html/headline_words
+Environment="PATH=/home/walljames/Python/VirtualEnvs/flask/bin"
+ExecStart=/home/walljames/Python/VirtualEnvs/flask/bin/python3 write_to_database.py 

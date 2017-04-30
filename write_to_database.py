@@ -1,14 +1,17 @@
 
 
 import sqlite3
-#import datetime as dt
-from funcs import load_words, date_object
-from constants import DATABASE, TODAYS_WORDS
+
+from funcs import (load_words,
+                   name_factory)
+
+from constants import (DATABASE, 
+                       NAME,
+                       TODAY)
 
 
-TODAY = date_object()
-WORDS = load_words(TODAYS_WORDS)
-
+FILENAME = name_factory(TODAY, NAME)
+WORDS = load_words(FILENAME)
 
 conn = sqlite3.connect(DATABASE, 
                         detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
@@ -21,7 +24,7 @@ def create_table():
 def add_words(words):
     for data in words:
         word, count = data
-        data_to_add = (word, count, FOURBACK)
+        data_to_add = (word, count, TODAY)
         conn.execute('INSERT INTO hw VALUES (?,?,?)', data_to_add)
 
 
