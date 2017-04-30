@@ -25,6 +25,7 @@ a:link, a:visited {
         text-align: center;
         text-decoration: none;
         display: inline-block;
+        width: 3em;
 }
 
 a.link.current {
