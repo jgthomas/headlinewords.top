@@ -21,9 +21,9 @@ ALL_TIME_WORDS = query(overall_total)[:TOP_WORDS]
 
 @app.route('/')
 def display_words(words=WORDS):
-    return render_template('index.html', words=words)
+    return render_template('words_now.html', words=words)
 
 
 @app.route('/alltime')
 def show_all_time_words(words=ALL_TIME_WORDS):
-    return render_template('queried.html', words=ALL_TIME_WORDS)
+    return render_template('words_alltime.html', words=ALL_TIME_WORDS)
