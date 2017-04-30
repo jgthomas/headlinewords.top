@@ -19,9 +19,8 @@ h1 {
 }
 
 a:link, a:visited {
-        background-color: #e6e6e6;
-        color: #777D80;
-        /*padding: 14px 25px;*/
+        background-color: #D2D5D6;
+        color: #515557;
         padding: 1.5em;
         text-align: center;
         text-decoration: none;
@@ -39,7 +38,7 @@ a:hover, a:active {
 #navigation {
         margin-left: auto;
         margin-right: auto;
-        width: 85%;
+        width: 65%;
         font-size: 2vw;
 }
 
