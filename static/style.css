@@ -21,7 +21,8 @@ h1 {
 a:link, a:visited {
         background-color: #e6e6e6;
         color: #777D80;
-        padding: 14px 25px;
+        /*padding: 14px 25px;*/
+        padding: 1.5em;
         text-align: center;
         text-decoration: none;
         display: inline-block;
