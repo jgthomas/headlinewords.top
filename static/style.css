@@ -27,7 +27,7 @@ a:link, a:visited {
         display: inline-block;
 }
 
-.current_link {
+a.link.current {
         background-color: #fff;
 }
 

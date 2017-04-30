@@ -1,9 +1,6 @@
-
-
-function changeColor(s) {
-    document.getElementById('link'+s).classList.add('current_link');
-}
-
-function addCLass(obj) {
-        obj.className+=" current_link"
-}
+$(document).ready(function() {
+   var links = $('a.link').click(function() {
+       links.removeClass('current');
+       $(this).addClass('current');
+   });
+});
