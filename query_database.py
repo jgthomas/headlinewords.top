@@ -37,6 +37,7 @@ def query(sql, opts=None):
     return cur.fetchall()
 
 
+# Common query options
 TODAY = date_object()
 YESTERDAY = TODAY - dt.timedelta(days=1)
 WEEK = TODAY - dt.timedelta(days=7)
