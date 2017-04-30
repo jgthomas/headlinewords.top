@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 WORDS = load_words(TODAYS_WORDS)[:TOP_WORDS]
 
-#ALL_TIME_WORDS = query(overall_total)[:TOP_WORDS]
+ALL_TIME_WORDS = query(overall_total)[:TOP_WORDS]
 
 
 @app.route('/')
@@ -24,6 +24,6 @@ def display_words(words=WORDS):
     return render_template('index.html', words=words)
 
 
-#@app.route('/alltime')
-#def show_all_time_words(words=ALL_TIME_WORDS):
-#    return render_template('index.html', words=ALL_TIME_WORDS)
+@app.route('/alltime')
+def show_all_time_words(words=ALL_TIME_WORDS):
+    return render_template('queried.html', words=ALL_TIME_WORDS)
