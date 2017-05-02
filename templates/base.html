@@ -7,16 +7,15 @@
 </head>
 <body>
   <div id="navigation">
-    <a href="../" id="now" class="rounded_card">Now</a>
-    <a href="../week" id="week" class="rounded_card">Week</a>
-    <a href="../month" id="month" class="rounded_card">Month</a>
-    <a href="../alltime" id="ever" class="rounded_card">Ever</a>
-    <a href="../all" id="all" class="rounded_card">All</a>
+    <a href="../" id="now" class="navlink rounded_card">Now</a>
+    <a href="../week" id="week" class="navlink rounded_card">Week</a>
+    <a href="../month" id="month" class="navlink rounded_card">Month</a>
+    <a href="../alltime" id="ever" class="navlink rounded_card">Ever</a>
+    <a href="../all" id="all" class="navlink rounded_card">All</a>
   </div>
   <div id="content">
     {% block content %}
     {% endblock %}
   </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='active_link.js') }}"></script>
 </body>
