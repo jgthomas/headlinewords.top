@@ -1,3 +1,4 @@
+{% from "macros.html" import nav_link with context %}
 <!doctype html>
 <head>
   {% block head %}
@@ -7,15 +8,14 @@
 </head>
 <body>
   <div id="navigation">
-    <a href="../" id="now" class="navlink rounded_card">Now</a>
-    <a href="../week" id="week" class="navlink rounded_card">Week</a>
-    <a href="../month" id="month" class="navlink rounded_card">Month</a>
-    <a href="../alltime" id="ever" class="navlink rounded_card">Ever</a>
-    <a href="../all" id="all" class="navlink rounded_card">All</a>
+    {{ nav_link("display_words", "Now") }} 
+    {{ nav_link("show_week_words", "Week") }} 
+    {{ nav_link("show_month_words", "Month") }} 
+    {{ nav_link("show_all_time_words", "Ever") }} 
+    {{ nav_link("show_all_words", "All") }} 
   </div>
   <div id="content">
     {% block content %}
     {% endblock %}
   </div>
-  <script type="text/javascript" src="{{ url_for('static', filename='active_link.js') }}"></script>
 </body>

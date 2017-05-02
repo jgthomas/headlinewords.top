@@ -28,7 +28,7 @@ a:link, a:visited {
         width: 3em;
 }
 
-a.link.current {
+a.current {
         background-color: #fff;
 }
 
