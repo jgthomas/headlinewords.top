@@ -37,6 +37,7 @@ a:hover, a:active {
 #navigation {
         margin-left: auto;
         margin-right: auto;
+        text-align: center;
 }
 
 .right {
@@ -85,6 +86,11 @@ div.right {
         color: #fff;
 }
 
+div.navlink {
+        margin-right: auto;
+        margin-left: auto;
+        display: inline-block;
+}
 
 /* For mobile - ASSUME mobile */
 h1 { font-size: 9vw; width: 65%; }
@@ -95,10 +101,10 @@ div.left, div.right { font-size: 4em; }
 
 /* Modify for desktop: */
 @media only screen and (min-device-width: 961px) {
-        h1 { font-size: 5vw; width: 40% }
+        h1 { font-size: 3em; width: 40%; max-width: 450px; }
         div.left, div.right { font-size: 2em; }
-        #data_table { width: 45%; }
-        #navigation { width: 65%; font-size: 2vw; }
+        #data_table { width: 45%; max-width: 500px; }
+        #navigation { width: 85%; font-size: 1.25em; }
 }
 
 /* Modify for HiDPI */

@@ -1,7 +1,11 @@
 {% macro nav_link(endpoint, name) %}
 {% if request.endpoint.endswith(endpoint) %}
-  <a href="{{ url_for(endpoint) }}" class="current navlink rounded_card">{{name}}</a>
+  <div class="navlink">
+    <a href="{{ url_for(endpoint) }}" class="current navlink rounded_card">{{name}}</a>
+  </div>
 {% else %}
-  <a href="{{ url_for(endpoint) }}" class="navlink rounded_card">{{name}}</a>
+  <div class="navlink">
+    <a href="{{ url_for(endpoint) }}" class="navlink rounded_card">{{name}}</a>
+  </div>
 {% endif %}
 {% endmacro %}
