@@ -10,9 +10,7 @@ html {
 
 h1 {
         text-align: center;
-        font-size: 5vw;
         background: #fff;
-        width: 65%;
         margin-left: auto;
         margin-right: auto;
         padding: 0.25em;
@@ -39,8 +37,6 @@ a:hover, a:active {
 #navigation {
         margin-left: auto;
         margin-right: auto;
-        width: 65%;
-        font-size: 2vw;
 }
 
 .right {
@@ -52,7 +48,6 @@ a:hover, a:active {
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 3em;
-        width: 65%;
 }
 
 .rounded_card {
@@ -90,20 +85,28 @@ div.right {
         color: #fff;
 }
 
-div.left, div.right {
-        font-size: 2em;
+
+/* For mobile - ASSUME mobile */
+h1 { font-size: 9vw; width: 65%; }
+div.left, div.right { font-size: 4em; }
+#data_table { width: 75% }
+#navigation { width: 95%; font-size: 3vw; }
+
+
+/* Modify for desktop: */
+@media only screen and (min-device-width: 961px) {
+        h1 { font-size: 5vw; width: 40% }
+        div.left, div.right { font-size: 2em; }
+        #data_table { width: 45%; }
+        #navigation { width: 65%; font-size: 2vw; }
 }
 
-/* Changes for HiDPi */
+/* Modify for HiDPI */
 @media
     only screen and (-webkit-min-device-pixel-ratio: 1.3),
 	only screen and (-o-min-device-pixel-ratio: 13/10),
 	only screen and (min-resolution: 120dpi)
 	{
-            div.left, div.right { font-size: 4em; }
-            #data_table { width: 75% }
-            h1 { font-size: 9vw; }
-            #navigation { width: 95%; font-size: 3vw; }
 
             /* Better font rendering */
             -moz-osx-font-smoothing: grayscale;
