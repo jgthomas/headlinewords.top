@@ -76,7 +76,8 @@ def save_words(words):
 
 def main():
     for source in SOURCES:
-        word_frequencies = Counter(filter_words(get_words(source)))
+        name, headlines = source
+        word_frequencies = Counter(filter_words(get_words(headlines)))
         save_words(word_frequencies.most_common())
 
 

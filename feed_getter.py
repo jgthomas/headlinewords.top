@@ -20,4 +20,4 @@ BBC = get_headlines(BBC_URL)
 NYT = get_headlines(NYT_URL)
 
 # Currently used sources
-SOURCES = [BBC]
+SOURCES = [('bbc', BBC)]
