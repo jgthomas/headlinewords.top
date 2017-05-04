@@ -1,27 +1,20 @@
 #!/usr/bin/env python
 
 
-import json
 import sqlite3
 import os.path
 from collections import Counter
 
 from constants import DATABASE, TODAY
 from feed_getter import SOURCES
-from funcs import load_words
+from funcs import load_words, save_to_json
 from bbc_headlines import get_words, filter_words
 
 
 HL_FILE = 'headlines.json'
 HL_WORDS_FILE = 'headline_words.json'
-
-
-conn = sqlite3.connect(DATABASE, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
-
-
-def save_to_json(filename, words):
-    with open(filename, 'w') as outfile:
-        json.dump(words, outfile)
+DB_NAME = 'headline_words.db'
+DB_PATH = 'data/'
 
 
 def get_new_headlines(filename, headlines):
@@ -33,28 +26,31 @@ def get_new_headlines(filename, headlines):
     return new_hlines
 
 
-def add_to_database(words):
+def add_to_database(db, words):
+    conn = sqlite3.connect(db, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
     conn.execute('CREATE TABLE IF NOT EXISTS hw(word TEXT, count INTEGER, date DATE)')
-    for data in words:
-        word, count = data
-        data_to_add = (word, count, TODAY)
-        conn.execute('INSERT INTO hw VALUES (?,?,?)', data_to_add)
+    with conn:
+        for data in words:
+            word, count = data
+            data_to_add = (word, count, TODAY)
+            conn.execute('INSERT INTO hw VALUES (?,?,?)', data_to_add)
+    conn.close()
 
 
 def main():
     for source in SOURCES:
         name, headlines = source
-        hl_filename = '_'.join([name, HL_FILE])
-        new_hlw_filename = '_'.join([name, HL_WORDS_FILE])
-        new_headlines = get_new_headlines(hl_filename, headlines)
-        save_to_json(hl_filename, headlines)
+        headlines_filename = '_'.join([name, HL_FILE])
+        new_headlines = get_new_headlines(headlines_filename, headlines)
+        save_to_json(headlines_filename, headlines)
         if new_headlines:
+            new_words_filename = '_'.join([name, HL_WORDS_FILE])
+            db = '_'.join([name, DB_NAME])
+            db_path = ''.join([DB_PATH, db])
             word_frequencies = Counter(filter_words(get_words(new_headlines)))
-            save_to_json(new_hlw_filename, word_frequencies.most_common())
-            new_words = load_words(new_hlw_filename)
-            with conn:
-                add_to_database(new_words)
-        conn.close()
+            new_words = word_frequencies.most_common()
+            save_to_json(new_words_filename, new_words)
+            add_to_database(db_path, new_words)
 
 
 if __name__ == '__main__':

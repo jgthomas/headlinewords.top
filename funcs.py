@@ -4,6 +4,11 @@ import json
 import datetime as dt
 
 
+def save_to_json(filename, words):
+    with open(filename, 'w') as outfile:
+        json.dump(words, outfile)
+
+
 def load_words(words):
     with open(words, 'r') as infile:
         todays_words = json.load(infile)
