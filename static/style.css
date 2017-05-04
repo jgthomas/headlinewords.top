@@ -101,16 +101,16 @@ a.current {
 
 /* Assume mobile */
 nav { width: 95%; font-size: 3vw; }
-.title { font-size: 9vw; width: 65%; }
+.title { font-size: 8vw; width: 95%; }
 #data_table { width: 75% }
 .word, .count { font-size: 4em; }
 
 
 /* Modify for desktop: */
 @media only screen and (min-device-width: 961px) {
-        nav { font-size: 1.25em; }
-        .title { font-size: 3em; width: 40%; max-width: 450px; }
-        #data_table { width: 45%; max-width: 500px; }
+        nav { font-size: 1.25em; max-width: 650px; }
+        .title { font-size: 3em; max-width: 625px; }
+        #data_table { width: 55%; max-width: 600px; }
         .word, .count { font-size: 2em; }
 }
 
