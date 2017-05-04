@@ -18,6 +18,8 @@ from constants import (URL,
                        SHORT_WORD,
                        TOP_WORDS)
 
+from feed_getter import SOURCES
+
 
 def no_numbers(x):
     """ Remove words beginning with a digit. """
@@ -39,16 +41,22 @@ def lower(x):
     return x.lower()
 
 
-def get_words(url):
-    """
-    Pulls down the RSS feed from BBC News and returns 
-    all the words found in the headlines.
-
-    """
-    feed = feedparser.parse(url)
-    headlines = (x['title'].split() for x in feed['entries'])
-    headline_words = (word for headline in headlines for word in headline)
+def get_words2(headlines):
+    split_headlines = (x.split() for x in headlines)
+    headline_words = (word for headline in split_headlines for word in headline)
     return headline_words
+
+
+#def get_words(url):
+#    """
+#    Pulls down the RSS feed from BBC News and returns 
+#    all the words found in the headlines.
+#
+#    """
+#    feed = feedparser.parse(url)
+#    headlines = (x['title'].split() for x in feed['entries'])
+#    headline_words = (word for headline in headlines for word in headline)
+#    return headline_words
 
 
 # Maps - apply function to every word
@@ -82,8 +90,11 @@ def save_words(words):
 
 
 def main():
-    word_frequencies = Counter(filter_words(get_words(URL)))
-    save_words(word_frequencies.most_common())
+    for source in SOURCES:
+        word_frequencies = Counter(filter_words(get_words2(source)))
+        save_words(word_frequencies.most_common())
+    #word_frequencies = Counter(filter_words(get_words(URL)))
+    #save_words(word_frequencies.most_common())
 
 
 if __name__ == '__main__':
