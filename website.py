@@ -26,25 +26,35 @@ ALL_WORDS = query(overall_total)
 
 
 @app.route('/')
-def now(words=WORDS):
-    return render_template('now.html', words=words)
+def now():
+    words = WORDS
+    title = 'Top words right now'
+    return render_template('now.html', title=title, words=words)
 
 
 @app.route('/week')
-def week(words=WEEK_WORDS):
-    return render_template('week.html', words=WEEK_WORDS)
+def week():
+    words = WEEK_WORDS
+    title = 'Top words this week'
+    return render_template('query_output.html', title=title, words=words)
 
 
 @app.route('/month')
-def month(words=MONTH_WORDS):
-    return render_template('month.html', words=MONTH_WORDS)
+def month():
+    words = MONTH_WORDS
+    title = 'Top words this month'
+    return render_template('query_output.html', title=title, words=words)
 
 
 @app.route('/ever')
-def ever(words=EVER_WORDS):
-    return render_template('ever.html', words=EVER_WORDS)
+def ever():
+    words = EVER_WORDS
+    title = 'Top words ever'
+    return render_template('query_output.html', title=title, words=words)
 
 
 @app.route('/all')
-def all(words=ALL_WORDS):
-    return render_template('all.html', words=ALL_WORDS)
+def all():
+    words = ALL_WORDS
+    title = 'Complete list'
+    return render_template('query_output.html', title=title, words=words)
