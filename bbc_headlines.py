@@ -3,22 +3,25 @@
 
 import re
 import json
-import datetime as dt
 from collections import Counter
-
-import feedparser
 
 from pythonic_pipes import (is_not_in,
                             filter_by,
                             map_over)
 
-from constants import (URL,
-                       TODAYS_WORDS,
+from constants import (TODAYS_WORDS,
                        IGNORE,
                        SHORT_WORD,
                        TOP_WORDS)
 
 from feed_getter import SOURCES
+
+
+def get_words(source):
+    """ Return all words in the headlines from the source. """
+    split_headlines = (x.split() for x in source)
+    headline_words = (word for headline in split_headlines for word in headline)
+    return headline_words
 
 
 def no_numbers(x):
@@ -39,24 +42,6 @@ def too_short(x):
 def lower(x):
     """ Return x in lowercase. """
     return x.lower()
-
-
-def get_words2(headlines):
-    split_headlines = (x.split() for x in headlines)
-    headline_words = (word for headline in split_headlines for word in headline)
-    return headline_words
-
-
-#def get_words(url):
-#    """
-#    Pulls down the RSS feed from BBC News and returns 
-#    all the words found in the headlines.
-#
-#    """
-#    feed = feedparser.parse(url)
-#    headlines = (x['title'].split() for x in feed['entries'])
-#    headline_words = (word for headline in headlines for word in headline)
-#    return headline_words
 
 
 # Maps - apply function to every word
@@ -91,10 +76,8 @@ def save_words(words):
 
 def main():
     for source in SOURCES:
-        word_frequencies = Counter(filter_words(get_words2(source)))
+        word_frequencies = Counter(filter_words(get_words(source)))
         save_words(word_frequencies.most_common())
-    #word_frequencies = Counter(filter_words(get_words(URL)))
-    #save_words(word_frequencies.most_common())
 
 
 if __name__ == '__main__':

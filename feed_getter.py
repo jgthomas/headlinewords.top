@@ -5,15 +5,19 @@ import feedparser
 
 
 BBC_URL = 'http://feeds.bbci.co.uk/news/uk/rss.xml'
+NYT_URL = 'http://rss.nytimes.com/services/xml/rss/nyt/US.xml'
 
 
-def get_bbc_headlines():
-    """ Get BBC News RSS feed and returns all the headlines. """
-    feed = feedparser.parse(BBC_URL)
+def get_headlines(url):
+    """ Pull down RSS feed and extract the headlines. """
+    feed = feedparser.parse(url)
     headlines = [x['title'] for x in feed['entries']]
     return headlines
 
 
-BBC = get_bbc_headlines()
+# Sources
+BBC = get_headlines(BBC_URL)
+NYT = get_headlines(NYT_URL)
 
+# Currently used sources
 SOURCES = [BBC]
