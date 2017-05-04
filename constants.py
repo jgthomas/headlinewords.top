@@ -18,8 +18,6 @@ NAME = 'headline_words.json'
 
 TODAYS_WORDS = '_'.join([DATE, NAME])
 
-URL = 'http://feeds.bbci.co.uk/news/uk/rss.xml'
-
 IGNORE = ['and', 'a', 'if', 'on', 'no', 'yes', 'by', 'for', 'to', 'in',
           'is', 'are', 'be', 'or', 'as', 'where', 'when', 'how', 'the',
           'off', 'say', 'with', 'what', 'our', 'can', 'not', 'say',
