@@ -5,7 +5,7 @@ import sqlite3
 import os.path
 from collections import Counter
 
-from constants import DATABASE, TODAY
+from constants import TODAY
 from feed_getter import SOURCES
 from funcs import load_words, save_to_json
 from bbc_headlines import get_words, filter_words
