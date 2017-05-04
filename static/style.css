@@ -1,12 +1,18 @@
+/*** Top level ***/
+
 body {
         font-family: sans-serif;
 }
+
 
 html {
         background: #e6e6e6;
         color: #777D80;
         font-weight: bold;
 }
+
+
+/*** Page heading ***/
 
 h1 {
         text-align: center;
@@ -15,6 +21,7 @@ h1 {
         margin-right: auto;
         padding: 0.25em;
 }
+
 
 a:link, a:visited {
         background-color: #D2D5D6;
@@ -26,13 +33,16 @@ a:link, a:visited {
         width: 3em;
 }
 
+
 a.current {
         background-color: #fff;
 }
 
+
 a:hover, a:active {
         background-color: #fff;
 }
+
 
 #navigation {
         margin-left: auto;
@@ -40,9 +50,16 @@ a:hover, a:active {
         text-align: center;
 }
 
-.right {
-        float: right;
+
+div.navlink {
+        margin-right: auto;
+        margin-left: auto;
+        display: inline-block;
 }
+
+
+
+/*** Words and counts data ***/
 
 #data_table {
         margin-top: 3em;
@@ -50,6 +67,36 @@ a:hover, a:active {
         margin-right: auto;
         margin-bottom: 3em;
 }
+
+.line {
+        width: 100%;
+        background: #fff;
+        clear: both;
+        overflow: auto;
+        padding 0.25em;
+        margin-bottom: 0.50em;
+        border-radius:8px;
+}
+
+.word {
+        float: left;
+        clear: both;
+        width: 55%;
+        padding: 0.50em;
+}
+
+.count {
+        float: right;
+        width: 25%;
+        text-align: right;
+        padding: 0.50em;
+        background: #645FC2;
+        color: #fff;
+}
+
+
+
+/*** Re-used styles ***/
 
 .rounded_card {
         border-radius:8px;
@@ -60,52 +107,25 @@ a:hover, a:active {
 	    -moz-box-shadow:0 2px 5px rgba(0,0,0,0.2);
 }
 
-div.line {
-        width: 100%;
-        background: #fff;
-        clear: both;
-        overflow: auto;
-        padding 0.25em;
-        margin-bottom: 0.50em;
-        border-radius:8px;
-}
 
-div.left {
-        float: left;
-        clear: both;
-        width: 55%;
-        padding: 0.50em;
-}
 
-div.right {
-        float: right;
-        width: 25%;
-        text-align: right;
-        padding: 0.50em;
-        background: #645FC2;
-        color: #fff;
-}
+/*** Screen-sizes and devices ***/
 
-div.navlink {
-        margin-right: auto;
-        margin-left: auto;
-        display: inline-block;
-}
-
-/* For mobile - ASSUME mobile */
-h1 { font-size: 9vw; width: 65%; }
-div.left, div.right { font-size: 4em; }
-#data_table { width: 75% }
+/* Assume mobile */
 #navigation { width: 95%; font-size: 3vw; }
+h1 { font-size: 9vw; width: 65%; }
+#data_table { width: 75% }
+.word, .count { font-size: 4em; }
 
 
 /* Modify for desktop: */
 @media only screen and (min-device-width: 961px) {
-        h1 { font-size: 3em; width: 40%; max-width: 450px; }
-        div.left, div.right { font-size: 2em; }
-        #data_table { width: 45%; max-width: 500px; }
         #navigation { width: 85%; font-size: 1.25em; }
+        h1 { font-size: 3em; width: 40%; max-width: 450px; }
+        #data_table { width: 45%; max-width: 500px; }
+        .word, .count { font-size: 2em; }
 }
+
 
 /* Modify for HiDPI */
 @media
