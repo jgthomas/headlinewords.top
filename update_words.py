@@ -19,11 +19,11 @@ DB_PATH = 'data/'
 
 def get_new_headlines(filename, headlines):
     if os.path.isfile(filename):
-        old_hlines = load_words(filename)
-        new_hlines = [x for x in headlines if x not in old_hlines]
+        old_headlines = load_words(filename)
+        new_headlines = [x for x in headlines if x not in old_headlines]
     else:
-        new_hlines = headlines[:]
-    return new_hlines
+        new_headlines = headlines[:]
+    return new_headlines
 
 
 def add_to_database(db, words):
