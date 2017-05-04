@@ -23,6 +23,20 @@ h1 {
 }
 
 
+/*** Navigation ***/
+
+#navigation {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+}
+
+div.navlink {
+        margin-right: auto;
+        margin-left: auto;
+        display: inline-block;
+}
+
 a:link, a:visited {
         background-color: #D2D5D6;
         color: #515557;
@@ -33,33 +47,16 @@ a:link, a:visited {
         width: 3em;
 }
 
+a:hover, a:active {
+        background-color: #fff;
+}
 
 a.current {
         background-color: #fff;
 }
 
 
-a:hover, a:active {
-        background-color: #fff;
-}
-
-
-#navigation {
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-}
-
-
-div.navlink {
-        margin-right: auto;
-        margin-left: auto;
-        display: inline-block;
-}
-
-
-
-/*** Words and counts data ***/
+/*** Word and count data ***/
 
 #data_table {
         margin-top: 3em;
@@ -95,18 +92,12 @@ div.navlink {
 }
 
 
-
 /*** Re-used styles ***/
 
 .rounded_card {
-        border-radius:8px;
-	    -webkit-border-radius:8px;
-	    -moz-border-radius:8px
-	    box-shadow:0 2px 5px rgba(0,0,0,0.2);
-        -webkit-box-shadow:0 2px 5px rgba(0,0,0,0.2);
-	    -moz-box-shadow:0 2px 5px rgba(0,0,0,0.2);
+        border-radius: 8px;
+	    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
-
 
 
 /*** Screen-sizes and devices ***/
