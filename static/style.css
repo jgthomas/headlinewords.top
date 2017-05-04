@@ -4,17 +4,13 @@ body {
         font-family: sans-serif;
 }
 
-
 html {
         background: #e6e6e6;
         color: #777D80;
         font-weight: bold;
 }
 
-
-/*** Page heading ***/
-
-h1 {
+.title {
         text-align: center;
         background: #fff;
         margin-left: auto;
@@ -105,7 +101,7 @@ a.current {
 
 /* Assume mobile */
 #navigation { width: 95%; font-size: 3vw; }
-h1 { font-size: 9vw; width: 65%; }
+.title { font-size: 9vw; width: 65%; }
 #data_table { width: 75% }
 .word, .count { font-size: 4em; }
 
@@ -113,7 +109,7 @@ h1 { font-size: 9vw; width: 65%; }
 /* Modify for desktop: */
 @media only screen and (min-device-width: 961px) {
         #navigation { font-size: 1.25em; }
-        h1 { font-size: 3em; width: 40%; max-width: 450px; }
+        .title { font-size: 3em; width: 40%; max-width: 450px; }
         #data_table { width: 45%; max-width: 500px; }
         .word, .count { font-size: 2em; }
 }
