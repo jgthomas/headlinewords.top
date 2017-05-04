@@ -100,7 +100,7 @@ a.current {
 /*** Screen-sizes and devices ***/
 
 /* Assume mobile */
-#navigation { width: 95%; font-size: 3vw; }
+nav { width: 95%; font-size: 3vw; }
 .title { font-size: 9vw; width: 65%; }
 #data_table { width: 75% }
 .word, .count { font-size: 4em; }
@@ -108,7 +108,7 @@ a.current {
 
 /* Modify for desktop: */
 @media only screen and (min-device-width: 961px) {
-        #navigation { font-size: 1.25em; }
+        nav { font-size: 1.25em; }
         .title { font-size: 3em; width: 40%; max-width: 450px; }
         #data_table { width: 45%; max-width: 500px; }
         .word, .count { font-size: 2em; }
