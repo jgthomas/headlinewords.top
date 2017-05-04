@@ -7,13 +7,13 @@
   {% endblock %}
 </head>
 <body>
-  <div id="navigation">
+  <nav>
     {{ nav_link("now", "Now") }} 
     {{ nav_link("week", "Week") }} 
     {{ nav_link("month", "Month") }} 
     {{ nav_link("ever", "Ever") }} 
     {{ nav_link("all", "All") }} 
-  </div>
+  </nav>
   <div id="content">
     {% block content %}
     {% endblock %}
