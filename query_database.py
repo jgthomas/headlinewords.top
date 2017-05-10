@@ -20,6 +20,19 @@ date_range = ' '.join([base, timespan, total])
 
 
 def query(db, sql, opts=None):
+    """ 
+    Return query results from the selected database. 
+    
+    db:   database to query
+    sql:  SQL query string
+    opts: optional query parameters in the form of a tuple
+
+    Examles:
+    >>> from constants import BBC_DATABASE, TODAY
+    >>> query(BBC_DATABASE, specific_date, (TODAY,))
+    returns word frequencies from todays headlines at the BBC
+
+    """
     conn = sqlite3.connect(db, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
     cur = conn.cursor()
     with conn:
@@ -30,14 +43,3 @@ def query(db, sql, opts=None):
         data = cur.fetchall()
     conn.close()
     return data
-
-
-def main():
-    with conn:
-        print(query(overall_total))
-    conn.close()
-
-
-if __name__ == '__main__':
-
-    main()
