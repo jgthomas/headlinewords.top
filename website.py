@@ -39,7 +39,7 @@ ALL_WORDS = query_database(BBC_DATABASE, overall_total)
 
 
 @app.route('/')
-def now():
+def today():
     words = WORDS
     title = 'Top words today'
     return render_template('query_output.html', title=title, words=words)
