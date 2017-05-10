@@ -18,6 +18,12 @@ html {
         padding: 0.25em;
 }
 
+.subtitle{
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+}
+
 
 /*** Navigation ***/
 
@@ -102,6 +108,7 @@ a.current {
 /* Assume mobile */
 nav { width: 95%; font-size: 3vw; }
 .title { font-size: 8vw; width: 95%; }
+.subtitle { font-size: 5vw; width: 85% }
 #data_table { width: 75% }
 .word, .count { font-size: 4em; }
 
@@ -109,7 +116,8 @@ nav { width: 95%; font-size: 3vw; }
 /* Modify for desktop: */
 @media only screen and (min-device-width: 961px) {
         nav { font-size: 1.25em; max-width: 650px; }
-        .title { font-size: 3em; max-width: 625px; }
+        .title { font-size: 2em; max-width: 625px; }
+        .subtitle { font-size: 1.5em; max-width: 500px; }
         #data_table { width: 55%; max-width: 600px; }
         .word, .count { font-size: 2em; }
 }
