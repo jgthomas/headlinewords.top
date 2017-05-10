@@ -18,6 +18,11 @@ DB_PATH = 'data/'
 
 
 def get_new_headlines(filename, headlines):
+    """ 
+    Return headlines in the most recent result that 
+    were not in the previous. 
+    
+    """
     if os.path.isfile(filename):
         old_headlines = load_words(filename)
         new_headlines = [x for x in headlines if x not in old_headlines]
@@ -38,18 +43,36 @@ def add_to_database(db, words):
 
 
 def main():
+    """
+    For each headline source:
+    
+    1. Pull in the source name and latest headlines. 
+    2. Get headlines from the new batch that were not in the previous
+    3. Save the newly released headlines to json
+
+    If updated headlines were found:
+
+    1. Get word frequencies for those headlines
+    2. Save those frequencies to json, using source appropriate filename
+    3. Update the database of words for the current source
+
+    """
     for source in SOURCES:
         name, headlines = source
+
         headlines_filename = '_'.join([name, HL_FILE])
         new_headlines = get_new_headlines(headlines_filename, headlines)
+
         save_to_json(headlines_filename, headlines)
         if new_headlines:
-            new_words_filename = '_'.join([name, HL_WORDS_FILE])
-            db = '_'.join([name, DB_NAME])
-            db_path = ''.join([DB_PATH, db])
             word_frequencies = Counter(filter_words(get_words(new_headlines)))
             new_words = word_frequencies.most_common()
+
+            new_words_filename = '_'.join([name, HL_WORDS_FILE])
             save_to_json(new_words_filename, new_words)
+
+            db = '_'.join([name, DB_NAME])
+            db_path = ''.join([DB_PATH, db])
             add_to_database(db_path, new_words)
 
 
