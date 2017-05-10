@@ -16,7 +16,7 @@ IGNORE = ['and', 'a', 'if', 'on', 'no', 'yes', 'by', 'for', 'to', 'in',
 SHORT_WORD = 2
 
 # Retrieve this many words for queries
-TOP_WORDS = 10
+TOP_N_WORDS = 10
 
 # Date objects for database queries
 TODAY = date_object()

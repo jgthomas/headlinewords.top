@@ -3,7 +3,7 @@
 
 from flask import Flask, render_template
 
-from constants import (TOP_WORDS,
+from constants import (TOP_N_WORDS,
                        TODAY,
                        WEEK,
                        MONTH,
@@ -16,10 +16,10 @@ from query_database import (query,
 
 app = Flask(__name__)
 
-BBC_WORDS = query(BBC_DATABASE, specific_date, (TODAY,))[:TOP_WORDS]
-BBC_WEEK_WORDS = query(BBC_DATABASE, since_date, (WEEK,))[:TOP_WORDS]
-BBC_MONTH_WORDS = query(BBC_DATABASE, since_date, (MONTH,))[:TOP_WORDS]
-BBC_EVER_WORDS = query(BBC_DATABASE, overall_total)[:TOP_WORDS]
+BBC_WORDS = query(BBC_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
+BBC_WEEK_WORDS = query(BBC_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]
+BBC_MONTH_WORDS = query(BBC_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
+BBC_EVER_WORDS = query(BBC_DATABASE, overall_total)[:TOP_N_WORDS]
 BBC_ALL_WORDS = query(BBC_DATABASE, overall_total)
 
 @app.route('/')
