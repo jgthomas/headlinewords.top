@@ -146,6 +146,7 @@ has
 have
 having
 he
+headlines
 her
 here
 herself
@@ -226,9 +227,9 @@ needing
 needs
 never
 new
-new
 newer
 newest
+newspaper
 next
 no
 nobody
