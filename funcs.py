@@ -3,13 +3,17 @@
 import json
 import datetime as dt
 
+from constants import TODAY
+
 
 def save_to_json(filename, words):
+    """ Save data to JSON file. """
     with open(filename, 'w') as outfile:
         json.dump(words, outfile)
 
 
 def load_words(words):
+    """ Get data from JSON file. """
     with open(words, 'r') as infile:
         todays_words = json.load(infile)
     return todays_words
@@ -23,9 +27,5 @@ def date_object():
 
 
 def date_object_factory(number_of_days):
+    """ Return date object number_of_days before today. """
     return TODAY - dt.timedelta(days=number_of_days)
-
-
-def name_factory(date, name):
-    date = date.strftime("%d_%m_%Y")
-    return '_'.join([date, name])
