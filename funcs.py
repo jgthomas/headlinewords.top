@@ -22,8 +22,3 @@ def date_object():
     now = dt.datetime.now()
     today = dt.date(now.year, now.month, now.day)
     return today
-
-
-def date_object_factory(number_of_days):
-    """ Return date object number_of_days before today. """
-    return TODAY - dt.timedelta(days=number_of_days)
