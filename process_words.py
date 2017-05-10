@@ -2,19 +2,10 @@
 
 
 import re
-import json
-from collections import Counter
 
 from pythonic_pipes import (is_not_in,
                             filter_by,
                             map_over)
-
-from constants import (TODAYS_WORDS,
-                       IGNORE,
-                       SHORT_WORD,
-                       TOP_WORDS)
-
-from feed_getter import SOURCES
 
 
 def get_words(source):
@@ -66,21 +57,3 @@ def filter_words(words):
                         (remove_function_words
                          (to_lowercase(words))))))
     return filtered_words
-
-
-def save_words(words):
-    """ Save the words to a JSON file. """
-    with open(TODAYS_WORDS, 'w') as outfile:
-        json.dump(words, outfile)
-
-
-def main():
-    for source in SOURCES:
-        name, headlines = source
-        word_frequencies = Counter(filter_words(get_words(headlines)))
-        save_words(word_frequencies.most_common())
-
-
-if __name__ == '__main__':
-
-    main()
