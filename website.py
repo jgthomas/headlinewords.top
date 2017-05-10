@@ -9,18 +9,18 @@ from constants import (TOP_WORDS,
                        MONTH,
                        BBC_DATABASE)
 
-from query_database import (query_database,
+from query_database import (query,
                             specific_date,
                             overall_total,
                             since_date)
 
 app = Flask(__name__)
 
-BBC_WORDS = query_database(BBC_DATABASE, specific_date, (TODAY,))[:TOP_WORDS]
-BBC_WEEK_WORDS = query_database(BBC_DATABASE, since_date, (WEEK,))[:TOP_WORDS]
-BBC_MONTH_WORDS = query_database(BBC_DATABASE, since_date, (MONTH,))[:TOP_WORDS]
-BBC_EVER_WORDS = query_database(BBC_DATABASE, overall_total)[:TOP_WORDS]
-BBC_ALL_WORDS = query_database(BBC_DATABASE, overall_total)
+BBC_WORDS = query(BBC_DATABASE, specific_date, (TODAY,))[:TOP_WORDS]
+BBC_WEEK_WORDS = query(BBC_DATABASE, since_date, (WEEK,))[:TOP_WORDS]
+BBC_MONTH_WORDS = query(BBC_DATABASE, since_date, (MONTH,))[:TOP_WORDS]
+BBC_EVER_WORDS = query(BBC_DATABASE, overall_total)[:TOP_WORDS]
+BBC_ALL_WORDS = query(BBC_DATABASE, overall_total)
 
 @app.route('/')
 def today():

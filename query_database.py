@@ -35,15 +35,15 @@ since_date = ' '.join([base, since, total])
 date_range = ' '.join([base, timespan, total])
 
 
-def query(sql, opts=None):
-    if opts:
-        cur.execute(sql, opts)
-    else:
-        cur.execute(sql)
-    return cur.fetchall()
+#def query(sql, opts=None):
+#    if opts:
+#        cur.execute(sql, opts)
+#    else:
+#        cur.execute(sql)
+#    return cur.fetchall()
 
 
-def query_database(db, sql, opts=None):
+def query(db, sql, opts=None):
     conn = sqlite3.connect(db, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
     cur = conn.cursor()
     with conn:
