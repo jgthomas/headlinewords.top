@@ -7,6 +7,8 @@ from pythonic_pipes import (is_not_in,
                             filter_by,
                             map_over)
 
+from constants import IGNORE, SHORT_WORD
+
 
 def get_words(source):
     """ Return all words in the headlines from the source. """
