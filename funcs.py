@@ -3,8 +3,6 @@
 import json
 import datetime as dt
 
-from constants import TODAY
-
 
 def save_to_json(filename, words):
     """ Save data to JSON file. """
