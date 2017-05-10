@@ -7,7 +7,10 @@ from pythonic_pipes import (is_not_in,
                             filter_by,
                             map_over)
 
-from constants import IGNORE, SHORT_WORD
+from constants import STOPWORDS, SHORT_WORD
+
+
+IGNORE = set(line.strip() for line in open(STOPWORDS))
 
 
 def get_words(source):

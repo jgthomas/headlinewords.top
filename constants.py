@@ -6,11 +6,12 @@ from funcs import date_object
 
 
 # Words to exclude from the database
-IGNORE = ['and', 'a', 'if', 'on', 'no', 'yes', 'by', 'for', 'to', 'in',
-          'is', 'are', 'be', 'or', 'as', 'where', 'when', 'how', 'the',
-          'off', 'say', 'with', 'what', 'our', 'can', 'not', 'an',
-          'says', 'over', 'just', 'that', 'do', 'does', 'from', 'too',
-          'why', 'out', 'mr', 'ms', 'miss', 'mrs', 'dr', 'it']
+STOPWORDS = 'stopwords.txt'
+#IGNORE = ['and', 'a', 'if', 'on', 'no', 'yes', 'by', 'for', 'to', 'in',
+#          'is', 'are', 'be', 'or', 'as', 'where', 'when', 'how', 'the',
+#          'off', 'say', 'with', 'what', 'our', 'can', 'not', 'an',
+#          'says', 'over', 'just', 'that', 'do', 'does', 'from', 'too',
+#          'why', 'out', 'mr', 'ms', 'miss', 'mrs', 'dr', 'it']
 
 # Exclude words shorter than
 SHORT_WORD = 2
