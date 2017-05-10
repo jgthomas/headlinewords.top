@@ -8,7 +8,7 @@ from collections import Counter
 from constants import TODAY
 from feed_getter import SOURCES
 from funcs import load_words, save_to_json
-from bbc_headlines import get_words, filter_words
+from process_words import get_words, filter_words
 
 
 HL_FILE = 'headlines.json'
@@ -32,6 +32,7 @@ def get_new_headlines(filename, headlines):
 
 
 def add_to_database(db, words):
+    """ Add the words to the specified database. """
     conn = sqlite3.connect(db, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
     conn.execute('CREATE TABLE IF NOT EXISTS hw(word TEXT, count INTEGER, date DATE)')
     with conn:
