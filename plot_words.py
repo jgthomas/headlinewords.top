@@ -32,7 +32,7 @@ def get_word_trends(db, word, days):
             else:
                 counts.append(0)
     dates = [d.strftime('%d %B') for d in dates]
-    return (word, dates, tuple(counts))
+    return (word, dates, counts)
 
 
 ELECTION = get_word_trends(BBC_DATABASE, 'election', 30)
@@ -54,6 +54,7 @@ def plot_graph(data):
 
 def main():
     plot_graph(AFTER)
+    plot_graph(ELECTION)
 
 if __name__ == '__main__':
 
