@@ -16,40 +16,38 @@ from query_database import (query_database,
 
 app = Flask(__name__)
 
-
-# BBC
-WORDS = query_database(BBC_DATABASE, specific_date, (TODAY,))[:TOP_WORDS]
-WEEK_WORDS = query_database(BBC_DATABASE, since_date, (WEEK,))[:TOP_WORDS]
-MONTH_WORDS = query_database(BBC_DATABASE, since_date, (MONTH,))[:TOP_WORDS]
-EVER_WORDS = query_database(BBC_DATABASE, overall_total)[:TOP_WORDS]
-ALL_WORDS = query_database(BBC_DATABASE, overall_total)
+BBC_WORDS = query_database(BBC_DATABASE, specific_date, (TODAY,))[:TOP_WORDS]
+BBC_WEEK_WORDS = query_database(BBC_DATABASE, since_date, (WEEK,))[:TOP_WORDS]
+BBC_MONTH_WORDS = query_database(BBC_DATABASE, since_date, (MONTH,))[:TOP_WORDS]
+BBC_EVER_WORDS = query_database(BBC_DATABASE, overall_total)[:TOP_WORDS]
+BBC_ALL_WORDS = query_database(BBC_DATABASE, overall_total)
 
 @app.route('/')
 def today():
-    words = WORDS
+    words = BBC_WORDS
     title = 'Top words today'
     return render_template('query_output.html', title=title, words=words)
 
 @app.route('/week')
 def week():
-    words = WEEK_WORDS
+    words = BBC_WEEK_WORDS
     title = 'Top words this week'
     return render_template('query_output.html', title=title, words=words)
 
 @app.route('/month')
 def month():
-    words = MONTH_WORDS
+    words = BBC_MONTH_WORDS
     title = 'Top words this month'
     return render_template('query_output.html', title=title, words=words)
 
 @app.route('/ever')
 def ever():
-    words = EVER_WORDS
+    words = BBC_EVER_WORDS
     title = 'Top words ever'
     return render_template('query_output.html', title=title, words=words)
 
 @app.route('/all')
 def all():
-    words = ALL_WORDS
+    words = BBC_ALL_WORDS
     title = 'Complete list'
     return render_template('query_output.html', title=title, words=words)
