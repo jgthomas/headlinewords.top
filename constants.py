@@ -10,7 +10,12 @@ YESTERDAY = TODAY - dt.timedelta(days=1)
 WEEK = TODAY - dt.timedelta(days=7)
 MONTH = TODAY - dt.timedelta(days=30)
 
+
 DATABASE = 'data/headline_words.db'
+
+BBC_DATABASE = 'data/bbc_headline_words.db'
+NYT_DATABASE = 'data/nyt_headlines_words.db'
+
 
 DATE = dt.datetime.today().strftime("%d_%m_%Y")
 
