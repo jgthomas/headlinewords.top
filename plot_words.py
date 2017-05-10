@@ -36,6 +36,7 @@ def get_word_trends(db, word, days):
 
 
 ELECTION = get_word_trends(BBC_DATABASE, 'election', 30)
+AFTER = get_word_trends(BBC_DATABASE, 'after', 7)
 
 
 def plot_graph(data):
@@ -52,7 +53,7 @@ def plot_graph(data):
 
 
 def main():
-    plot_graph(ELECTION)
+    plot_graph(AFTER)
 
 if __name__ == '__main__':
 
