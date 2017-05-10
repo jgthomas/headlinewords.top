@@ -3,9 +3,16 @@
 
 import datetime as dt
 
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
 from query_database import query, word_on_date
 
 from constants import TODAY, BBC_DATABASE
+
+
+GRAPH_PATH = 'graphs/'
 
 
 def date_factory(num_days):
@@ -25,11 +32,28 @@ def get_word_trends(db, word, days):
             else:
                 counts.append(0)
     dates = [d.strftime('%d %B') for d in dates]
-    return dict(zip(dates, counts))
+    return (word, dates, tuple(counts))
 
 
-MAY = get_word_trends(BBC_DATABASE, 'may', 7)
-CORBYN = get_word_trends(BBC_DATABASE, 'corbyn', 7)
-DEATH = get_word_trends(BBC_DATABASE, 'death', 7)
-BBC = get_word_trends(BBC_DATABASE, 'bbc', 7)
-ELECTION = get_word_trends(BBC_DATABASE, 'election', 10)
+ELECTION = get_word_trends(BBC_DATABASE, 'election', 30)
+
+
+def plot_graph(data):
+    word, x_data, y_data = data
+    plt.rcParams['figure.figsize'] = 12, 8
+    plt.plot(y_data)
+    plt.xticks(range(len(x_data)), x_data, rotation=45)
+    plt.title(word)
+    plt.xlabel('Date')
+    plt.ylabel('Frequency')
+    plt.subplots_adjust(bottom=0.25)
+    plt.savefig(''.join([GRAPH_PATH, word, '.png']))
+    plt.clf()
+
+
+def main():
+    plot_graph(ELECTION)
+
+if __name__ == '__main__':
+
+    main()
