@@ -6,12 +6,17 @@ import json
 from flask import Flask, render_template
 
 from funcs import load_words
+
 from constants import (TODAYS_WORDS, 
                        TOP_WORDS,
+                       TODAY,
                        WEEK,
-                       MONTH)
+                       MONTH,
+                       DATABASE,
+                       BBC_DATABASE)
 
 from query_database import (query, 
+                            query_database,
                             overall_total,
                             since_date)
 
@@ -23,6 +28,20 @@ WEEK_WORDS = query(since_date, (WEEK,))[:TOP_WORDS]
 MONTH_WORDS = query(since_date, (MONTH,))[:TOP_WORDS]
 EVER_WORDS = query(overall_total)[:TOP_WORDS]
 ALL_WORDS = query(overall_total)
+
+# BBC
+#WORDS = query_database(BBC_DATABASE, since_date, (TODAY,))[:TOP_WORDS]
+#WEEK_WORDS = query_database(BBC_DATABASE, since_date, (WEEK,))[:TOP_WORDS]
+#MONTH_WORDS = query_database(BBC_DATABASE, since_date, (MONTH,))[:TOP_WORDS]
+#EVER_WORDS = query_database(BBC_DATABASE, overall_total)[:TOP_WORDS]
+#ALL_WORDS = query_database(BBC_DATABASE, overall_total)
+
+
+#@app.route('/')
+#def now():
+#    words = WORDS
+#    title = 'Top words right now'
+#    return render_template('query_output.html', title=title, words=words)
 
 
 @app.route('/')

@@ -43,12 +43,22 @@ def query(sql, opts=None):
     return cur.fetchall()
 
 
+def query_database(db, sql, opts=None):
+    conn = sqlite3.connect(db, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
+    cur = conn.cursor()
+    with conn:
+        if opts:
+            cur.execute(sql, opts)
+        else:
+            cur.execute(sql)
+        data = cur.fetchall()
+    conn.close()
+    return data
+
+
 def main():
     with conn:
         print(query(overall_total))
-        #print(query(specific_data, (YESTERDAY,)))
-        #print(query(since_date, (TWOBACK,)))
-        #print(query(date_range, (TWOBACK, TODAY)))
     conn.close()
 
 
