@@ -17,38 +17,39 @@ from constants import (TODAYS_WORDS,
 
 from query_database import (query, 
                             query_database,
+                            specific_date,
                             overall_total,
                             since_date)
 
 app = Flask(__name__)
 
 
-WORDS = load_words(TODAYS_WORDS)[:TOP_WORDS]
-WEEK_WORDS = query(since_date, (WEEK,))[:TOP_WORDS]
-MONTH_WORDS = query(since_date, (MONTH,))[:TOP_WORDS]
-EVER_WORDS = query(overall_total)[:TOP_WORDS]
-ALL_WORDS = query(overall_total)
+#WORDS = load_words(TODAYS_WORDS)[:TOP_WORDS]
+#WEEK_WORDS = query(since_date, (WEEK,))[:TOP_WORDS]
+#MONTH_WORDS = query(since_date, (MONTH,))[:TOP_WORDS]
+#EVER_WORDS = query(overall_total)[:TOP_WORDS]
+#ALL_WORDS = query(overall_total)
 
 # BBC
-#WORDS = query_database(BBC_DATABASE, since_date, (TODAY,))[:TOP_WORDS]
-#WEEK_WORDS = query_database(BBC_DATABASE, since_date, (WEEK,))[:TOP_WORDS]
-#MONTH_WORDS = query_database(BBC_DATABASE, since_date, (MONTH,))[:TOP_WORDS]
-#EVER_WORDS = query_database(BBC_DATABASE, overall_total)[:TOP_WORDS]
-#ALL_WORDS = query_database(BBC_DATABASE, overall_total)
-
-
-#@app.route('/')
-#def now():
-#    words = WORDS
-#    title = 'Top words right now'
-#    return render_template('query_output.html', title=title, words=words)
+WORDS = query_database(BBC_DATABASE, specific_date, (TODAY,))[:TOP_WORDS]
+WEEK_WORDS = query_database(BBC_DATABASE, since_date, (WEEK,))[:TOP_WORDS]
+MONTH_WORDS = query_database(BBC_DATABASE, since_date, (MONTH,))[:TOP_WORDS]
+EVER_WORDS = query_database(BBC_DATABASE, overall_total)[:TOP_WORDS]
+ALL_WORDS = query_database(BBC_DATABASE, overall_total)
 
 
 @app.route('/')
 def now():
     words = WORDS
     title = 'Top words right now'
-    return render_template('now.html', title=title, words=words)
+    return render_template('query_output.html', title=title, words=words)
+
+
+#@app.route('/')
+#def now():
+#    words = WORDS
+#    title = 'Top words right now'
+#    return render_template('now.html', title=title, words=words)
 
 
 @app.route('/week')
