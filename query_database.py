@@ -10,6 +10,7 @@ total = 'GROUP BY word ORDER BY SUM(count) DESC'
 date = 'WHERE "[date]"=?'
 since = 'WHERE "[date]">?'
 timespan = 'WHERE "[date]">? AND "[date]"<?'
+single_word = ' AND word=?'
 
 
 # Compound query strings
@@ -17,6 +18,7 @@ overall_total = ' '.join([base, total])
 specific_date = ' '.join([base, date, total])
 since_date = ' '.join([base, since, total])
 date_range = ' '.join([base, timespan, total])
+word_on_date = ' '.join([base, date, single_word])
 
 
 def query(db, sql, opts=None):
