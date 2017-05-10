@@ -1,0 +1,10 @@
+[Unit]
+Description=Get the latest headlines from BBC News
+
+[Timer]
+OnCalendar=*:0/30
+Persistent=True
+Unit=update_words.service
+
+[Install]
+WantedBy=timers.target
