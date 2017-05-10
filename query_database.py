@@ -2,22 +2,6 @@
 
 
 import sqlite3
-import json
-import datetime as dt
-
-from funcs import (load_words,
-                   date_object)
-
-from constants import (DATABASE,
-                       TODAY,
-                       YESTERDAY,
-                       WEEK,
-                       MONTH)
-
-
-conn = sqlite3.connect(DATABASE, 
-                        detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
-cur = conn.cursor()
 
 
 # Basic query strings
@@ -33,14 +17,6 @@ overall_total = ' '.join([base, total])
 specific_date = ' '.join([base, date, total])
 since_date = ' '.join([base, since, total])
 date_range = ' '.join([base, timespan, total])
-
-
-#def query(sql, opts=None):
-#    if opts:
-#        cur.execute(sql, opts)
-#    else:
-#        cur.execute(sql)
-#    return cur.fetchall()
 
 
 def query(db, sql, opts=None):
