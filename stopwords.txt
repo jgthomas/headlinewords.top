@@ -38,6 +38,7 @@ back
 backed
 backing
 backs
+bbc
 be
 became
 because
@@ -54,6 +55,7 @@ better
 between
 big
 both
+breakfast
 but
 by
 c
@@ -146,6 +148,7 @@ has
 have
 having
 he
+headlines
 her
 here
 herself
@@ -228,6 +231,7 @@ never
 new
 newer
 newest
+newspaper
 next
 no
 nobody
