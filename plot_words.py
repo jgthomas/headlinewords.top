@@ -35,8 +35,9 @@ def get_word_trends(db, word, days):
     return (word, dates, counts)
 
 
-ELECTION = get_word_trends(BBC_DATABASE, 'election', 30)
+ELECTION = get_word_trends(BBC_DATABASE, 'election', 7)
 AFTER = get_word_trends(BBC_DATABASE, 'after', 7)
+DEATH = get_word_trends(BBC_DATABASE, 'death', 7)
 
 
 def plot_graph(data):
@@ -44,16 +45,17 @@ def plot_graph(data):
     plt.rcParams['figure.figsize'] = 12, 8
     plt.plot(y_data)
     plt.xticks(range(len(x_data)), x_data, rotation=45)
-    plt.title(word)
+    plt.title(word.title())
     plt.xlabel('Date')
     plt.ylabel('Frequency')
     plt.subplots_adjust(bottom=0.25)
-    plt.savefig(''.join([GRAPH_PATH, word, '.png']))
+    plt.savefig(''.join([GRAPH_PATH, word.title(), '.png']))
     plt.clf()
 
 
 def main():
     plot_graph(AFTER)
+    plot_graph(DEATH)
     plot_graph(ELECTION)
 
 if __name__ == '__main__':
