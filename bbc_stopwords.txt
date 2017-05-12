@@ -1,4 +1,6 @@
 bbc
 breakfast
+channel
 headlines
+news
 newspaper

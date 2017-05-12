@@ -66,6 +66,7 @@ case
 cases
 certain
 certainly
+channel
 clear
 clearly
 come
@@ -231,6 +232,7 @@ never
 new
 newer
 newest
+news
 newspaper
 next
 no
