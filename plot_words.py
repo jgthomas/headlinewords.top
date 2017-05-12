@@ -36,8 +36,10 @@ def get_word_trends(db, word, days):
 
 
 ELECTION = get_word_trends(BBC_DATABASE, 'election', 7)
-AFTER = get_word_trends(BBC_DATABASE, 'after', 7)
-DEATH = get_word_trends(BBC_DATABASE, 'death', 7)
+MANIFESTO = get_word_trends(BBC_DATABASE, 'manifesto', 7)
+LABOUR = get_word_trends(BBC_DATABASE, 'labour', 7)
+CONSERVATIVE = get_word_trends(BBC_DATABASE, 'conservative', 7)
+CHANNEL = get_word_trends(BBC_DATABASE, 'channel', 7)
 
 
 def plot_graph(data):
@@ -54,9 +56,11 @@ def plot_graph(data):
 
 
 def main():
-    plot_graph(AFTER)
-    plot_graph(DEATH)
     plot_graph(ELECTION)
+    plot_graph(MANIFESTO)
+    plot_graph(LABOUR)
+    plot_graph(CONSERVATIVE)
+    plot_graph(CHANNEL)
 
 if __name__ == '__main__':
 
