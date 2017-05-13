@@ -7,10 +7,7 @@ from pythonic_pipes import (is_not_in,
                             filter_by,
                             map_over)
 
-from constants import STOPWORDS, SHORT_WORD
-
-
-IGNORE = set(line.strip() for line in open(STOPWORDS))
+from constants import STOPWORDS, BBC_STOPWORDS, SHORT_WORD
 
 
 def get_words(source):
@@ -40,25 +37,32 @@ def lower(x):
     return x.lower()
 
 
-# Maps - apply function to every word
-to_lowercase = map_over(lower)
-del_non_word_chars = map_over(no_non_word)
-
-# Filters - remove words based on these
-remove_function_words = filter_by(is_not_in(IGNORE))
-remove_numbers = filter_by(no_numbers)
-remove_short_words = filter_by(too_short)
-
-
-def filter_words(words):
+def word_filter(words, to_ignore):
     """
     Transforms the words through application of the 
     maps and filters to every element.
 
     """
+    # Maps - apply function to every word
+    to_lowercase = map_over(lower)
+    del_non_word_chars = map_over(no_non_word)
+
+    # Filters - remove words based on these
+    remove_function_words = filter_by(is_not_in(to_ignore))
+    remove_numbers = filter_by(no_numbers)
+    remove_short_words = filter_by(too_short)
+
     filtered_words = (del_non_word_chars
                       (remove_short_words
                        (remove_numbers
                         (remove_function_words
                          (to_lowercase(words))))))
     return filtered_words
+
+
+def filter_words(source, words):
+    """ Set the correct stopwords and filter words. """
+    to_ignore = set(line.strip() for line in open(STOPWORDS))
+    if source == 'bbc':
+        to_ignore = to_ignore.union(set(line.strip() for line in open(BBC_STOPWORDS)))
+    return word_filter(words, to_ignore)

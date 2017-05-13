@@ -66,7 +66,7 @@ def main():
 
         save_to_json(headlines_filename, headlines)
         if new_headlines:
-            word_frequencies = Counter(filter_words(get_words(new_headlines)))
+            word_frequencies = Counter(filter_words(name, get_words(new_headlines)))
             new_words = word_frequencies.most_common()
 
             new_words_filename = '_'.join([name, HL_WORDS_FILE])

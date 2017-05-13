@@ -38,7 +38,6 @@ back
 backed
 backing
 backs
-bbc
 be
 became
 because
@@ -55,7 +54,6 @@ better
 between
 big
 both
-breakfast
 but
 by
 c
@@ -66,7 +64,6 @@ case
 cases
 certain
 certainly
-channel
 clear
 clearly
 come
@@ -149,7 +146,6 @@ has
 have
 having
 he
-headlines
 her
 here
 herself
@@ -232,8 +228,6 @@ never
 new
 newer
 newest
-news
-newspaper
 next
 no
 nobody

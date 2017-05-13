@@ -6,7 +6,8 @@ from funcs import date_object
 
 
 # Words to exclude from the database
-STOPWORDS = 'stopwords.txt'
+STOPWORDS = 'static/wordlists/stopwords.txt'
+BBC_STOPWORDS = 'static/wordlists/bbc_stopwords.txt'
 
 # Exclude words shorter than
 SHORT_WORD = 2
