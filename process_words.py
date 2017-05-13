@@ -23,9 +23,9 @@ def no_numbers(x):
 
 
 def no_non_word(x):
-    """ Remove non-word characters. """
-    return re.sub(r'\W', '', x)
-
+    """ Remove most non-word characters. """
+    #return re.sub(r'\W', '', x)
+    return re.sub(r'[^\w\'-]', '', x)
 
 def too_short(x):
     """ Return True if word is too short. """
