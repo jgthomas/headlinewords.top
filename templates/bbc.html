@@ -5,9 +5,12 @@
     {{ super() }}
 {% endblock %}
 {% block content %}
-  <h1 class="title rounded_card">BBC News</h1>
   <nav>
     {{ nav_link("home", "Home") }} 
+    {{ nav_link("nyt_today", "NYT") }} 
+  </nav>
+  <h1 class="title rounded_card">BBC News</h1>
+  <nav>
     {{ nav_link("bbc_today", "Today") }} 
     {{ nav_link("bbc_week", "Week") }} 
     {{ nav_link("bbc_month", "Month") }} 

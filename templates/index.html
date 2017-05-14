@@ -7,12 +7,12 @@
   {% endblock %}
 </head>
 <body>
-  <h1 class="subtitle">Frequent Headline Words</h1>
   <nav>
     {{ nav_link("home", "Home") }}
     {{ nav_link("bbc_today", "BBC") }} 
     {{ nav_link("nyt_today", "NYT") }} 
   </nav>
+  <h1 class="subtitle">Frequent Headline Words</h1>
   <h3 class="title rounded_card home-section">BBC Top Today</h3>
     {% include "bbc_data.html" %}
   <h3 class="title rounded_card home-section">NYT Top Today</h3>

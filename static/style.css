@@ -15,7 +15,7 @@ html {
         background: #fff;
         margin-left: auto;
         margin-right: auto;
-        padding: 0.25em;
+        padding: 1em;
 }
 
 .subtitle{
@@ -114,7 +114,7 @@ nav {
 
 .title { 
         font-size: 8vw; 
-        width: 75%; 
+        width: 58%; 
 }
 
 .subtitle { 
