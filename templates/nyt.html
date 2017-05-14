@@ -1,0 +1,17 @@
+{% from "macros.html" import nav_link with context %}
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+  <h1 class="title rounded_card">New York Times</h1>
+  <nav>
+    {{ nav_link("home", "Home") }} 
+    {{ nav_link("nyt_today", "Today") }} 
+    {{ nav_link("nyt_week", "Week") }} 
+    {{ nav_link("nyt_month", "Month") }} 
+    {{ nav_link("nyt_ever", "Ever") }} 
+  </nav>
+{% include "nyt_data.html" %}
+{% endblock %}

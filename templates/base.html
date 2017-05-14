@@ -1,4 +1,3 @@
-{% from "macros.html" import nav_link with context %}
 <!doctype html>
 <head>
   {% block head %}
@@ -7,25 +6,8 @@
   {% endblock %}
 </head>
 <body>
-  <h1 class="title rounded_card">BBC News Headlines</h1>
-  <h3 class="subtitle">Tracking frequently used words</h3>
-  <nav>
-    {{ nav_link("today", "Today") }} 
-    {{ nav_link("week", "Week") }} 
-    {{ nav_link("month", "Month") }} 
-    {{ nav_link("ever", "Ever") }} 
-    {{ nav_link("all", "All") }} 
-  </nav>
-  <div id="container">
-    <div id="left-sidebar" class="sidebar">
-      <p>Yo</p>
-    </div>
-    <div id="content">
-      {% block content %}
-      {% endblock %}
-    </div>
-    <div id="right-sidebar" class="sidebar">
-      <p>Yo</p>
-    </div>
+  <div id="content">
+    {% block content %}
+    {% endblock %}
   </div>
 </body>

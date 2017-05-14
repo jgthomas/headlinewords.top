@@ -1,11 +1,6 @@
-{% extends "base.html" %}
-{% block title %}{{title}}{% endblock %}
-{% block head %}
-    {{ super() }}
-{% endblock %}
 {% block content %}
    <div id='data_table'>
-     {% for word, count, _ in words %}
+     {% for word, count, _ in nyt_words %}
      <div class='line rounded_card'>
        <div class='word'>{{word}}</div>
        <div class='count'>{{count}}</div>

@@ -1,0 +1,20 @@
+{% from "macros.html" import nav_link with context %}
+<!doctype html>
+<head>
+  {% block head %}
+  <title>Headline Words</title>
+  <link rel=stylesheet href="{{ url_for('static', filename='style.css') }}">
+  {% endblock %}
+</head>
+<body>
+  <h1 class="subtitle">Frequent Headline Words</h1>
+  <nav>
+    {{ nav_link("home", "Home") }}
+    {{ nav_link("bbc_today", "BBC") }} 
+    {{ nav_link("nyt_today", "NYT") }} 
+  </nav>
+  <h3 class="title rounded_card home-section">BBC Top Today</h3>
+    {% include "bbc_data.html" %}
+  <h3 class="title rounded_card home-section">NYT Top Today</h3>
+    {% include "nyt_data.html" %}
+</body>

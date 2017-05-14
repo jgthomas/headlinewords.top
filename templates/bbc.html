@@ -1,0 +1,17 @@
+{% from "macros.html" import nav_link with context %}
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+  <h1 class="title rounded_card">BBC News</h1>
+  <nav>
+    {{ nav_link("home", "Home") }} 
+    {{ nav_link("bbc_today", "Today") }} 
+    {{ nav_link("bbc_week", "Week") }} 
+    {{ nav_link("bbc_month", "Month") }} 
+    {{ nav_link("bbc_ever", "Ever") }} 
+</nav>
+{% include "bbc_data.html" %}
+{% endblock %}
