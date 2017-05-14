@@ -103,6 +103,7 @@ a.current {
 }
 
 
+
 /*** Screen-sizes and devices ***/
 
 /* Assume mobile */
@@ -113,11 +114,11 @@ nav {
 
 .title { 
         font-size: 8vw; 
-        width: 95%; 
+        width: 75%; 
 }
 
 .subtitle { 
-        font-size: 5vw; 
+        font-size: 7vw; 
         width: 85% 
 }
 
@@ -133,6 +134,10 @@ nav {
         display: none;
 }
 
+.home-section {
+        margin-top: 1em;
+}
+
 
 /* Modify for desktop: */
 @media only screen and (min-device-width: 961px) {
@@ -144,11 +149,11 @@ nav {
         
         .title { 
                 font-size: 2em; 
-                max-width: 625px; 
+                max-width: 425px; 
         }
         
         .subtitle { 
-                font-size: 1.5em; 
+                font-size: 3em; 
                 max-width: 500px; 
         }
         
@@ -159,6 +164,10 @@ nav {
         
         .word, .count { 
                 font-size: 2em; 
+        }
+        
+        .home-section {
+                margin-top: 2em;
         }
 
         /*#container {

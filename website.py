@@ -7,7 +7,8 @@ from constants import (TOP_N_WORDS,
                        TODAY,
                        WEEK,
                        MONTH,
-                       BBC_DATABASE)
+                       BBC_DATABASE,
+                       NYT_DATABASE)
 
 from query_database import (query,
                             specific_date,
@@ -16,38 +17,76 @@ from query_database import (query,
 
 app = Flask(__name__)
 
+
+## Home ##
+BBC_TOP = query(BBC_DATABASE, specific_date, (TODAY,))[:5]
+NYT_TOP = query(NYT_DATABASE, specific_date, (TODAY,))[:5]
+
+@app.route('/')
+def home():
+    bbc_words = BBC_TOP
+    nyt_words = NYT_TOP
+    title = 'BBC - Top words today'
+    return render_template('index.html', title=title, bbc_words=bbc_words, nyt_words=nyt_words)
+
+
+## BBC ##
 BBC_TODAY = query(BBC_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
 BBC_WEEK = query(BBC_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]
 BBC_MONTH = query(BBC_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
 BBC_EVER = query(BBC_DATABASE, overall_total)[:TOP_N_WORDS]
-BBC_ALL = query(BBC_DATABASE, overall_total)
 
-@app.route('/')
-def today():
-    words = BBC_TODAY
-    title = 'Top words today'
-    return render_template('query_output.html', title=title, words=words)
+@app.route('/bbc/today')
+def bbc_today():
+    bbc_words = BBC_TODAY
+    title = 'BBC - Top words today'
+    return render_template('bbc.html', title=title, bbc_words=bbc_words)
 
-@app.route('/week')
-def week():
-    words = BBC_WEEK
-    title = 'Top words this week'
-    return render_template('query_output.html', title=title, words=words)
+@app.route('/bbc/week')
+def bbc_week():
+    bbc_words = BBC_WEEK
+    title = 'BBC - Top words this week'
+    return render_template('bbc.html', title=title, bbc_words=bbc_words)
 
-@app.route('/month')
-def month():
-    words = BBC_MONTH
-    title = 'Top words this month'
-    return render_template('query_output.html', title=title, words=words)
+@app.route('/bbc/month')
+def bbc_month():
+    bbc_words = BBC_MONTH
+    title = 'BBC - Top words this month'
+    return render_template('bbc.html', title=title, bbc_words=bbc_words)
 
-@app.route('/ever')
-def ever():
-    words = BBC_EVER
-    title = 'Top words ever'
-    return render_template('query_output.html', title=title, words=words)
+@app.route('/bbc/ever')
+def bbc_ever():
+    bbc_words = BBC_EVER
+    title = 'BBC - Top words ever'
+    return render_template('bbc.html', title=title, bbc_words=bbc_words)
 
-@app.route('/all')
-def all():
-    words = BBC_ALL
-    title = 'Complete list'
-    return render_template('query_output.html', title=title, words=words)
+
+## NYT ##
+NYT_TODAY = query(NYT_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
+NYT_WEEK = query(NYT_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]
+NYT_MONTH = query(NYT_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
+NYT_EVER = query(NYT_DATABASE, overall_total)[:TOP_N_WORDS]
+
+@app.route('/nyt/today')
+def nyt_today():
+    nyt_words = NYT_TODAY
+    title = 'New York Times - Top words today'
+    return render_template('nyt.html', title=title, nyt_words=nyt_words)
+
+@app.route('/nyt/week')
+def nyt_week():
+    nyt_words = NYT_WEEK
+    title = 'New York Times - Top words this week'
+    return render_template('nyt.html', title=title, nyt_words=nyt_words)
+
+@app.route('/nyt/month')
+def nyt_month():
+    nyt_words = NYT_MONTH
+    title = 'New York Times - Top words this month'
+    return render_template('nyt.html', title=title, nyt_words=nyt_words)
+
+@app.route('/nyt/ever')
+def nyt_ever():
+    nyt_words = NYT_EVER
+    title = 'New York Times - Top words ever'
+    return render_template('nyt.html', title=title, nyt_words=nyt_words)

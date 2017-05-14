@@ -23,4 +23,4 @@ MONTH = TODAY - dt.timedelta(days=30)
 
 # Databases for each source
 BBC_DATABASE = 'data/bbc_headline_words.db'
-NYT_DATABASE = 'data/nyt_headlines_words.db'
+NYT_DATABASE = 'data/nyt_headline_words.db'
