@@ -17,9 +17,9 @@ def get_words(source):
     return headline_words
 
 
-def no_numbers(x):
-    """ Remove words beginning with a digit. """
-    return re.sub(r'^[0-9].+$', '', x)
+def starts_with_num_or_non_word(x):
+    """ Remove words beginning with a digit or non-word character. """
+    return re.sub(r'^[\W0-9].+$', '', x)
 
 
 def no_non_word(x):
@@ -30,6 +30,16 @@ def no_non_word(x):
 
     """
     return re.sub(r'[^\w\'-]', '', x)
+
+
+def no_initial_quote(x):
+    """ Remove initial quotation marks. """
+    return re.sub(r'^[\'\"]', '', x)
+
+
+def no_trailing_quote(x):
+    """ Remove trailing quotation marks. """
+    return re.sub(r'[\'\"]$', '', x)
 
 
 def too_short(x):
@@ -51,17 +61,21 @@ def word_filter(words, to_ignore):
     # Maps - apply function to every word
     to_lowercase = map_over(lower)
     del_non_word_chars = map_over(no_non_word)
+    del_initial_quote = map_over(no_initial_quote)
+    del_trailing_quote = map_over(no_trailing_quote)
 
     # Filters - remove words based on these
     remove_function_words = filter_by(is_not_in(to_ignore))
-    remove_numbers = filter_by(no_numbers)
+    remove_initial_non_letters = filter_by(starts_with_num_or_non_word)
     remove_short_words = filter_by(too_short)
 
     filtered_words = (del_non_word_chars
                       (remove_short_words
-                       (remove_numbers
+                       (remove_initial_non_letters
                         (remove_function_words
-                         (to_lowercase(words))))))
+                         (del_trailing_quote
+                          (del_initial_quote
+                           (to_lowercase(words))))))))
     return filtered_words
 
 
