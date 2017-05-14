@@ -16,8 +16,16 @@
     {{ nav_link("ever", "Ever") }} 
     {{ nav_link("all", "All") }} 
   </nav>
-  <div id="content">
-    {% block content %}
-    {% endblock %}
+  <div id="container">
+    <div id="left-sidebar" class="sidebar">
+      <p>Yo</p>
+    </div>
+    <div id="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+    <div id="right-sidebar" class="sidebar">
+      <p>Yo</p>
+    </div>
   </div>
 </body>

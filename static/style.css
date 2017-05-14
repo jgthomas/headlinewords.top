@@ -129,6 +129,9 @@ nav {
         font-size: 4em; 
 }
 
+#right-sidebar, #left-sidebar {
+        display: none;
+}
 
 
 /* Modify for desktop: */
@@ -150,13 +153,39 @@ nav {
         }
         
         #data_table { 
-                width: 55%; 
+                width: 56%;
                 max-width: 600px; 
         }
         
         .word, .count { 
                 font-size: 2em; 
         }
+
+        /*#container {
+                display: flex;
+        }
+
+        #left-sidebar {
+                flex: 0 0 15%;
+                margin-left: 2%;
+        }
+
+        #content {
+                flex: 0 0 60%;
+                margin: auto;
+        }
+
+        #right-sidebar {
+                flex: 0 0 15%;
+                text-align: right;
+                margin-right: 2%;
+        }
+
+        .sidebar {
+                margin-top: 3em;
+                margin-bottom: 3em;
+                background-color: #fff;
+        }*/
 }
 
 
