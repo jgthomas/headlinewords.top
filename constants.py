@@ -24,3 +24,10 @@ MONTH = TODAY - dt.timedelta(days=30)
 # Databases for each source
 BBC_DATABASE = 'data/bbc_headline_words.db'
 NYT_DATABASE = 'data/nyt_headline_words.db'
+
+# To store graphs
+PLOT_PATH = 'static/images/plots/'
+
+# Some nice plot colours: [0, 1] scaled RGB
+BLUE = (0.12156862745098039, 0.4666666666666667, 0.7058823529411765)
+RED = (0.8392156862745098, 0.15294117647058825, 0.1568627450980392)
