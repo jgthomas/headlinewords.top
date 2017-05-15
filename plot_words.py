@@ -16,6 +16,10 @@ from constants import (YESTERDAY,
                        PLOT_PATH, 
                        RED, 
                        BLUE,
+                       PINK,
+                       GREY,
+                       ORANGE,
+                       GREEN,
                        TABLEAU20)
 
 
