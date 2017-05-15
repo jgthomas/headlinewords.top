@@ -20,7 +20,7 @@ from constants import (YESTERDAY,
                        GREY,
                        ORANGE,
                        GREEN,
-                       TABLEAU20)
+                       TABLEAU)
 
 
 def date_factory(num_days):
@@ -34,10 +34,11 @@ def date_range(days):
     return [date_factory(n) for n in day_nums]
 
 
-def random_colours(c, n):
+def random_colours(colour_list, num):
+    """ Return n number of randomly selected colours. """
     colours = []
-    opts = c[:]
-    for i in range(n):
+    opts = colour_list[:]
+    for i in range(num):
         choice = random.choice(opts)
         opts.remove(choice)
         colours.append(choice)
@@ -58,7 +59,6 @@ def get_word_trends(db, word, days):
     dates = [d.strftime('%d %B') for d in dates]
     return (word, dates, counts)
 
-WORDZ = ['conservative', 'labour']
 
 def get_many_word_trends(db, wordlist, days):
     dates = date_range(days)
@@ -73,27 +73,20 @@ def get_many_word_trends(db, wordlist, days):
     return (words, dates, counts)
 
 
-ELECTION = get_word_trends(BBC_DATABASE, 'election', 7)
-MANIFESTO = get_word_trends(BBC_DATABASE, 'manifesto', 7)
-LABOUR = get_word_trends(BBC_DATABASE, 'labour', 7)
-CONSERVATIVE = get_word_trends(BBC_DATABASE, 'conservative', 7)
-NHS = get_word_trends(BBC_DATABASE, 'nhs', 7)
+#def plot_graph(data):
+#    word, x_data, y_data = data
+#    plt.rcParams['figure.figsize'] = 12, 8
+#    plt.plot(y_data)
+#    plt.xticks(range(len(x_data)), x_data, rotation=45)
+#    plt.title(word.title())
+#    plt.xlabel('Date')
+#    plt.ylabel('Frequency')
+#    plt.subplots_adjust(bottom=0.25)
+#    plt.savefig(''.join([PLOT_PATH, word.title(), '.png']))
+#    plt.clf()
 
 
-def plot_graph(data):
-    word, x_data, y_data = data
-    plt.rcParams['figure.figsize'] = 12, 8
-    plt.plot(y_data)
-    plt.xticks(range(len(x_data)), x_data, rotation=45)
-    plt.title(word.title())
-    plt.xlabel('Date')
-    plt.ylabel('Frequency')
-    plt.subplots_adjust(bottom=0.25)
-    plt.savefig(''.join([PLOT_PATH, word.title(), '.png']))
-    plt.clf()
-
-
-def plot_multi(data, colour=None):
+def plot_multi(data, *, filename=None, colour=None):
     words, x_data, y_data = data
 
     # set plot parameters
@@ -122,35 +115,34 @@ def plot_multi(data, colour=None):
 
     # randomly select nice colours if none specified
     if not colour:
-        colour = random_colours(TABLEAU20, len(words))
+        colour = random_colours(TABLEAU, len(words))
 
-    # plot data, applying colours if specified
+    # plot data
     for index, word in enumerate(words):
         plt.plot(y_data[index], color=colour[index])
-        #if colour:
-        #    plt.plot(y_data[index], color=colour[index])
-        #else:
-        #    plt.plot(y_data[index])
 
     # add legend, and match line and text colours
     leg = plt.legend(words)
     for line, text in zip(leg.get_lines(), leg.get_texts()):
         text.set_color(line.get_color())
 
-    # adjust, save, and close
+    # adjust
     plt.subplots_adjust(bottom=0.25)
-    plt.savefig(''.join([PLOT_PATH, 'test', '.png']), bbox_inches="tight")
+
+    # save: if no name specified, use first word
+    if not filename:
+        filename, *rest = words
+    outfile = ''.join([PLOT_PATH, filename, '.png'])
+    plt.savefig(outfile, bbox_inches="tight")
+
+    # close
     plt.clf()
 
 
 def main():
+    WORDZ = ['conservative', 'labour']
     goo = get_many_word_trends(BBC_DATABASE, WORDZ, 7)
-    plot_multi(goo, [BLUE, RED])
-    #plot_graph(ELECTION)
-    #plot_graph(MANIFESTO)
-    #plot_graph(LABOUR)
-    #plot_graph(CONSERVATIVE)
-    #plot_graph(NHS)
+    plot_multi(goo, filename='political_parties', colour=(BLUE, RED))
 
 if __name__ == '__main__':
 
