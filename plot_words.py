@@ -34,7 +34,7 @@ def date_range(days):
     return [date_factory(n) for n in day_nums]
 
 
-def random_colours(colour_list, num):
+def pick_colours(colour_list, num):
     """ Return n number of randomly selected colours. """
     colours = []
     opts = colour_list[:]
@@ -45,8 +45,18 @@ def random_colours(colour_list, num):
     return colours
 
 
-def get_word_trends(db, word, days):
-    dates = date_range(days)
+#def word_trends(db, word, dates):
+#    counts = []
+#    for date in dates:
+#        _, count, _ = query(db, word_on_date, (date, word))
+#        if count:
+#            counts.append(count)
+#        else:
+#            counts.append(0)
+#    return (word, counts)
+
+
+def word_trends(db, word, dates):
     counts = []
     for date in dates:
         data = query(db, word_on_date, (date, word))
@@ -56,37 +66,22 @@ def get_word_trends(db, word, days):
                 counts.append(count)
             else:
                 counts.append(0)
-    dates = [d.strftime('%d %B') for d in dates]
-    return (word, dates, counts)
+    return (word, counts)
 
 
-def get_many_word_trends(db, wordlist, days):
+def get_trends(db, wordlist, days):
     dates = date_range(days)
     words = []
     counts = []
     for word in wordlist:
-        temp = get_word_trends(db, word, days)
-        word, _, count = temp
+        word, count = word_trends(db, word, dates)
         words.append(word)
         counts.append(count)
     dates = [d.strftime('%d %B') for d in dates]
     return (words, dates, counts)
 
 
-#def plot_graph(data):
-#    word, x_data, y_data = data
-#    plt.rcParams['figure.figsize'] = 12, 8
-#    plt.plot(y_data)
-#    plt.xticks(range(len(x_data)), x_data, rotation=45)
-#    plt.title(word.title())
-#    plt.xlabel('Date')
-#    plt.ylabel('Frequency')
-#    plt.subplots_adjust(bottom=0.25)
-#    plt.savefig(''.join([PLOT_PATH, word.title(), '.png']))
-#    plt.clf()
-
-
-def plot_multi(data, *, filename=None, colour=None):
+def plot_words(data, *, filename=None, colour=None):
     words, x_data, y_data = data
 
     # set plot parameters
@@ -115,7 +110,7 @@ def plot_multi(data, *, filename=None, colour=None):
 
     # randomly select nice colours if none specified
     if not colour:
-        colour = random_colours(TABLEAU, len(words))
+        colour = pick_colours(TABLEAU, len(words))
 
     # plot data
     for index, word in enumerate(words):
@@ -140,9 +135,12 @@ def plot_multi(data, *, filename=None, colour=None):
 
 
 def main():
-    WORDZ = ['conservative', 'labour']
-    goo = get_many_word_trends(BBC_DATABASE, WORDZ, 7)
-    plot_multi(goo, filename='political_parties', colour=(BLUE, RED))
+    words1 = ('conservative', 'labour')
+    words2 = ('election',)
+    w1 = get_trends(BBC_DATABASE, words1, 7)
+    w2 = get_trends(BBC_DATABASE, words2, 7)
+    plot_words(w1, filename='main_parties', colour=(BLUE, RED))
+    plot_words(w2)
 
 if __name__ == '__main__':
 
