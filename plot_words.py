@@ -20,6 +20,7 @@ from constants import (YESTERDAY,
                        GREY,
                        ORANGE,
                        GREEN,
+                       LIGHT_GREY,
                        TABLEAU)
 
 
@@ -88,7 +89,7 @@ def plot_words(data, *, filename=None, colour=None):
     plt.tick_params(bottom="off", left="off")
 
     # format the axes and title
-    plt.yticks(fontsize=14)
+    plt.yticks(fontsize=14, color=LIGHT_GREY, weight='bold')
     plt.xticks(range(len(x_data)), x_data, rotation=45, fontsize=14)
 
     # randomly select nice colours if none specified
@@ -98,6 +99,9 @@ def plot_words(data, *, filename=None, colour=None):
     # plot data
     for index, word in enumerate(words):
         plt.plot(y_data[index], color=colour[index])
+
+    # set y-axis to start at zero
+    plt.ylim(ymin=0)
 
     # add legend, and match line and text colours
     leg = plt.legend(words)
