@@ -29,7 +29,7 @@ def date_factory(num_days):
 
 
 def date_range(days):
-    """ Return a range of consecutive date objects """
+    """ Return a range of consecutive date objects. """
     day_nums = [n for n in range(days, -1, -1)]
     return [date_factory(n) for n in day_nums]
 
@@ -45,40 +45,23 @@ def pick_colours(colour_list, num):
     return colours
 
 
-#def word_trends(db, word, dates):
-#    counts = []
-#    for date in dates:
-#        _, count, _ = query(db, word_on_date, (date, word))
-#        if count:
-#            counts.append(count)
-#        else:
-#            counts.append(0)
-#    return (word, counts)
-
-
-def word_trends(db, word, dates):
+def word_counts(db, word, dates):
+    """ Return the number of times a word was used on each date. """
     counts = []
     for date in dates:
-        data = query(db, word_on_date, (date, word))
-        for datum in data:
-            _, count, _ = datum
+        for _, count, _ in query(db, word_on_date, (date, word)):
             if count:
                 counts.append(count)
             else:
                 counts.append(0)
-    return (word, counts)
+    return counts
 
 
 def get_trends(db, wordlist, days):
     dates = date_range(days)
-    words = []
-    counts = []
-    for word in wordlist:
-        word, count = word_trends(db, word, dates)
-        words.append(word)
-        counts.append(count)
+    counts = [word_counts(db, word, dates) for word in wordlist]
     dates = [d.strftime('%d %B') for d in dates]
-    return (words, dates, counts)
+    return (wordlist, dates, counts)
 
 
 def plot_words(data, *, filename=None, colour=None):
