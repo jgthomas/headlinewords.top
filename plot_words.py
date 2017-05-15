@@ -35,7 +35,7 @@ def date_range(days):
 
 
 def pick_colours(colour_list, num):
-    """ Return n number of randomly selected colours. """
+    """ Return randomly selected colours. """
     colours = []
     opts = colour_list[:]
     for i in range(num):
@@ -60,8 +60,8 @@ def word_counts(db, word, dates):
 def get_trends(db, wordlist, days):
     dates = date_range(days)
     counts = [word_counts(db, word, dates) for word in wordlist]
-    dates = [d.strftime('%d %B') for d in dates]
-    return (wordlist, dates, counts)
+    date_labels = [date.strftime('%d %B') for date in dates]
+    return (wordlist, date_labels, counts)
 
 
 def plot_words(data, *, filename=None, colour=None):
