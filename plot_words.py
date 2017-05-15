@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 
+import random
 import datetime as dt
 
 import matplotlib
@@ -9,7 +10,13 @@ import matplotlib.pyplot as plt
 
 from query_database import query, word_on_date
 
-from constants import YESTERDAY, TODAY, BBC_DATABASE, PLOT_PATH, RED, BLUE
+from constants import (YESTERDAY, 
+                       TODAY, 
+                       BBC_DATABASE, 
+                       PLOT_PATH, 
+                       RED, 
+                       BLUE,
+                       TABLEAU20)
 
 
 def date_factory(num_days):
@@ -21,6 +28,16 @@ def date_range(days):
     """ Return a range of consecutive date objects """
     day_nums = [n for n in range(days, -1, -1)]
     return [date_factory(n) for n in day_nums]
+
+
+def random_colours(c, n):
+    colours = []
+    opts = c[:]
+    for i in range(n):
+        choice = random.choice(opts)
+        opts.remove(choice)
+        colours.append(choice)
+    return colours
 
 
 def get_word_trends(db, word, days):
@@ -72,13 +89,13 @@ def plot_graph(data):
     plt.clf()
 
 
-def plot_multi(data, title=None, colour=None):
+def plot_multi(data, colour=None):
     words, x_data, y_data = data
 
     # set plot parameters
     params = {'figure.figsize': [16, 12],
               'legend.frameon': False,
-              'legend.fontsize': 16,
+              'legend.fontsize': 18,
               'legend.loc': "upper right",
               'legend.markerscale': 0,
               'legend.handlelength': 0,
@@ -99,24 +116,23 @@ def plot_multi(data, title=None, colour=None):
     plt.yticks(fontsize=14)
     plt.xticks(range(len(x_data)), x_data, rotation=45, fontsize=14)
 
+    # randomly select nice colours if none specified
+    if not colour:
+        colour = random_colours(TABLEAU20, len(words))
+
     # plot data, applying colours if specified
     for index, word in enumerate(words):
-        if colour:
-            plt.plot(y_data[index], color=colour[index])
-        else:
-            plt.plot(y_data[index])
+        plt.plot(y_data[index], color=colour[index])
+        #if colour:
+        #    plt.plot(y_data[index], color=colour[index])
+        #else:
+        #    plt.plot(y_data[index])
 
     # add legend, and match line and text colours
     leg = plt.legend(words)
     for line, text in zip(leg.get_lines(), leg.get_texts()):
         text.set_color(line.get_color())
 
-    # set title
-    if not title:
-        words = [word.title() for word in words]
-        title = ', '.join(words)
-    #plt.title(title, fontsize=16)
-    
     # adjust, save, and close
     plt.subplots_adjust(bottom=0.25)
     plt.savefig(''.join([PLOT_PATH, 'test', '.png']), bbox_inches="tight")
@@ -125,7 +141,7 @@ def plot_multi(data, title=None, colour=None):
 
 def main():
     goo = get_many_word_trends(BBC_DATABASE, WORDZ, 7)
-    plot_multi(goo, "Politial Parties", [BLUE, RED])
+    plot_multi(goo, [BLUE, RED])
     #plot_graph(ELECTION)
     #plot_graph(MANIFESTO)
     #plot_graph(LABOUR)
