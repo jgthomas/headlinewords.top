@@ -2,7 +2,7 @@
 
 
 from flask import Flask, render_template
-from flask_ask import Ask, statement
+from flask_ask import Ask, statement, question
 
 from constants import (TOP_N_WORDS,
                        TODAY,
@@ -35,11 +35,25 @@ NYT_MONTH = query(NYT_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
 NYT_EVER = query(NYT_DATABASE, overall_total)[:TOP_N_WORDS]
 
 
+def just_words(data):
+    words = []
+    for word, *rest in data:
+        words.append(word)
+    return words
+
+
 ### Alexa ###
 @ask.launch
 def start_skill():
-    welcome_message = "Hello from headline words"
-    return statement(welcome_message)
+    welcome_message = "Pick a news source"
+    return question(welcome_message)
+
+
+@ask.intent('BbcIntent')
+def read_top_bbc_words():
+    words = just_words(BBC_TOP)
+    words_message = "The top five words today are {}".format(words)
+    return statement(words_message)
 
 
 ### Homepage ###
