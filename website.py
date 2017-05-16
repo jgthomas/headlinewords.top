@@ -18,10 +18,22 @@ from query_database import (query,
 app = Flask(__name__)
 
 
-## Home ##
+### Queries ###
 BBC_TOP = query(BBC_DATABASE, specific_date, (TODAY,))[:5]
 NYT_TOP = query(NYT_DATABASE, specific_date, (TODAY,))[:5]
 
+BBC_TODAY = query(BBC_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
+BBC_WEEK = query(BBC_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]
+BBC_MONTH = query(BBC_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
+BBC_EVER = query(BBC_DATABASE, overall_total)[:TOP_N_WORDS]
+
+NYT_TODAY = query(NYT_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
+NYT_WEEK = query(NYT_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]
+NYT_MONTH = query(NYT_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
+NYT_EVER = query(NYT_DATABASE, overall_total)[:TOP_N_WORDS]
+
+
+### Homepage ###
 @app.route('/')
 def home():
     bbc_words = BBC_TOP
@@ -30,12 +42,7 @@ def home():
     return render_template('index.html', title=title, bbc_words=bbc_words, nyt_words=nyt_words)
 
 
-## BBC ##
-BBC_TODAY = query(BBC_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
-BBC_WEEK = query(BBC_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]
-BBC_MONTH = query(BBC_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
-BBC_EVER = query(BBC_DATABASE, overall_total)[:TOP_N_WORDS]
-
+### BBC pages ###
 @app.route('/bbc/today')
 def bbc_today():
     bbc_words = BBC_TODAY
@@ -61,12 +68,7 @@ def bbc_ever():
     return render_template('bbc.html', title=title, bbc_words=bbc_words)
 
 
-## NYT ##
-NYT_TODAY = query(NYT_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
-NYT_WEEK = query(NYT_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]
-NYT_MONTH = query(NYT_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
-NYT_EVER = query(NYT_DATABASE, overall_total)[:TOP_N_WORDS]
-
+### NYT Pages ###
 @app.route('/nyt/today')
 def nyt_today():
     nyt_words = NYT_TODAY
