@@ -123,7 +123,7 @@ def plot_words(data, *, filename=None, colour=None):
 
 def main():
     words1 = ('conservative', 'labour')
-    words2 = ('election',)
+    words2 = ('manifesto', 'election')
     w1 = get_trends(BBC_DATABASE, words1, 7)
     w2 = get_trends(BBC_DATABASE, words2, 7)
     plot_words(w1, filename='main_parties', colour=(BLUE, RED))
