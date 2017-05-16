@@ -48,11 +48,16 @@ def start_skill():
     welcome_message = "Pick a news source"
     return question(welcome_message)
 
-
 @ask.intent('BbcIntent')
 def read_top_bbc_words():
     words = just_words(BBC_TOP)
-    words_message = "The top five words today are {}".format(words)
+    words_message = "The top five words from the BBC today are {}".format(words)
+    return statement(words_message)
+
+@ask.intent('NytIntent')
+def read_top_nyt_words():
+    words = just_words(NYT_TOP)
+    words_message = "The top five words from the New York Times today are {}".format(words)
     return statement(words_message)
 
 
