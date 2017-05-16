@@ -47,7 +47,7 @@ def start_skill():
 def read_top_bbc_words():
     words = just_words(BBC_TOP)
     words_message = "The top five from the BBC {}".format(words)
-    return statement(words_message)
+    return statement(words_message).simple_card(title="Top BBC Words", content=words)
 
 @ask.intent('NytIntent')
 def read_top_nyt_words():
