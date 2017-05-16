@@ -2,6 +2,7 @@
 
 
 from flask import Flask, render_template
+from flask_ask import Ask, statement
 
 from constants import (TOP_N_WORDS,
                        TODAY,
@@ -16,6 +17,7 @@ from query_database import (query,
                             since_date)
 
 app = Flask(__name__)
+ask = Ask(app, "/alexa_skill")
 
 
 ### Queries ###
@@ -31,6 +33,13 @@ NYT_TODAY = query(NYT_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
 NYT_WEEK = query(NYT_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]
 NYT_MONTH = query(NYT_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
 NYT_EVER = query(NYT_DATABASE, overall_total)[:TOP_N_WORDS]
+
+
+### Alexa ###
+@ask.launch
+def start_skill():
+    welcome_message = "Hello from headline words"
+    return statement(welcome_message)
 
 
 ### Homepage ###
