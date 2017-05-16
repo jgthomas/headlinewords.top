@@ -4,6 +4,8 @@
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question
 
+from funcs import just_words
+
 from constants import (TOP_N_WORDS,
                        TODAY,
                        WEEK,
@@ -33,13 +35,6 @@ NYT_TODAY = query(NYT_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
 NYT_WEEK = query(NYT_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]
 NYT_MONTH = query(NYT_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
 NYT_EVER = query(NYT_DATABASE, overall_total)[:TOP_N_WORDS]
-
-
-def just_words(data):
-    words = []
-    for word, *rest in data:
-        words.append(word)
-    return words
 
 
 ### Alexa ###

@@ -22,3 +22,16 @@ def date_object():
     now = dt.datetime.now()
     today = dt.date(now.year, now.month, now.day)
     return today
+
+
+def just_words(data):
+    """
+    Return just the words from a query to the database,
+    discarding the counts and dates, as these are not
+    required for some outlets like Alexa.
+
+    """
+    words = []
+    for word, *rest in data:
+        words.append(word)
+    return words
