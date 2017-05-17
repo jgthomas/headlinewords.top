@@ -6,35 +6,12 @@ from flask_ask import Ask, statement, question
 
 from funcs import just_words
 
-from constants import (TOP_N_WORDS,
-                       TODAY,
-                       WEEK,
-                       MONTH,
-                       BBC_DATABASE,
-                       NYT_DATABASE)
+from query_database import (BBC_TOP, BBC_TODAY, BBC_WEEK, BBC_MONTH, BBC_EVER,
+                            NYT_TOP, NYT_TODAY, NYT_WEEK, NYT_MONTH, NYT_EVER)
 
-from query_database import (query,
-                            specific_date,
-                            overall_total,
-                            since_date)
 
 app = Flask(__name__)
 ask = Ask(app, "/alexa_skill")
-
-
-### Queries ###
-BBC_TOP = query(BBC_DATABASE, specific_date, (TODAY,))[:5]
-NYT_TOP = query(NYT_DATABASE, specific_date, (TODAY,))[:5]
-
-BBC_TODAY = query(BBC_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
-BBC_WEEK = query(BBC_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]
-BBC_MONTH = query(BBC_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
-BBC_EVER = query(BBC_DATABASE, overall_total)[:TOP_N_WORDS]
-
-NYT_TODAY = query(NYT_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
-NYT_WEEK = query(NYT_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]
-NYT_MONTH = query(NYT_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
-NYT_EVER = query(NYT_DATABASE, overall_total)[:TOP_N_WORDS]
 
 
 ### Alexa ###
@@ -48,14 +25,14 @@ def read_top_bbc_words():
     words = just_words(BBC_TOP)
     words_message = "The top five from the BBC {}".format(words)
     return statement(words_message) \
-           .simple_card(title="Top BBC Words", content='  '.join(words))
+           .simple_card(title="Top BBC Words", content=' '.join(words))
 
 @ask.intent('NytIntent')
 def read_top_nyt_words():
     words = just_words(NYT_TOP)
     words_message = "The top five from the New York Times {}".format(words)
     return statement(words_message) \
-           .simple_card(title="Top NYT Words", content='  '.join(words))
+           .simple_card(title="Top NYT Words", content=' '.join(words))
 
 
 ### Homepage ###
