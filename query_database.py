@@ -31,9 +31,9 @@ def query(db, sql, opts=None):
     """ 
     Return query results from the selected database. 
     
-    db:   database to query
-    sql:  SQL query string
-    opts: optional query parameters in the form of a tuple
+    db   : database to query
+    sql  : SQL query string
+    opts : optional query parameters in the form of a tuple
 
     Example:
     >>> query(BBC_DATABASE, specific_date, (TODAY,))
@@ -92,25 +92,31 @@ def just_words(data):
     return words
 
 
-def date_object():
-    """ Return date object for today with year, month and day. """
-    now = dt.datetime.now()
-    return dt.date(now.year, now.month, now.day)
-
-
 def date_object_factory(start, num_days):
-    """ Return a date object for num_days prior to start. """
+    """
+    Return a date object for num_days prior to start.
+
+    start    : the initial date object
+    num_days : number of days earlier to make date object
+
+    """
     return start - dt.timedelta(days=num_days)
 
 
 def date_object_range(start, days):
-    """ Return a range of consecutive date objects. """
+    """
+    Return a range of consecutive date objects.
+
+    The range is returned with the furthest back date
+    first and the most recent date last.
+
+    """
     day_nums = [n for n in range(days, -1, -1)]
     return [date_object_factory(start, n) for n in day_nums]
 
 
-# Date objects for database queries
-TODAY = date_object()
+# Date objects for queries
+TODAY = dt.datetime.today().date()
 YESTERDAY = date_object_factory(TODAY, 1)
 WEEK = date_object_factory(TODAY, 7)
 MONTH = date_object_factory(TODAY, 30)
