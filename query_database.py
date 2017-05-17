@@ -9,6 +9,23 @@ from constants import (BBC_DATABASE,
                        TOP_N_WORDS)
 
 
+# Basic query strings
+base = 'SELECT word, SUM(count), date as "[date]" FROM hw'
+total = 'GROUP BY word ORDER BY SUM(count) DESC'
+date = 'WHERE "[date]"=?'
+since = 'WHERE "[date]">?'
+timespan = 'WHERE "[date]">? AND "[date]"<?'
+single_word = ' AND word=?'
+
+
+# Compound query strings
+overall_total = ' '.join([base, total])
+specific_date = ' '.join([base, date, total])
+since_date = ' '.join([base, since, total])
+date_range = ' '.join([base, timespan, total])
+word_on_date = ' '.join([base, date, single_word])
+
+
 def query(db, sql, opts=None):
     """ 
     Return query results from the selected database. 
@@ -17,7 +34,7 @@ def query(db, sql, opts=None):
     sql:  SQL query string
     opts: optional query parameters in the form of a tuple
 
-    Examles:
+    Example:
     >>> query(BBC_DATABASE, specific_date, (TODAY,))
     returns word frequencies from todays headlines at the BBC
 
@@ -32,6 +49,33 @@ def query(db, sql, opts=None):
         data = cur.fetchall()
     conn.close()
     return data
+
+
+def word_counts(db, word, dates):
+    """
+    Return the number of times a single word was used
+    on each of the supplied dates.
+
+    db    : the database to query
+    word  : the target word
+    dates : Python date objects from which to get word counts
+
+    Example: searching for 'election' over the last week
+    >>> word_counts(BBC_DATABASE, 'election', [date objects])
+    >>> [1, 3, 0, 4, 6, 7, 2]
+
+    Where each number represents the frequency of the word
+    'election' on each of the last seven days.
+
+    """
+    counts = []
+    for date in dates:
+        for _, count, _ in query(db, word_on_date, (date, word)):
+            if count:
+                counts.append(count)
+            else:
+                counts.append(0)
+    return counts
 
 
 def just_words(data):
@@ -69,23 +113,6 @@ TODAY = date_object()
 YESTERDAY = date_object_factory(TODAY, 1)
 WEEK = date_object_factory(TODAY, 7)
 MONTH = date_object_factory(TODAY, 30)
-
-
-# Basic query strings
-base = 'SELECT word, SUM(count), date as "[date]" FROM hw'
-total = 'GROUP BY word ORDER BY SUM(count) DESC' 
-date = 'WHERE "[date]"=?'
-since = 'WHERE "[date]">?'
-timespan = 'WHERE "[date]">? AND "[date]"<?'
-single_word = ' AND word=?'
-
-
-# Compound query strings
-overall_total = ' '.join([base, total])
-specific_date = ' '.join([base, date, total])
-since_date = ' '.join([base, since, total])
-date_range = ' '.join([base, timespan, total])
-word_on_date = ' '.join([base, date, single_word])
 
 
 ### Repeated time-based queries ###

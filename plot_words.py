@@ -2,24 +2,19 @@
 
 
 import random
-import datetime as dt
 
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-from query_database import query, word_on_date, YESTERDAY, date_object_range
+from query_database import YESTERDAY, date_object_range, word_counts
 
-from constants import (BBC_DATABASE, 
-                       PLOT_PATH, 
-                       RED, 
-                       BLUE,
-                       PINK,
-                       GREY,
-                       ORANGE,
-                       GREEN,
-                       LIGHT_GREY,
-                       TABLEAU)
+from constants import (BBC_DATABASE, NYT_DATABASE,
+                       PLOT_PATH,
+                       TABLEAU,
+                       RED, BLUE, PINK,
+                       GREY, ORANGE, GREEN,
+                       LIGHT_GREY)
 
 
 def pick_colours(colour_list, num):
@@ -33,19 +28,7 @@ def pick_colours(colour_list, num):
     return colours
 
 
-def word_counts(db, word, dates):
-    """ Return the number of times a word was used on each date. """
-    counts = []
-    for date in dates:
-        for _, count, _ in query(db, word_on_date, (date, word)):
-            if count:
-                counts.append(count)
-            else:
-                counts.append(0)
-    return counts
-
-
-def get_trends(db, wordlist, days):
+def get_plot_data(db, wordlist, days):
     dates = date_object_range(YESTERDAY, days)
     counts = [word_counts(db, word, dates) for word in wordlist]
     date_labels = [date.strftime('%d %B') for date in dates]
@@ -111,8 +94,8 @@ def plot_words(data, *, filename=None, colour=None):
 def main():
     words1 = ('conservative', 'labour')
     words2 = ('manifesto', 'election')
-    w1 = get_trends(BBC_DATABASE, words1, 7)
-    w2 = get_trends(BBC_DATABASE, words2, 7)
+    w1 = get_plot_data(BBC_DATABASE, words1, 7)
+    w2 = get_plot_data(BBC_DATABASE, words2, 7)
     plot_words(w1, filename='main_parties', colour=(BLUE, RED))
     plot_words(w2)
 
