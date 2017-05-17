@@ -8,6 +8,9 @@ SHORT_WORD = 2
 # Retrieve this many words for queries
 TOP_N_WORDS = 10
 
+# Retrieve this many for shorter queries like Alexa
+SHORT_N_WORDS = 5
+
 # Databases for each source
 BBC_DATABASE = 'data/bbc_headline_words.db'
 NYT_DATABASE = 'data/nyt_headline_words.db'

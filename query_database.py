@@ -6,7 +6,8 @@ import datetime as dt
 
 from constants import (BBC_DATABASE,
                        NYT_DATABASE,
-                       TOP_N_WORDS)
+                       TOP_N_WORDS,
+                       SHORT_N_WORDS)
 
 
 # Basic query strings
@@ -115,14 +116,14 @@ WEEK = date_object_factory(TODAY, 7)
 MONTH = date_object_factory(TODAY, 30)
 
 
-### Repeated time-based queries ###
-BBC_TOP = query(BBC_DATABASE, specific_date, (TODAY,))[:5]
+# Repeated time-based queries #
+BBC_TOP = query(BBC_DATABASE, specific_date, (TODAY,))[:SHORT_N_WORDS]
 BBC_TODAY = query(BBC_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
 BBC_WEEK = query(BBC_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]
 BBC_MONTH = query(BBC_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
 BBC_EVER = query(BBC_DATABASE, overall_total)[:TOP_N_WORDS]
 
-NYT_TOP = query(NYT_DATABASE, specific_date, (TODAY,))[:5]
+NYT_TOP = query(NYT_DATABASE, specific_date, (TODAY,))[:SHORT_N_WORDS]
 NYT_TODAY = query(NYT_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
 NYT_WEEK = query(NYT_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]
 NYT_MONTH = query(NYT_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
