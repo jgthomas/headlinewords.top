@@ -4,10 +4,9 @@
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question
 
-from funcs import just_words
-
 from query_database import (BBC_TOP, BBC_TODAY, BBC_WEEK, BBC_MONTH, BBC_EVER,
-                            NYT_TOP, NYT_TODAY, NYT_WEEK, NYT_MONTH, NYT_EVER)
+                            NYT_TOP, NYT_TODAY, NYT_WEEK, NYT_MONTH, NYT_EVER,
+                            just_words)
 
 
 app = Flask(__name__)

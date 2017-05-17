@@ -8,9 +8,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-from query_database import query, word_on_date, YESTERDAY
-
-from funcs import date_factory
+from query_database import query, word_on_date, YESTERDAY, date_object_factory
 
 from constants import (BBC_DATABASE, 
                        PLOT_PATH, 
@@ -27,7 +25,7 @@ from constants import (BBC_DATABASE,
 def date_range(start, days):
     """ Return a range of consecutive date objects. """
     day_nums = [n for n in range(days, -1, -1)]
-    return [date_factory(start, n) for n in day_nums]
+    return [date_object_factory(start, n) for n in day_nums]
 
 
 def pick_colours(colour_list, num):

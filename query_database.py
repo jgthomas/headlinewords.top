@@ -4,8 +4,6 @@
 import sqlite3
 import datetime as dt
 
-from funcs import date_object
-
 from constants import (BBC_DATABASE,
                        NYT_DATABASE,
                        TOP_N_WORDS)
@@ -36,11 +34,35 @@ def query(db, sql, opts=None):
     return data
 
 
+def just_words(data):
+    """
+    Return just the words from a query to the database,
+    discarding the counts and dates, as these are not
+    required for some outlets like Alexa.
+
+    """
+    words = []
+    for word, *rest in data:
+        words.append(word)
+    return words
+
+
+def date_object():
+    """ Return date object for today with year, month and day. """
+    now = dt.datetime.now()
+    return dt.date(now.year, now.month, now.day)
+
+
+def date_object_factory(start, num_days):
+    """ Return a date object for num_days prior to start. """
+    return start - dt.timedelta(days=num_days)
+
+
 # Date objects for database queries
 TODAY = date_object()
-YESTERDAY = TODAY - dt.timedelta(days=1)
-WEEK = TODAY - dt.timedelta(days=7)
-MONTH = TODAY - dt.timedelta(days=30)
+YESTERDAY = date_object_factory(TODAY, 1)
+WEEK = date_object_factory(TODAY, 7)
+MONTH = date_object_factory(TODAY, 30)
 
 
 # Basic query strings
