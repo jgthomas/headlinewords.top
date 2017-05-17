@@ -2,12 +2,12 @@
 
 
 import sqlite3
+import datetime as dt
+
+from funcs import date_object
 
 from constants import (BBC_DATABASE,
                        NYT_DATABASE,
-                       TODAY,
-                       WEEK,
-                       MONTH,
                        TOP_N_WORDS)
 
 
@@ -35,6 +35,13 @@ def query(db, sql, opts=None):
         data = cur.fetchall()
     conn.close()
     return data
+
+
+# Date objects for database queries
+TODAY = date_object()
+YESTERDAY = TODAY - dt.timedelta(days=1)
+WEEK = TODAY - dt.timedelta(days=7)
+MONTH = TODAY - dt.timedelta(days=30)
 
 
 # Basic query strings

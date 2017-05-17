@@ -8,11 +8,9 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-from query_database import query, word_on_date
+from query_database import query, word_on_date, YESTERDAY
 
-from constants import (YESTERDAY, 
-                       TODAY, 
-                       BBC_DATABASE, 
+from constants import (BBC_DATABASE, 
                        PLOT_PATH, 
                        RED, 
                        BLUE,
