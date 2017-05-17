@@ -2,12 +2,12 @@
 
 
 import sqlite3
+import json
 import os.path
 from collections import Counter
 
-from constants import TODAY
+from query_database import TODAY
 from feed_getter import SOURCES
-from funcs import load_words, save_to_json
 from process_words import get_words, filter_words
 
 
@@ -17,6 +17,19 @@ DB_NAME = 'headline_words.db'
 DB_PATH = 'data/'
 
 
+def save_to_json(filename, words):
+    """ Save data to JSON file. """
+    with open(filename, 'w') as outfile:
+        json.dump(words, outfile)
+
+
+def load_from_json(filename):
+    """ Get data from JSON file. """
+    with open(filename, 'r') as infile:
+        todays_words = json.load(infile)
+    return todays_words
+
+
 def get_new_headlines(filename, headlines):
     """ 
     Return headlines in the most recent result that 
@@ -24,7 +37,7 @@ def get_new_headlines(filename, headlines):
     
     """
     if os.path.isfile(filename):
-        old_headlines = load_words(filename)
+        old_headlines = load_from_json(filename)
         new_headlines = [x for x in headlines if x not in old_headlines]
     else:
         new_headlines = headlines[:]

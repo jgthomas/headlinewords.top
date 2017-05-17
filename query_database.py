@@ -20,7 +20,6 @@ def query(db, sql, opts=None):
     opts: optional query parameters in the form of a tuple
 
     Examles:
-    >>> from constants import BBC_DATABASE, TODAY
     >>> query(BBC_DATABASE, specific_date, (TODAY,))
     returns word frequencies from todays headlines at the BBC
 
@@ -61,7 +60,7 @@ date_range = ' '.join([base, timespan, total])
 word_on_date = ' '.join([base, date, single_word])
 
 
-### Queries ###
+### Repeated time-based queries ###
 BBC_TOP = query(BBC_DATABASE, specific_date, (TODAY,))[:5]
 BBC_TODAY = query(BBC_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
 BBC_WEEK = query(BBC_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]

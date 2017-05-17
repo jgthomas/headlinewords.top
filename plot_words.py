@@ -10,6 +10,8 @@ import matplotlib.pyplot as plt
 
 from query_database import query, word_on_date, YESTERDAY
 
+from funcs import date_factory
+
 from constants import (BBC_DATABASE, 
                        PLOT_PATH, 
                        RED, 
@@ -22,15 +24,10 @@ from constants import (BBC_DATABASE,
                        TABLEAU)
 
 
-def date_factory(num_days):
-    """ Return a date object for num_days prior to present. """
-    return YESTERDAY - dt.timedelta(days=num_days)
-
-
-def date_range(days):
+def date_range(start, days):
     """ Return a range of consecutive date objects. """
     day_nums = [n for n in range(days, -1, -1)]
-    return [date_factory(n) for n in day_nums]
+    return [date_factory(start, n) for n in day_nums]
 
 
 def pick_colours(colour_list, num):
@@ -57,7 +54,7 @@ def word_counts(db, word, dates):
 
 
 def get_trends(db, wordlist, days):
-    dates = date_range(days)
+    dates = date_range(YESTERDAY, days)
     counts = [word_counts(db, word, dates) for word in wordlist]
     date_labels = [date.strftime('%d %B') for date in dates]
     return (wordlist, date_labels, counts)
