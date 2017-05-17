@@ -8,7 +8,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-from query_database import query, word_on_date, YESTERDAY, date_object_factory
+from query_database import query, word_on_date, YESTERDAY, date_object_range
 
 from constants import (BBC_DATABASE, 
                        PLOT_PATH, 
@@ -20,12 +20,6 @@ from constants import (BBC_DATABASE,
                        GREEN,
                        LIGHT_GREY,
                        TABLEAU)
-
-
-def date_range(start, days):
-    """ Return a range of consecutive date objects. """
-    day_nums = [n for n in range(days, -1, -1)]
-    return [date_object_factory(start, n) for n in day_nums]
 
 
 def pick_colours(colour_list, num):
@@ -52,7 +46,7 @@ def word_counts(db, word, dates):
 
 
 def get_trends(db, wordlist, days):
-    dates = date_range(YESTERDAY, days)
+    dates = date_object_range(YESTERDAY, days)
     counts = [word_counts(db, word, dates) for word in wordlist]
     date_labels = [date.strftime('%d %B') for date in dates]
     return (wordlist, date_labels, counts)

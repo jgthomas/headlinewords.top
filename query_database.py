@@ -58,6 +58,12 @@ def date_object_factory(start, num_days):
     return start - dt.timedelta(days=num_days)
 
 
+def date_object_range(start, days):
+    """ Return a range of consecutive date objects. """
+    day_nums = [n for n in range(days, -1, -1)]
+    return [date_object_factory(start, n) for n in day_nums]
+
+
 # Date objects for database queries
 TODAY = date_object()
 YESTERDAY = date_object_factory(TODAY, 1)
