@@ -11,20 +11,20 @@ from constants import (BBC_DATABASE,
 
 
 # Basic query strings
-base = 'SELECT word, SUM(count), date as "[date]" FROM hw'
-total = 'GROUP BY word ORDER BY SUM(count) DESC'
-date = 'WHERE "[date]"=?'
-since = 'WHERE "[date]">?'
-timespan = 'WHERE "[date]">? AND "[date]"<?'
-single_word = ' AND word=?'
+BASE = 'SELECT word, SUM(count), date as "[date]" FROM hw'
+TOTAL = 'GROUP BY word ORDER BY SUM(count) DESC'
+DATE = 'WHERE "[date]"=?'
+SINCE = 'WHERE "[date]">?'
+TIMESPAN = 'WHERE "[date]">? AND "[date]"<?'
+SINGLE_WORD = ' AND word=?'
 
 
 # Compound query strings
-overall_total = ' '.join([base, total])
-specific_date = ' '.join([base, date, total])
-since_date = ' '.join([base, since, total])
-date_range = ' '.join([base, timespan, total])
-word_on_date = ' '.join([base, date, single_word])
+OVERALL_TOTAL = ' '.join([BASE, TOTAL])
+SPECIFIC_DATE = ' '.join([BASE, DATE, TOTAL])
+SINCE_DATE = ' '.join([BASE, SINCE, TOTAL])
+DATE_RANGE = ' '.join([BASE, TIMESPAN, TOTAL])
+WORD_ON_DATE = ' '.join([BASE, DATE, SINGLE_WORD])
 
 
 def query(db, sql, opts=None):
@@ -123,14 +123,14 @@ MONTH = date_object_factory(TODAY, 30)
 
 
 # Repeated time-based queries #
-BBC_TOP = query(BBC_DATABASE, specific_date, (TODAY,))[:SHORT_N_WORDS]
-BBC_TODAY = query(BBC_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
-BBC_WEEK = query(BBC_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]
-BBC_MONTH = query(BBC_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
-BBC_EVER = query(BBC_DATABASE, overall_total)[:TOP_N_WORDS]
+BBC_TOP = query(BBC_DATABASE, SPECIFIC_DATE, (TODAY,))[:SHORT_N_WORDS]
+BBC_TODAY = query(BBC_DATABASE, SPECIFIC_DATE, (TODAY,))[:TOP_N_WORDS]
+BBC_WEEK = query(BBC_DATABASE, SINCE_DATE, (WEEK,))[:TOP_N_WORDS]
+BBC_MONTH = query(BBC_DATABASE, SINCE_DATE, (MONTH,))[:TOP_N_WORDS]
+BBC_EVER = query(BBC_DATABASE, OVERALL_TOTAL)[:TOP_N_WORDS]
 
-NYT_TOP = query(NYT_DATABASE, specific_date, (TODAY,))[:SHORT_N_WORDS]
-NYT_TODAY = query(NYT_DATABASE, specific_date, (TODAY,))[:TOP_N_WORDS]
-NYT_WEEK = query(NYT_DATABASE, since_date, (WEEK,))[:TOP_N_WORDS]
-NYT_MONTH = query(NYT_DATABASE, since_date, (MONTH,))[:TOP_N_WORDS]
-NYT_EVER = query(NYT_DATABASE, overall_total)[:TOP_N_WORDS]
+NYT_TOP = query(NYT_DATABASE, SPECIFIC_DATE, (TODAY,))[:SHORT_N_WORDS]
+NYT_TODAY = query(NYT_DATABASE, SPECIFIC_DATE, (TODAY,))[:TOP_N_WORDS]
+NYT_WEEK = query(NYT_DATABASE, SINCE_DATE, (WEEK,))[:TOP_N_WORDS]
+NYT_MONTH = query(NYT_DATABASE, SINCE_DATE, (MONTH,))[:TOP_N_WORDS]
+NYT_EVER = query(NYT_DATABASE, OVERALL_TOTAL)[:TOP_N_WORDS]
