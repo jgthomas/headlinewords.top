@@ -61,7 +61,7 @@ def word_counts(db, word, dates):
     dates : Python date objects from which to get word counts
 
     Example: searching for 'election' over the last week
-    >>> word_counts(BBC_DATABASE, 'election', [date objects])
+    >>> word_counts(BBC_DATABASE, 'election', [date objects for each day])
     >>> [1, 3, 0, 4, 6, 7, 2]
 
     Where each number represents the frequency of the word
