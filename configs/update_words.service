@@ -3,7 +3,7 @@ Description=Get the latest headlines from BBC News
 
 [Service]
 Type=simple
-WorkingDirectory=/var/www/html/headline_words
+WorkingDirectory=/var/www/headlinewords.top/html
 Environment="PATH=/home/walljames/Python/VirtualEnvs/flask/bin"
 ExecStart=/home/walljames/Python/VirtualEnvs/flask/bin/python3 update_words.py 
-ExecStartPost=/usr/bin/touch /var/www/html/headline_words/reload_me.txt
+ExecStartPost=/usr/bin/touch /var/www/headlinewords.top/html/reload_me.txt

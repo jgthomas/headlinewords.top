@@ -9,6 +9,8 @@ server {
 
 server {
     listen 443 ssl;
+
+    root /var/www/headlinewords.top/html;
     server_name headlinewords.top www.headlinewords.top;
 
     include snippets/ssl-params.conf;
@@ -16,6 +18,6 @@ server {
 
     location / {
         include uwsgi_params;
-        uwsgi_pass unix:///var/www/html/headline_words/headline_words.sock;
+        uwsgi_pass unix:///var/www/headlinewords.top/html/headline_words.sock;
     }
 }

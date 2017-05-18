@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User=walljames
 Group=www-data
-WorkingDirectory=/var/www/html/headline_words
+WorkingDirectory=/var/www/headlinewords.top/html
 Environment="PATH=/home/walljames/Python/VirtualEnvs/flask/bin"
 ExecStart=/home/walljames/Python/VirtualEnvs/flask/bin/uwsgi --ini headline_words.ini
 
