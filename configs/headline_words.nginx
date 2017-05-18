@@ -2,7 +2,10 @@
 server {
         listen 80;
         listen [::]:80;
+        
+        root /var/www/headlinewords.top/html;
         server_name headlinewords.top www.headlinewords.top;
+        
         return 301 https://$server_name$request_uri;
 }
 
