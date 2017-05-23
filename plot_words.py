@@ -53,7 +53,7 @@ def plot_words(data, *, filename=None, colour=None):
     # set plot parameters
     params = {'figure.figsize': [16, 12],
               'legend.frameon': False,
-              'legend.fontsize': 18,
+              'legend.fontsize': 24,
               'legend.loc': "upper right",
               'legend.markerscale': 0,
               'legend.handlelength': 0,
@@ -85,8 +85,11 @@ def plot_words(data, *, filename=None, colour=None):
     # set y-axis to start at zero
     plt.ylim(ymin=0)
 
-    # add legend, and match line and text colours
-    leg = plt.legend(words)
+    # add legend, position horizontally above plot
+    leg = plt.legend(words, bbox_to_anchor=(0.5, 1), 
+                     bbox_transform=plt.gcf().transFigure,
+                     ncol=len(words))
+    # match legend line and text colours (line is hidden by params)
     for line, text in zip(leg.get_lines(), leg.get_texts()):
         text.set_color(line.get_color())
 
