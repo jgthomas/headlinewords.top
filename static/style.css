@@ -140,10 +140,6 @@ nav {
         font-size: 4em; 
 }
 
-#right-sidebar, #left-sidebar {
-        display: none;
-}
-
 .home-section {
         margin-top: 1em;
 }
@@ -203,7 +199,6 @@ nav {
         }
 
 }
-
 
 
 /* Modify for HiDPI */
