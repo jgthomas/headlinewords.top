@@ -5,7 +5,7 @@ body {
 }
 
 html {
-        background: linear-gradient(to bottom, 
+        background: linear-gradient(to right,
                     rgba(246,248,249,1) 0%,
                     rgba(229,235,238,1) 50%,
                     rgba(215,222,227,1) 100%,
@@ -126,6 +126,12 @@ nav {
         width: 75% 
 }
 
+.tag-line {
+        text-align: center;
+        margin: auto;
+        font-size: 3vw;
+        }
+
 #data_table { 
         width: 75% 
 }
@@ -158,11 +164,15 @@ nav {
         
         .subtitle { 
                 font-size: 3em; 
-                max-width: 500px; 
+                max-width: 55%;
+        }
+
+        .tag-line {
+                font-size: 1em;
         }
         
         #data_table { 
-                width: 56%;
+                width: 85%;
                 max-width: 600px; 
         }
         
@@ -171,34 +181,27 @@ nav {
         }
         
         .home-section {
-                margin-top: 2em;
+                margin-top: 1em;
         }
 
-        /*#container {
+        #container {
                 display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
         }
 
-        #left-sidebar {
-                flex: 0 0 15%;
-                margin-left: 2%;
-        }
-
-        #content {
-                flex: 0 0 60%;
+        #left {
+                flex: 0 0 50%;
                 margin: auto;
+                min-width: 600px;
         }
 
-        #right-sidebar {
-                flex: 0 0 15%;
-                text-align: right;
-                margin-right: 2%;
+        #right {
+                flex: 0 0 50%;
+                margin: auto;
+                min-width: 600px;
         }
 
-        .sidebar {
-                margin-top: 3em;
-                margin-bottom: 3em;
-                background-color: #fff;
-        }*/
 }
 
 
