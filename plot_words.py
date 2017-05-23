@@ -2,19 +2,31 @@
 
 
 import random
+import argparse
+import sys
 
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-from query_database import YESTERDAY, date_object_range, word_counts
+from query_database import YESTERDAY, WEEK, date_object_range, word_counts
 
-from constants import (BBC_DATABASE, NYT_DATABASE,
+from constants import (DATABASES, BBC_DATABASE, NYT_DATABASE,
                        PLOT_PATH,
-                       TABLEAU,
+                       TABLEAU, COLOURS,
                        RED, BLUE, PINK,
                        GREY, ORANGE, GREEN,
                        LIGHT_GREY)
+
+
+def get_args(args):
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--title', type=str)
+    parser.add_argument('--database', type=str)
+    parser.add_argument('--days', type=int)
+    parser.add_argument('--colour', nargs='+')
+    parser.add_argument('--words', nargs='+')
+    return parser.parse_args(args)
 
 
 def pick_colours(colour_list, num):
@@ -91,14 +103,19 @@ def plot_words(data, *, filename=None, colour=None):
     plt.clf()
 
 
-def main():
-    words1 = ('conservative', 'labour')
-    words2 = ('manifesto', 'election')
-    w1 = get_plot_data(BBC_DATABASE, words1, 7)
-    w2 = get_plot_data(BBC_DATABASE, words2, 7)
-    plot_words(w1, filename='main_parties', colour=(BLUE, RED))
-    plot_words(w2)
+def main(args):
+    args = get_args(args)
+    words = args.words
+    title = args.title if args.title else None
+    days = args.days if args.days else 7
+    database = DATABASES[args.database] if args.database else BBC_DATABASE
+    colour = None
+    if args.colour:
+        colour = [COLOURS[col] for col in args.colour]
+    data = get_plot_data(database, words, days)
+    plot_words(data, filename=title, colour=colour)
 
-if __name__ == '__main__':
 
-    main()
+if __name__=='__main__':
+
+    main(sys.argv[1:])

@@ -71,7 +71,7 @@ def word_counts(db, word, dates):
     """
     counts = []
     for date in dates:
-        for _, count, _ in query(db, word_on_date, (date, word)):
+        for _, count, _ in query(db, WORD_ON_DATE, (date, word)):
             if count:
                 counts.append(count)
             else:
