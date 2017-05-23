@@ -89,7 +89,7 @@ def plot_words(data, *, filename=None, colour=None):
     leg = plt.legend(words, bbox_to_anchor=(0.5, 1), 
                      bbox_transform=plt.gcf().transFigure,
                      ncol=len(words))
-    # match legend line and text colours (line is hidden by params)
+    # match legend line- and text-colours (line is hidden by params)
     for line, text in zip(leg.get_lines(), leg.get_texts()):
         text.set_color(line.get_color())
 
