@@ -9,7 +9,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-from query_database import YESTERDAY, WEEK, date_object_range, word_counts
+from query_database import YESTERDAY, date_object_range, word_counts
 
 from constants import (DATABASES, BBC_DATABASE, NYT_DATABASE,
                        PLOT_PATH,
