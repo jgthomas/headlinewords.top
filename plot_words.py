@@ -21,7 +21,7 @@ from constants import (DATABASES, BBC_DATABASE, NYT_DATABASE,
 
 def get_args(args):
     parser = argparse.ArgumentParser()
-    parser.add_argument('--title', type=str)
+    parser.add_argument('--filename', type=str)
     parser.add_argument('--database', type=str)
     parser.add_argument('--days', type=int)
     parser.add_argument('--colour', nargs='+')
@@ -109,14 +109,14 @@ def plot_words(data, *, filename=None, colour=None):
 def main(args):
     args = get_args(args)
     words = args.words
-    title = args.title if args.title else None
+    filename = args.filename if args.filename else None
     days = args.days if args.days else 7
     database = DATABASES[args.database] if args.database else BBC_DATABASE
     colour = None
     if args.colour:
         colour = [COLOURS[colour] for colour in args.colour]
     data = get_plot_data(database, words, days)
-    plot_words(data, filename=title, colour=colour)
+    plot_words(data, filename=filename, colour=colour)
 
 
 if __name__=='__main__':
