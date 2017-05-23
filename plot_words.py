@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt
 
 from query_database import YESTERDAY, date_object_range, word_counts
 
-from constants import (DATABASES, BBC_DATABASE, NYT_DATABASE,
-                       PLOT_PATH,
+from constants import (DATABASES, DEFAULT_DATABASE,
+                       PLOT_PATH, DEFAULT_PLOT_DAYS,
                        TABLEAU, COLOURS,
                        RED, BLUE, PINK,
                        GREY, ORANGE, GREEN,
@@ -110,8 +110,8 @@ def main(args):
     args = get_args(args)
     words = args.words
     filename = args.filename if args.filename else None
-    days = args.days if args.days else 7
-    database = DATABASES[args.database] if args.database else BBC_DATABASE
+    days = args.days if args.days else DEFAULT_PLOT_DAYS
+    database = DATABASES[args.database] if args.database else DEFAULT_DATABASE
     colour = None
     if args.colour:
         colour = [COLOURS[colour] for colour in args.colour]

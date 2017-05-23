@@ -15,6 +15,15 @@ SHORT_N_WORDS = 5
 BBC_DATABASE = 'data/bbc_headline_words.db'
 NYT_DATABASE = 'data/nyt_headline_words.db'
 
+# Database to use if not specified
+DEFAULT_DATABASE = BBC_DATABASE
+
+# Database dictionary
+DATABASES = {'bbc': BBC_DATABASE, 'nyt': NYT_DATABASE}
+
+# Number of days to plot if not specified
+DEFAULT_PLOT_DAYS = 7
+
 # To store graphs
 PLOT_PATH = 'static/images/plots/'
 
@@ -44,6 +53,3 @@ TABLEAU = [(0.12156862745098039, 0.4666666666666667, 0.7058823529411765),
 # Colour dictionary
 COLOURS =  {'blue': BLUE, 'red': RED, 'green': GREEN, 'grey': GREY,
             'orange': ORANGE, 'pink': PINK}
-
-# Database dictionary
-DATABASES = {'bbc': BBC_DATABASE, 'nyt': NYT_DATABASE}
