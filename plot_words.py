@@ -114,7 +114,7 @@ def main(args):
     database = DATABASES[args.database] if args.database else BBC_DATABASE
     colour = None
     if args.colour:
-        colour = [COLOURS[col] for col in args.colour]
+        colour = [COLOURS[colour] for colour in args.colour]
     data = get_plot_data(database, words, days)
     plot_words(data, filename=title, colour=colour)
 
