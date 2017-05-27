@@ -53,7 +53,7 @@ def plot_words(data, *, filename=None, colour=None):
     # set plot parameters
     params = {'figure.figsize': [16, 12],
               'legend.frameon': False,
-              'legend.fontsize': 24,
+              'legend.fontsize': 26,
               'legend.loc': "upper right",
               'legend.markerscale': 0,
               'legend.handlelength': 0,
@@ -71,8 +71,8 @@ def plot_words(data, *, filename=None, colour=None):
     plt.tick_params(bottom="off", left="off")
 
     # format the axes and title
-    plt.yticks(fontsize=14, color=LIGHT_GREY, weight='bold')
-    plt.xticks(range(len(x_data)), x_data, rotation=45, fontsize=14)
+    plt.yticks(fontsize=18, weight='bold')
+    plt.xticks(range(len(x_data)), x_data, rotation=45, fontsize=18)
 
     # randomly select nice colours if none specified
     if not colour:
@@ -86,7 +86,7 @@ def plot_words(data, *, filename=None, colour=None):
     plt.ylim(ymin=0)
 
     # add legend, position horizontally above plot
-    leg = plt.legend(words, bbox_to_anchor=(0.5, 1), 
+    leg = plt.legend(words, bbox_to_anchor=(0.75, 1),
                      bbox_transform=plt.gcf().transFigure,
                      ncol=len(words))
     # match legend line- and text-colours (line is hidden by params)
@@ -100,7 +100,7 @@ def plot_words(data, *, filename=None, colour=None):
     if not filename:
         filename, *rest = words
     outfile = ''.join([PLOT_PATH, filename, '.png'])
-    plt.savefig(outfile, bbox_inches="tight")
+    plt.savefig(outfile)
 
     # close
     plt.clf()

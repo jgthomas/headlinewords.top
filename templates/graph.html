@@ -1,0 +1,13 @@
+{% block content %}
+  <div class="container graph-box">
+    <h3 class="subtitle graph-box-title">Charts</h3>
+    <div class="left">
+      <h4 id="graph-target" class="img-title">We never used to talk about Manchester</h4>
+     <img src={{ url_for('static', filename='images/plots/manchester.png') }} />
+    </div>
+    <div class="right">
+     <h4 class="img-title">All Trump, all the time</h4>
+     <img src={{ url_for('static', filename='images/plots/trump.png') }} />
+    </div>
+  </div>
+{% endblock %}

@@ -8,20 +8,23 @@
 </head>
 <body>
   <nav>
+    <a id="scroll-button" class="navlink rounded_card" href="#graph-target">Charts</a>
     {{ nav_link("home", "Home") }}
     {{ nav_link("bbc_today", "BBC") }} 
     {{ nav_link("nyt_today", "NYT") }} 
   </nav>
-  <h1 class="subtitle">Frequent Headline Words</h1>
+  <h1 class="subtitle">Headline Words</h1>
   <h4 class="tag-line">A flavour of what's getting emphasised</h4>
-  <div id="container">
-    <div id="left">
+  <div class="container">
+    <div class="left">
       <h3 class="title rounded_card home-section">BBC</h3>
       {% include "bbc_data.html" %}
     </div>
-    <div id="right">
+    <div class="right">
       <h3 class="title rounded_card home-section">New York Times</h3>
       {% include "nyt_data.html" %}
     </div>
+    {% include "graph.html" %}
   </div>
+  <script src={{ url_for('static', filename='scripts/pageScroll.js') }}></script>
 </body>
