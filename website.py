@@ -40,21 +40,27 @@ def read_top_nyt_words():
 ### Homepage ###
 @app.route('/')
 def home():
+    title = 'BBC - Top words today'
     bbc_words = BBC_TOP
     nyt_words = NYT_TOP
-    bbc_graph_1 = HOMEPAGE_BBC_PLOT_1
-    nyt_graph_1 = HOMEPAGE_NYT_PLOT_1
-    bbc_title_1 = HOMEPAGE_BBC_TITLE_1
-    nyt_title_1 = HOMEPAGE_NYT_TITLE_1
-    title = 'BBC - Top words today'
+    main_graph_title = "Charts"
+    subtitle_1 = "BBC"
+    title_1 = HOMEPAGE_BBC_TITLE_1
+    graph_1 = HOMEPAGE_BBC_PLOT_1
+    subtitle_2 = "NYT"
+    title_2 = HOMEPAGE_NYT_TITLE_1
+    graph_2 = HOMEPAGE_NYT_PLOT_1
     return render_template('index.html',
                            title=title,
                            bbc_words=bbc_words,
                            nyt_words=nyt_words,
-                           bbc_graph_1=bbc_graph_1,
-                           nyt_graph_1=nyt_graph_1,
-                           bbc_title_1=bbc_title_1,
-                           nyt_title_1=nyt_title_1)
+                           main_graph_title=main_graph_title,
+                           subtitle_1=subtitle_1,
+                           title_1=title_1,
+                           graph_1=graph_1,
+                           subtitle_2=subtitle_2,
+                           title_2=title_2,
+                           graph_2=graph_2)
 
 
 ### BBC pages ###
