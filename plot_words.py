@@ -108,12 +108,14 @@ def plot_words(data, *, filename=None, colour=None):
 
 def main(args):
     args = get_args(args)
-    words = args.words
+    words, *rest = args.words
     filename = args.filename if args.filename else None
     days = args.days if args.days else DEFAULT_PLOT_DAYS
     database = DATABASES[args.database] if args.database else DEFAULT_DATABASE
     colour = None
-    if args.colour:
+    if "random" in args.colour:
+        colour = None
+    else:
         colour = [COLOURS[colour] for colour in args.colour]
     data = get_plot_data(database, words, days)
     plot_words(data, filename=filename, colour=colour)
