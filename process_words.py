@@ -31,6 +31,9 @@ def no_non_word(x):
     """
     return re.sub(r'[^\w\'-]', '', x)
 
+def no_unicode_apostrophe(x):
+    """ Replace the funky unicode apostrophe. """
+    return re.sub(r"\u2019", "\'", x)
 
 def no_initial_quote(x):
     """ Remove initial quotation marks. """
@@ -63,6 +66,7 @@ def word_filter(words, to_ignore):
     del_non_word_chars = map_over(no_non_word)
     del_initial_quote = map_over(no_initial_quote)
     del_trailing_quote = map_over(no_trailing_quote)
+    convert_unicode_apostrope = map_over(no_unicode_apostrophe)
 
     # Filters - remove words based on these
     remove_function_words = filter_by(is_not_in(to_ignore))
@@ -75,7 +79,8 @@ def word_filter(words, to_ignore):
                         (remove_function_words
                          (del_trailing_quote
                           (del_initial_quote
-                           (to_lowercase(words))))))))
+                           (convert_unicode_apostrope
+                            (to_lowercase(words)))))))))
     return filtered_words
 
 
