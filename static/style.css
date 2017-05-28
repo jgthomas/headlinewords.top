@@ -129,16 +129,13 @@ img:active {
 .img-title {
         text-align: center;
         margin: auto;
-        font-size: 5vw;
         padding-bottom: 5%;
         margin-top: 5%;
-        width: 75%;
         font-weight: 900;
         color: white;
 }
 
 .graph-box {
-        /*background: linear-gradient(to top, #ffffff 0%,#f3f3f3 100%,#ffffff 100%);*/
         background: linear-gradient(to top, #deefff 0%,#98bede 100%);
         padding-top: 5vh;
         padding-bottom: 15vh;
@@ -156,12 +153,13 @@ img:active {
         color: white;
         font-weight: 900;
         margin-bottom: 3vh;
+        text-align: center;
 }
 
 
 /*** Screen-sizes and devices ***/
 
-/* Assume mobile */
+/* Assume MOBILE */
 nav { 
         width: 95%; 
         font-size: 3vw; 
@@ -195,12 +193,17 @@ nav {
         margin-top: 1em;
 }
 
+.img-title {
+        font-size: 5vw;
+        width: 75%;
+}
+
 .graph-box-subtitle {
         font-size: 6vw;
 }
 
 
-/* Modify for desktop: */
+/* Modify for DESKTOP: */
 @media only screen and (min-device-width: 961px) {
         
         nav { 
@@ -260,10 +263,6 @@ nav {
         .img-title {
                 font-size: 1.5em;
                 width: 90%;
-        }
-
-        .graph-l {
-                font-size: 1.25em;
         }
 
         .graph-box-subtitle {
