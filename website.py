@@ -9,7 +9,15 @@ from query_database import (BBC_TOP, BBC_TODAY, BBC_WEEK, BBC_MONTH, BBC_EVER,
                             just_words)
 
 from current_graphs import (HOMEPAGE_BBC_TITLE_1, HOMEPAGE_NYT_TITLE_1,
-                            HOMEPAGE_BBC_PLOT_1, HOMEPAGE_NYT_PLOT_1)
+                            HOMEPAGE_BBC_PLOT_1, HOMEPAGE_NYT_PLOT_1,
+                            BBC_TODAY_TITLE_1, BBC_TODAY_PLOT_1,
+                            BBC_TODAY_TITLE_2, BBC_TODAY_PLOT_2,
+                            BBC_WEEK_TITLE_1, BBC_WEEK_PLOT_1,
+                            BBC_WEEK_TITLE_2, BBC_WEEK_PLOT_2,
+                            BBC_MONTH_TITLE_1, BBC_MONTH_PLOT_1,
+                            BBC_MONTH_TITLE_2, BBC_MONTH_PLOT_2,
+                            BBC_EVER_TITLE_1, BBC_EVER_PLOT_1,
+                            BBC_EVER_TITLE_2, BBC_EVER_PLOT_2)
 
 
 app = Flask(__name__)
@@ -43,7 +51,7 @@ def home():
     title = 'BBC - Top words today'
     bbc_words = BBC_TOP
     nyt_words = NYT_TOP
-    main_graph_title = "Charts"
+    main_graph_title = "Highlights"
     subtitle_1 = "BBC"
     title_1 = HOMEPAGE_BBC_TITLE_1
     graph_1 = HOMEPAGE_BBC_PLOT_1
@@ -66,27 +74,75 @@ def home():
 ### BBC pages ###
 @app.route('/bbc/today')
 def bbc_today():
-    bbc_words = BBC_TODAY
     title = 'BBC - Top words today'
-    return render_template('bbc.html', title=title, bbc_words=bbc_words)
+    bbc_words = BBC_TODAY
+    main_graph_title = "Recent Trends"
+    title_1 = BBC_TODAY_TITLE_1
+    graph_1 = BBC_TODAY_PLOT_1
+    title_2 = BBC_TODAY_TITLE_2
+    graph_2 = BBC_TODAY_PLOT_2
+    return render_template('bbc.html',
+                           title=title,
+                           bbc_words=bbc_words,
+                           main_graph_title=main_graph_title,
+                           title_1=title_1,
+                           graph_1=graph_1,
+                           title_2=title_2,
+                           graph_2=graph_2)
 
 @app.route('/bbc/week')
 def bbc_week():
-    bbc_words = BBC_WEEK
     title = 'BBC - Top words this week'
-    return render_template('bbc.html', title=title, bbc_words=bbc_words)
+    bbc_words = BBC_WEEK
+    main_graph_title = "This Week"
+    title_1 = BBC_WEEK_TITLE_1
+    graph_1 = BBC_WEEK_PLOT_1
+    title_2 = BBC_WEEK_TITLE_2
+    graph_2 = BBC_WEEK_PLOT_2
+    return render_template('bbc.html',
+                           title=title,
+                           bbc_words=bbc_words,
+                           main_graph_title=main_graph_title,
+                           title_1=title_1,
+                           graph_1=graph_1,
+                           title_2=title_2,
+                           graph_2=graph_2)
 
 @app.route('/bbc/month')
 def bbc_month():
-    bbc_words = BBC_MONTH
     title = 'BBC - Top words this month'
-    return render_template('bbc.html', title=title, bbc_words=bbc_words)
+    bbc_words = BBC_MONTH
+    main_graph_title = "This Month"
+    title_1 = BBC_MONTH_TITLE_1
+    graph_1 = BBC_MONTH_PLOT_1
+    title_2 = BBC_MONTH_TITLE_2
+    graph_2 = BBC_MONTH_PLOT_2
+    return render_template('bbc.html',
+                           title=title,
+                           bbc_words=bbc_words,
+                           main_graph_title=main_graph_title,
+                           title_1=title_1,
+                           graph_1=graph_1,
+                           title_2=title_2,
+                           graph_2=graph_2)
 
 @app.route('/bbc/ever')
 def bbc_ever():
-    bbc_words = BBC_EVER
     title = 'BBC - Top words ever'
-    return render_template('bbc.html', title=title, bbc_words=bbc_words)
+    bbc_words = BBC_EVER
+    main_graph_title = "This Ever"
+    title_1 = BBC_EVER_TITLE_1
+    graph_1 = BBC_EVER_PLOT_1
+    title_2 = BBC_EVER_TITLE_2
+    graph_2 = BBC_EVER_PLOT_2
+    return render_template('bbc.html',
+                           title=title,
+                           bbc_words=bbc_words,
+                           main_graph_title=main_graph_title,
+                           title_1=title_1,
+                           graph_1=graph_1,
+                           title_2=title_2,
+                           graph_2=graph_2)
 
 
 ### NYT Pages ###

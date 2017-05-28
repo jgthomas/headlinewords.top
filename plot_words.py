@@ -70,9 +70,15 @@ def plot_words(data, *, filename=None, colour=None):
     # remove tick marks
     plt.tick_params(bottom="off", left="off")
 
-    # format the axes and title
+    # format the axes
     plt.yticks(fontsize=24, weight='bold')
     plt.xticks(range(len(x_data)), x_data, rotation=45, fontsize=24)
+
+    # Hide some labels for longer data sets
+    if len(x_data) > 14:
+        for index, label in enumerate(ax.xaxis.get_ticklabels()):
+            if index % 2 == 0:
+                label.set_visible(False)
 
     # randomly select nice colours if none specified
     if not colour:
@@ -108,15 +114,15 @@ def plot_words(data, *, filename=None, colour=None):
 
 def main(args):
     args = get_args(args)
-    words, *rest = args.words
+    words, *_ = args.words
     filename = args.filename if args.filename else None
     days = args.days if args.days else DEFAULT_PLOT_DAYS
     database = DATABASES[args.database] if args.database else DEFAULT_DATABASE
-    colour = None
-    if "random" in args.colour:
+    colour, *_ = args.colour if args.colour else None
+    if "random" in colour:
         colour = None
     else:
-        colour = [COLOURS[colour] for colour in args.colour]
+        colour = [COLOURS[col] for col in colour]
     data = get_plot_data(database, words, days)
     plot_words(data, filename=filename, colour=colour)
 

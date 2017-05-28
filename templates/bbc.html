@@ -8,25 +8,16 @@
   <nav>
     {{ nav_link("home", "Home") }} 
     {{ nav_link("nyt_today", "NYT") }} 
+    <a id="scroll-button" class="navlink rounded_card" href="#graph-target">Charts</a>
   </nav>
-  <div class="container">
-    <div class="left">
       <h1 class="title rounded_card">BBC News</h1>
-    </div>
-    <div class="right">
       <nav>
         {{ nav_link("bbc_today", "Today") }} 
         {{ nav_link("bbc_week", "Week") }} 
         {{ nav_link("bbc_month", "Month") }} 
         {{ nav_link("bbc_ever", "Ever") }} 
      </nav>
-    </div>
-  </div>
-  <div class="container">
-    <div class="left">
-      {% include "bbc_data.html" %}
-    </div>
-    <div class="right">
-    </div>
-  </div>
+     {% include "bbc_data.html" %}
+    {% include "graph.html" %}
+  <script src={{ url_for('static', filename='scripts/pageScroll.js') }}></script>
 {% endblock %}
