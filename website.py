@@ -8,6 +8,9 @@ from query_database import (BBC_TOP, BBC_TODAY, BBC_WEEK, BBC_MONTH, BBC_EVER,
                             NYT_TOP, NYT_TODAY, NYT_WEEK, NYT_MONTH, NYT_EVER,
                             just_words)
 
+from current_graphs import (BBC_PLOT_1, NYT_PLOT_1,
+                            BBC_TITLE_1, NYT_TITLE_1)
+
 
 app = Flask(__name__)
 ask = Ask(app, "/alexa_skill")
@@ -39,8 +42,19 @@ def read_top_nyt_words():
 def home():
     bbc_words = BBC_TOP
     nyt_words = NYT_TOP
+    bbc_graph_1 = BBC_PLOT_1
+    nyt_graph_1 = NYT_PLOT_1
+    bbc_graph_title_1 = BBC_TITLE_1
+    nyt_graph_title_1 = NYT_TITLE_1
     title = 'BBC - Top words today'
-    return render_template('index.html', title=title, bbc_words=bbc_words, nyt_words=nyt_words)
+    return render_template('index.html',
+                           title=title,
+                           bbc_words=bbc_words,
+                           nyt_words=nyt_words,
+                           bbc_graph_1=bbc_graph_1,
+                           nyt_graph_1=nyt_graph_1,
+                           bbc_graph_title_1=bbc_graph_title_1,
+                           nyt_graph_title_1=nyt_graph_title_1)
 
 
 ### BBC pages ###
