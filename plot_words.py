@@ -57,7 +57,7 @@ def plot_words(data, *, filename=None, colour=None):
               'legend.loc': "upper right",
               'legend.markerscale': 0,
               'legend.handlelength': 0,
-              'lines.linewidth': 4}
+              'lines.linewidth': 6}
     plt.rcParams.update(params)
     
     # remove the frame
@@ -71,8 +71,8 @@ def plot_words(data, *, filename=None, colour=None):
     plt.tick_params(bottom="off", left="off")
 
     # format the axes and title
-    plt.yticks(fontsize=18, weight='bold')
-    plt.xticks(range(len(x_data)), x_data, rotation=45, fontsize=18)
+    plt.yticks(fontsize=24, weight='bold')
+    plt.xticks(range(len(x_data)), x_data, rotation=45, fontsize=24)
 
     # randomly select nice colours if none specified
     if not colour:
