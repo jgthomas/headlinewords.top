@@ -1,0 +1,10 @@
+[Unit]
+Description=Refresh graphs for headlinewords.top
+
+[Timer]
+OnCalendar=*-*-* 02:45:00
+Persistent=True
+Unit=update_graphs.service
+
+[Install]
+WantedBy=timers.target
