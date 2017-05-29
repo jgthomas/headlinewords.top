@@ -14,6 +14,7 @@ MONTH_ON_MONTH = 30
 
 
 def trim_data(data):
+    """ Remove date objects to simplify processing. """
     trimmed = []
     for word, count, *_ in data:
         trimmed.append([word, count])
@@ -21,6 +22,21 @@ def trim_data(data):
 
 
 def successive_periods(db, days):
+    """
+    Return two database queries for two successive, days, weeks
+    months, etc.
+
+    db   :  the database to query
+    days :  the number of days each period should be
+
+    Example:
+    Returns two lists from the BBC database: the first is
+    the frequencies of all words over the last seven
+    days, the second the frequencies of all words
+    over the previous seven days.
+    >>> successive_periods(BBC_DATABASE, WEEK_ON_WEEK)
+
+    """
     one_back = date_object_factory(TOMORROW, days + ONE_DAY)
     pivot = date_object_factory(one_back, ONE_DAY, plus=True)
     two_back = date_object_factory(one_back, days)
