@@ -16,14 +16,10 @@ from query_database import (BBC_TODAY, BBC_WEEK, BBC_MONTH, BBC_EVER,
                             just_words)
 
 from current_graphs import (HOMEPAGE_BBC_1, HOMEPAGE_NYT_1,
-                            BBC_TODAY_TITLE_1, BBC_TODAY_PLOT_1,
-                            BBC_TODAY_TITLE_2, BBC_TODAY_PLOT_2,
-                            BBC_WEEK_TITLE_1, BBC_WEEK_PLOT_1,
-                            BBC_WEEK_TITLE_2, BBC_WEEK_PLOT_2,
-                            BBC_MONTH_TITLE_1, BBC_MONTH_PLOT_1,
-                            BBC_MONTH_TITLE_2, BBC_MONTH_PLOT_2,
-                            BBC_EVER_TITLE_1, BBC_EVER_PLOT_1,
-                            BBC_EVER_TITLE_2, BBC_EVER_PLOT_2)
+                            BBC_TODAY_1, BBC_TODAY_2,
+                            BBC_WEEK_1, BBC_WEEK_2,
+                            BBC_MONTH_1, BBC_MONTH_2,
+                            BBC_EVER_1, BBC_EVER_2)
 
 
 app = Flask(__name__)
@@ -83,10 +79,10 @@ def bbc_today():
     title = 'BBC - Top words today'
     bbc_words = BBC_TODAY[:TOP_N_WORDS]
     main_graph_title = "Recent Trends"
-    title_1 = BBC_TODAY_TITLE_1
-    graph_1 = BBC_TODAY_PLOT_1
-    title_2 = BBC_TODAY_TITLE_2
-    graph_2 = BBC_TODAY_PLOT_2
+    title_1 = BBC_TODAY_1.title
+    graph_1 = BBC_TODAY_1.plot
+    title_2 = BBC_TODAY_2.title
+    graph_2 = BBC_TODAY_2.plot
     trend_up = BBC_DAY_TREND_UP[:SHORT_N_WORDS]
     trend_down = BBC_DAY_TREND_DOWN[:SHORT_N_WORDS]
     return render_template('bbc.html',
@@ -105,10 +101,10 @@ def bbc_week():
     title = 'BBC - Top words this week'
     bbc_words = BBC_WEEK[:TOP_N_WORDS]
     main_graph_title = "This Week"
-    title_1 = BBC_WEEK_TITLE_1
-    graph_1 = BBC_WEEK_PLOT_1
-    title_2 = BBC_WEEK_TITLE_2
-    graph_2 = BBC_WEEK_PLOT_2
+    title_1 = BBC_WEEK_1.title
+    graph_1 = BBC_WEEK_1.plot
+    title_2 = BBC_WEEK_2.title
+    graph_2 = BBC_WEEK_2.plot
     trend_up = BBC_WEEK_TREND_UP[:SHORT_N_WORDS]
     trend_down = BBC_WEEK_TREND_DOWN[:SHORT_N_WORDS]
     return render_template('bbc.html',
@@ -127,10 +123,10 @@ def bbc_month():
     title = 'BBC - Top words this month'
     bbc_words = BBC_MONTH[:TOP_N_WORDS]
     main_graph_title = "This Month"
-    title_1 = BBC_MONTH_TITLE_1
-    graph_1 = BBC_MONTH_PLOT_1
-    title_2 = BBC_MONTH_TITLE_2
-    graph_2 = BBC_MONTH_PLOT_2
+    title_1 = BBC_MONTH_1.title
+    graph_1 = BBC_MONTH_1.plot
+    title_2 = BBC_MONTH_2.title
+    graph_2 = BBC_MONTH_2.plot
     return render_template('bbc.html',
                            title=title,
                            bbc_words=bbc_words,
@@ -145,10 +141,10 @@ def bbc_ever():
     title = 'BBC - Top words ever'
     bbc_words = BBC_EVER[:TOP_N_WORDS]
     main_graph_title = "This Ever"
-    title_1 = BBC_EVER_TITLE_1
-    graph_1 = BBC_EVER_PLOT_1
-    title_2 = BBC_EVER_TITLE_2
-    graph_2 = BBC_EVER_PLOT_2
+    title_1 = BBC_EVER_1.title
+    graph_1 = BBC_EVER_1.plot
+    title_2 = BBC_EVER_2.title
+    graph_2 = BBC_EVER_2.plot
     return render_template('bbc.html',
                            title=title,
                            bbc_words=bbc_words,
