@@ -1,0 +1,11 @@
+{% block content %}
+  <div class="graph-box flex-container ">
+    <h3 class="subtitle graph-box-title">{{main_graph_title}}</h3>
+    {% for plot in plots %}
+    <div class="flex-inner">
+      <h4 class="img-title">{{plot.title}}</h4>
+      <img src={{ url_for('static', filename=plot.plot) }} />
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
