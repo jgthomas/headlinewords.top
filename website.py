@@ -54,25 +54,11 @@ def home():
     bbc_words = BBC_TODAY[:SHORT_N_WORDS]
     nyt_words = NYT_TODAY[:SHORT_N_WORDS]
     plots = (HOMEPAGE_BBC_1, HOMEPAGE_NYT_1)
-    #main_graph_title = "Highlights"
-    #subtitle_1 = "BBC"
-    #title_1 = HOMEPAGE_BBC_1.title
-    #graph_1 = HOMEPAGE_BBC_1.plot
-    #subtitle_2 = "NYT"
-    #title_2 = HOMEPAGE_NYT_1.title
-    #graph_2 = HOMEPAGE_NYT_1.plot
     return render_template('index.html',
                            title=title,
                            bbc_words=bbc_words,
                            nyt_words=nyt_words,
                            plots=plots)
-                           #main_graph_title=main_graph_title,
-                           #subtitle_1=subtitle_1,
-                           #title_1=title_1,
-                           #graph_1=graph_1,
-                           #subtitle_2=subtitle_2,
-                           #title_2=title_2,
-                           #graph_2=graph_2)
 
 
 ### BBC PAGES ###
@@ -80,23 +66,13 @@ def home():
 def bbc_today():
     title = 'BBC - Top words today'
     bbc_words = BBC_TODAY[:TOP_N_WORDS]
-    #main_graph_title = "Recent Trends"
     plots = (BBC_TODAY_1, BBC_TODAY_2)
-    #title_1 = BBC_TODAY_1.title
-    #graph_1 = BBC_TODAY_1.plot
-    #title_2 = BBC_TODAY_2.title
-    #graph_2 = BBC_TODAY_2.plot
     trend_up = BBC_DAY_TREND_UP[:SHORT_N_WORDS]
     trend_down = BBC_DAY_TREND_DOWN[:SHORT_N_WORDS]
     return render_template('bbc.html',
                            title=title,
                            bbc_words=bbc_words,
-                           #main_graph_title=main_graph_title,
                            plots=plots,
-                           #title_1=title_1,
-                           #graph_1=graph_1,
-                           #title_2=title_2,
-                           #graph_2=graph_2,
                            trend_up=trend_up,
                            trend_down=trend_down)
 
@@ -104,23 +80,13 @@ def bbc_today():
 def bbc_week():
     title = 'BBC - Top words this week'
     bbc_words = BBC_WEEK[:TOP_N_WORDS]
-    #main_graph_title = "This Week"
     plots = (BBC_WEEK_1, BBC_WEEK_2)
-    #title_1 = BBC_WEEK_1.title
-    #graph_1 = BBC_WEEK_1.plot
-    #title_2 = BBC_WEEK_2.title
-    #graph_2 = BBC_WEEK_2.plot
     trend_up = BBC_WEEK_TREND_UP[:SHORT_N_WORDS]
     trend_down = BBC_WEEK_TREND_DOWN[:SHORT_N_WORDS]
     return render_template('bbc.html',
                            title=title,
                            bbc_words=bbc_words,
-                           #main_graph_title=main_graph_title,
                            plots=plots,
-                           #title_1=title_1,
-                           #graph_1=graph_1,
-                           #title_2=title_2,
-                           #graph_2=graph_2,
                            trend_up=trend_up,
                            trend_down=trend_down)
 
@@ -128,41 +94,21 @@ def bbc_week():
 def bbc_month():
     title = 'BBC - Top words this month'
     bbc_words = BBC_MONTH[:TOP_N_WORDS]
-    #main_graph_title = "This Month"
     plots = (BBC_MONTH_1, BBC_MONTH_2)
-    #title_1 = BBC_MONTH_1.title
-    #graph_1 = BBC_MONTH_1.plot
-    #title_2 = BBC_MONTH_2.title
-    #graph_2 = BBC_MONTH_2.plot
     return render_template('bbc.html',
                            title=title,
                            bbc_words=bbc_words,
                            plots=plots)
-                           #main_graph_title=main_graph_title,
-                           #title_1=title_1,
-                           #graph_1=graph_1,
-                           #title_2=title_2,
-                           #graph_2=graph_2)
 
 @app.route('/bbc/ever')
 def bbc_ever():
     title = 'BBC - Top words ever'
     bbc_words = BBC_EVER[:TOP_N_WORDS]
-    #main_graph_title = "This Ever"
     plots = (BBC_EVER_1, BBC_EVER_2)
-    #title_1 = BBC_EVER_1.title
-    #graph_1 = BBC_EVER_1.plot
-    #title_2 = BBC_EVER_2.title
-    #graph_2 = BBC_EVER_2.plot
     return render_template('bbc.html',
                            title=title,
                            bbc_words=bbc_words,
                            plots=plots)
-                           #main_graph_title=main_graph_title,
-                           #title_1=title_1,
-                           #graph_1=graph_1,
-                           #title_2=title_2,
-                           #graph_2=graph_2)
 
 
 ### NYT PAGES ###
