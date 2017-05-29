@@ -52,12 +52,7 @@ def changing_counts(last_period, this_period):
             temp.append(value)
         else: # Change for words found in both periods
             temp.append(key)
-            if this_map[key] > last_map[key]:
-                temp.append(this_map[key] - last_map[key])
-            elif last_map[key] > this_map[key]:
-                temp.append(this_map[key] - last_map[key])
-            else:
-                temp.append(0)
+            temp.append(this_map[key] - last_map[key])
         if temp:
             changes.append(temp)
 
