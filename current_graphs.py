@@ -1,7 +1,13 @@
 
 
 import plot_words
-from query_database import BBC_WEEK, BBC_MONTH, BBC_EVER, NYT_EVER, just_words
+
+from graph import Graph
+
+from query_database import (BBC_WEEK, BBC_MONTH, BBC_EVER,
+                            NYT_EVER,
+                            just_words)
+
 from constants import SHORT_N_WORDS
 
 
@@ -11,38 +17,18 @@ GRAPH_PATH = "images/plots/"
 
 
 ### HOMEPAGE ###
-# Title and filepath
-HOMEPAGE_BBC_TITLE_1 = "We never used to talk about Manchester"
-HOMEPAGE_BBC_FILE_1 = "homepage_bbc_1.png"
-HOMEPAGE_BBC_PLOT_1 = ''.join([GRAPH_PATH, HOMEPAGE_BBC_FILE_1])
+HOMEPAGE_BBC_1 = Graph(title="We never used to talk about Manchester",
+                       db=BBC_DB,
+                       filename="homepage_bbc_1",
+                       days="14",
+                       words=['manchester'],
+                       colour=['red'])
 
-HOMEPAGE_NYT_TITLE_1 = "All Trump, all the time"
-HOMEPAGE_NYT_FILE_1 = "homepage_nyt_1.png"
-HOMEPAGE_NYT_PLOT_1 = ''.join([GRAPH_PATH, HOMEPAGE_NYT_FILE_1])
-
-# Parameters
-HOMEPAGE_BBC_WORDS_1 = ["manchester"]
-HOMEPAGE_BBC_DAYS_1 = "14"
-HOMEPAGE_BBC_COLOUR_1 = ["red"]
-HOMEPAGE_BBC_FILENAME_1 = "homepage_bbc_1"
-
-HOMEPAGE_NYT_WORDS_1 = just_words(NYT_EVER)[:SHORT_N_WORDS]
-HOMEPAGE_NYT_DAYS_1 = "14"
-HOMEPAGE_NYT_COLOUR_1 = ["random"]
-HOMEPAGE_NYT_FILENAME_1 = "homepage_nyt_1"
-
-# Command line arguments
-HOMEPAGE_BBC_1 = ["--words", HOMEPAGE_BBC_WORDS_1,
-                  "--days", HOMEPAGE_BBC_DAYS_1,
-                  "--colour", HOMEPAGE_BBC_COLOUR_1,
-                  "--database", BBC_DB,
-                  "--filename", HOMEPAGE_BBC_FILENAME_1]
-
-HOMEPAGE_NYT_1 = ["--words", HOMEPAGE_NYT_WORDS_1,
-                  "--days", HOMEPAGE_NYT_DAYS_1,
-                  "--colour", HOMEPAGE_NYT_COLOUR_1,
-                  "--database", NYT_DB,
-                  "--filename", HOMEPAGE_NYT_FILENAME_1]
+HOMEPAGE_NYT_1 = Graph(title="All Trump, all the time",
+                       db=NYT_DB,
+                       filename="homepage_nyt_1",
+                       days="14",
+                       words=just_words(NYT_EVER)[:SHORT_N_WORDS])
 
 
 ### BBC TODAY ###
@@ -208,18 +194,18 @@ BBC_EVER_2 = ["--words", BBC_EVER_WORDS_2,
 
 def main():
     # Homepage
-    plot_words.main(HOMEPAGE_BBC_1)
-    plot_words.main(HOMEPAGE_NYT_1)
+    plot_words.main(HOMEPAGE_BBC_1.args)
+    plot_words.main(HOMEPAGE_NYT_1.args)
     # BBC Today
     plot_words.main(BBC_TODAY_1)
     plot_words.main(BBC_TODAY_2)
-    # BBC Week
+    ## BBC Week
     plot_words.main(BBC_WEEK_1)
     plot_words.main(BBC_WEEK_2)
-    # BBC Month
+    ## BBC Month
     plot_words.main(BBC_MONTH_1)
     plot_words.main(BBC_MONTH_2)
-    # BBC Ever
+    ## BBC Ever
     plot_words.main(BBC_EVER_1)
     plot_words.main(BBC_EVER_2)
 

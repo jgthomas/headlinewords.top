@@ -15,8 +15,7 @@ from query_database import (BBC_TODAY, BBC_WEEK, BBC_MONTH, BBC_EVER,
                             NYT_TODAY, NYT_WEEK, NYT_MONTH, NYT_EVER,
                             just_words)
 
-from current_graphs import (HOMEPAGE_BBC_TITLE_1, HOMEPAGE_NYT_TITLE_1,
-                            HOMEPAGE_BBC_PLOT_1, HOMEPAGE_NYT_PLOT_1,
+from current_graphs import (HOMEPAGE_BBC_1, HOMEPAGE_NYT_1,
                             BBC_TODAY_TITLE_1, BBC_TODAY_PLOT_1,
                             BBC_TODAY_TITLE_2, BBC_TODAY_PLOT_2,
                             BBC_WEEK_TITLE_1, BBC_WEEK_PLOT_1,
@@ -60,11 +59,11 @@ def home():
     nyt_words = NYT_TODAY[:SHORT_N_WORDS]
     main_graph_title = "Highlights"
     subtitle_1 = "BBC"
-    title_1 = HOMEPAGE_BBC_TITLE_1
-    graph_1 = HOMEPAGE_BBC_PLOT_1
+    title_1 = HOMEPAGE_BBC_1.title
+    graph_1 = HOMEPAGE_BBC_1.plot
     subtitle_2 = "NYT"
-    title_2 = HOMEPAGE_NYT_TITLE_1
-    graph_2 = HOMEPAGE_NYT_PLOT_1
+    title_2 = HOMEPAGE_NYT_1.title
+    graph_2 = HOMEPAGE_NYT_1.plot
     return render_template('index.html',
                            title=title,
                            bbc_words=bbc_words,
