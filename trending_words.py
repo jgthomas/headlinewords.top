@@ -8,6 +8,7 @@ from query_database import (query, TODAY, TOMORROW, DATE_RANGE,
                             date_object_factory, just_words)
 
 ONE_DAY = 1
+DAY_ON_DAY = 1
 WEEK_ON_WEEK = 7
 MONTH_ON_MONTH = 30
 
@@ -67,3 +68,10 @@ def main(db, days):
     last_period, this_period = successive_periods(db, days)
     rising, falling = changing_counts(last_period, this_period)
     return (rising, falling)
+
+
+BBC_DAY_TREND_UP, BBC_DAY_TREND_DOWN = main(BBC_DATABASE, DAY_ON_DAY)
+BBC_WEEK_TREND_UP, BBC_WEEK_TREND_DOWN = main(BBC_DATABASE, WEEK_ON_WEEK)
+
+NYT_DAY_TREND_UP, NYT_DAY_TREND_DOWN = main(NYT_DATABASE, DAY_ON_DAY)
+NYT_WEEK_TREND_UP, NYT_WEEK_TREND_DOWN = main(NYT_DATABASE, WEEK_ON_WEEK)

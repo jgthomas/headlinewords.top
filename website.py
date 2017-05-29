@@ -4,6 +4,11 @@
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question
 
+from trending_words import (BBC_DAY_TREND_UP, BBC_DAY_TREND_DOWN,
+                            BBC_WEEK_TREND_UP, BBC_WEEK_TREND_DOWN,
+                            NYT_DAY_TREND_UP, NYT_DAY_TREND_DOWN,
+                            NYT_WEEK_TREND_UP, NYT_WEEK_TREND_DOWN)
+
 from constants import TOP_N_WORDS, SHORT_N_WORDS, MAX_N_WORDS, HIGH_N_WORDS
 
 from query_database import (BBC_TODAY, BBC_WEEK, BBC_MONTH, BBC_EVER,
@@ -83,6 +88,8 @@ def bbc_today():
     graph_1 = BBC_TODAY_PLOT_1
     title_2 = BBC_TODAY_TITLE_2
     graph_2 = BBC_TODAY_PLOT_2
+    trend_up = BBC_DAY_TREND_UP[:SHORT_N_WORDS]
+    trend_down = BBC_DAY_TREND_DOWN[:SHORT_N_WORDS]
     return render_template('bbc.html',
                            title=title,
                            bbc_words=bbc_words,
@@ -90,7 +97,9 @@ def bbc_today():
                            title_1=title_1,
                            graph_1=graph_1,
                            title_2=title_2,
-                           graph_2=graph_2)
+                           graph_2=graph_2,
+                           trend_up=trend_up,
+                           trend_down=trend_down)
 
 @app.route('/bbc/week')
 def bbc_week():
@@ -101,6 +110,8 @@ def bbc_week():
     graph_1 = BBC_WEEK_PLOT_1
     title_2 = BBC_WEEK_TITLE_2
     graph_2 = BBC_WEEK_PLOT_2
+    trend_up = BBC_WEEK_TREND_UP[:SHORT_N_WORDS]
+    trend_down = BBC_WEEK_TREND_DOWN[:SHORT_N_WORDS]
     return render_template('bbc.html',
                            title=title,
                            bbc_words=bbc_words,
@@ -108,7 +119,9 @@ def bbc_week():
                            title_1=title_1,
                            graph_1=graph_1,
                            title_2=title_2,
-                           graph_2=graph_2)
+                           graph_2=graph_2,
+                           trend_up=trend_up,
+                           trend_down=trend_down)
 
 @app.route('/bbc/month')
 def bbc_month():
@@ -150,27 +163,43 @@ def bbc_ever():
 ### NYT PAGES ###
 @app.route('/nyt/today')
 def nyt_today():
-    nyt_words = NYT_TODAY[:TOP_N_WORDS]
     title = 'New York Times - Top words today'
-    return render_template('nyt.html', title=title, nyt_words=nyt_words)
+    nyt_words = NYT_TODAY[:TOP_N_WORDS]
+    trend_up = NYT_DAY_TREND_UP[:SHORT_N_WORDS]
+    trend_down = NYT_DAY_TREND_DOWN[:SHORT_N_WORDS]
+    return render_template('nyt.html',
+                           title=title,
+                           nyt_words=nyt_words,
+                           trend_up=trend_up,
+                           trend_down=trend_down)
 
 @app.route('/nyt/week')
 def nyt_week():
-    nyt_words = NYT_WEEK[:TOP_N_WORDS]
     title = 'New York Times - Top words this week'
-    return render_template('nyt.html', title=title, nyt_words=nyt_words)
+    nyt_words = NYT_WEEK[:TOP_N_WORDS]
+    trend_up = NYT_WEEK_TREND_UP[:SHORT_N_WORDS]
+    trend_down = NYT_WEEK_TREND_DOWN[:SHORT_N_WORDS]
+    return render_template('nyt.html',
+                           title=title,
+                           nyt_words=nyt_words,
+                           trend_up=trend_up,
+                           trend_down=trend_down)
 
 @app.route('/nyt/month')
 def nyt_month():
-    nyt_words = NYT_MONTH[:TOP_N_WORDS]
     title = 'New York Times - Top words this month'
-    return render_template('nyt.html', title=title, nyt_words=nyt_words)
+    nyt_words = NYT_MONTH[:TOP_N_WORDS]
+    return render_template('nyt.html',
+                           title=title,
+                           nyt_words=nyt_words)
 
 @app.route('/nyt/ever')
 def nyt_ever():
-    nyt_words = NYT_EVER[:TOP_N_WORDS]
     title = 'New York Times - Top words ever'
-    return render_template('nyt.html', title=title, nyt_words=nyt_words)
+    nyt_words = NYT_EVER[:TOP_N_WORDS]
+    return render_template('nyt.html',
+                           title=title,
+                           nyt_words=nyt_words)
 
 
 ### COMBINED PAGES ###
