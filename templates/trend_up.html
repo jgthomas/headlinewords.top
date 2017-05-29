@@ -1,0 +1,11 @@
+{% block content %}
+   <h4 class="title rounded_card">Rising</h4>
+   <div id='data_table'>
+     {% for word, count in trend_up %}
+     <div class='line rounded_card'>
+       <div class='word'>{{word}}</div>
+       <div class='count'>+{{count}}</div>
+     </div>
+     {% endfor %}
+   </div>
+{% endblock %}

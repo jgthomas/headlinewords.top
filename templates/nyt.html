@@ -9,12 +9,20 @@
     {{ nav_link("home", "Home") }} 
     {{ nav_link("bbc_today", "BBC") }} 
   </nav>
-  <h1 class="title rounded_card">New York Times</h1>
-  <nav>
-    {{ nav_link("nyt_today", "Today") }} 
-    {{ nav_link("nyt_week", "Week") }} 
-    {{ nav_link("nyt_month", "Month") }} 
-    {{ nav_link("nyt_ever", "Ever") }} 
-  </nav>
-{% include "nyt_data.html" %}
+  <div class="container">
+    <div class="left">
+      <h4 class="title rounded_card">New York Times</h4>
+      <nav>
+        {{ nav_link("nyt_today", "Today") }}
+        {{ nav_link("nyt_week", "Week") }}
+        {{ nav_link("nyt_month", "Month") }}
+        {{ nav_link("nyt_ever", "Ever") }}
+      </nav>
+      {% include "nyt_data.html" %}
+    </div>
+    <div class="right">
+      {% include "trend_up.html" %}
+      {% include "trend_down.html" %}
+    </div>
+  </div>
 {% endblock %}

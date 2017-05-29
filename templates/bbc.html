@@ -10,14 +10,22 @@
     {{ nav_link("nyt_today", "NYT") }} 
     <a id="scroll-button" class="navlink rounded_card" href="#graph-target">Charts</a>
   </nav>
-      <h1 class="title rounded_card">BBC News</h1>
+  <div class="container">
+    <div class="left">
+      <h4 class="title rounded_card">BBC News</h4>
       <nav>
         {{ nav_link("bbc_today", "Today") }} 
         {{ nav_link("bbc_week", "Week") }} 
         {{ nav_link("bbc_month", "Month") }} 
         {{ nav_link("bbc_ever", "Ever") }} 
-     </nav>
-     {% include "bbc_data.html" %}
-    {% include "graph.html" %}
+      </nav>
+      {% include "bbc_data.html" %}
+    </div>
+    <div class="right">
+      {% include "trend_up.html" %}
+      {% include "trend_down.html" %}
+    </div>
+  </div>
+  {% include "graph.html" %}
   <script src={{ url_for('static', filename='scripts/pageScroll.js') }}></script>
 {% endblock %}
