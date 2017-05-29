@@ -25,7 +25,7 @@ def successive_periods(db, days):
     two_back = date_object_factory(one_back, days)
     this_period = query(db, DATE_RANGE, (one_back, TOMORROW))
     last_period = query(db, DATE_RANGE, (two_back, pivot))
-    return (this_period, last_period)
+    return (last_period, this_period)
 
 
 def changing_counts(last_period, this_period):
@@ -68,13 +68,7 @@ def changing_counts(last_period, this_period):
     return (rising_words, falling_words)
 
 
-def main():
-    this_week, last_week = successive_periods(BBC_DATABASE, WEEK_ON_WEEK)
-    a, b = changing_counts(last_week, this_week)
-    print(a)
-    print(b)
-
-
-if __name__ == '__main__':
-
-    main()
+def main(db, days):
+    last_period, this_period = successive_periods(db, days)
+    rising, falling = changing_counts(last_period, this_period)
+    return (rising, falling)
