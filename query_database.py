@@ -92,7 +92,7 @@ def just_words(data):
     return words
 
 
-def date_object_factory(start, num_days):
+def date_object_factory(start, num_days, plus=None):
     """
     Return a date object for num_days prior to start.
 
@@ -100,7 +100,11 @@ def date_object_factory(start, num_days):
     num_days : number of days earlier to make date object
 
     """
-    return start - dt.timedelta(days=num_days)
+    if plus:
+        new_date = start + dt.timedelta(days=num_days)
+    else:
+        new_date = start - dt.timedelta(days=num_days)
+    return new_date
 
 
 def date_object_range(start, days):
@@ -118,6 +122,7 @@ def date_object_range(start, days):
 # Date objects for queries
 TODAY = dt.datetime.today().date()
 YESTERDAY = date_object_factory(TODAY, 1)
+TOMORROW = date_object_factory(TODAY, 1, plus=True)
 WEEK = date_object_factory(TODAY, 7)
 MONTH = date_object_factory(TODAY, 30)
 
