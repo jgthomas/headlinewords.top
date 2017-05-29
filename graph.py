@@ -5,13 +5,14 @@ class Graph(object):
     path = 'images/plots/'
     ext = '.png'
     
-    def __init__(self, title, db, filename, days, words, colour=None):
+    def __init__(self, title, db, filename, days, words, colour=None, source=None):
         self.title = title
         self.db = db
         self.filename = filename
         self.days = days
         self.words = words
         self.colour = colour if colour else ["random"]
+        self.source = source if source else ''
 
         self.args = ["--words", self.words,
                      "--days", self.days,

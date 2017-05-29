@@ -21,13 +21,15 @@ HOMEPAGE_BBC_1 = Graph(title="We never used to talk about Manchester",
                        filename="homepage_bbc_1",
                        days="14",
                        words=['manchester'],
-                       colour=['red'])
+                       colour=['red'],
+                       source='BBC')
 
 HOMEPAGE_NYT_1 = Graph(title="All Trump, all the time",
                        db=NYT_DB,
                        filename="homepage_nyt_1",
                        days="14",
-                       words=just_words(NYT_EVER)[:SHORT_N_WORDS])
+                       words=just_words(NYT_EVER)[:SHORT_N_WORDS],
+                       source='NYT')
 
 
 ### BBC TODAY ###
