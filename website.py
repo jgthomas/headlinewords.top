@@ -4,7 +4,7 @@
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question
 
-from constants import TOP_N_WORDS, SHORT_N_WORDS
+from constants import TOP_N_WORDS, SHORT_N_WORDS, MAX_N_WORDS, HIGH_N_WORDS
 
 from query_database import (BBC_TODAY, BBC_WEEK, BBC_MONTH, BBC_EVER,
                             NYT_TODAY, NYT_WEEK, NYT_MONTH, NYT_EVER,
@@ -171,3 +171,17 @@ def nyt_ever():
     nyt_words = NYT_EVER[:TOP_N_WORDS]
     title = 'New York Times - Top words ever'
     return render_template('nyt.html', title=title, nyt_words=nyt_words)
+
+
+### COMBINED PAGES ###
+@app.route('/top200')
+def top_200():
+    title = 'Comparative top 200 words'
+    how_many = 'Top 200'
+    nyt_words = NYT_EVER[:HIGH_N_WORDS]
+    bbc_words = BBC_EVER[:HIGH_N_WORDS]
+    return render_template('top_many.html',
+                           title=title,
+                           how_many=how_many,
+                           bbc_words=bbc_words,
+                           nyt_words=nyt_words)

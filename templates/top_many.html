@@ -1,0 +1,24 @@
+{% from "macros.html" import nav_link with context %}
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+  <nav>
+    {{ nav_link("home", "Home") }} 
+    {{ nav_link("bbc_today", "BBC") }} 
+    {{ nav_link("nyt_today", "NYT") }} 
+  </nav>
+  <h1 class="subtitle">{{how_many}}</h1>
+  <div class="container">
+    <div class="left">
+      <h3 class="title rounded_card home-section">BBC</h3>
+      {% include "bbc_data.html" %}
+    </div>
+    <div class="right">
+      <h3 class="title rounded_card home-section">New York Times</h3>
+      {% include "nyt_data.html" %}
+    </div>
+  </div>
+{% endblock %}
