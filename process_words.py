@@ -69,14 +69,14 @@ def word_filter(words, to_ignore):
     convert_unicode_apostrope = map_over(no_unicode_apostrophe)
 
     # Filters - remove words based on these
-    remove_function_words = filter_by(is_not_in(to_ignore))
+    remove_stopwords = filter_by(is_not_in(to_ignore))
     remove_initial_non_letters = filter_by(starts_with_num_or_non_word)
     remove_short_words = filter_by(too_short)
 
     filtered_words = (del_non_word_chars
                       (remove_short_words
                        (remove_initial_non_letters
-                        (remove_function_words
+                        (remove_stopwords
                          (del_trailing_quote
                           (del_initial_quote
                            (convert_unicode_apostrope

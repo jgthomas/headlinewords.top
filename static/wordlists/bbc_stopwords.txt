@@ -2,5 +2,6 @@ bbc
 breakfast
 channel
 headlines
+headlines:
 news
 newspaper
