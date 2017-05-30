@@ -104,16 +104,20 @@ class Query(object):
         self.cur.execute(self.__class__.DATE_RANGE, (date1, date2))
         return self.cur.fetchall()
 
+    def single_word(self, date, word):
+        self.cur.execute(self.__class__.WORD_ON_DATE, (date, word))
+        return self.cur.fetchall()
 
-def data(dbname, method, date1=None, date2=None):
+
+def data(dbname, method, date1=None, date2=None, word=None):
     db = DATABASES[dbname]
-    if date1 and date2:
-        with Query(db) as opendb:
+    with Query(db) as opendb:
+        if date1 and date2:
             data = getattr(opendb, method)(date1, date2)
-    elif date1:
-        with Query(db) as opendb:
+        elif date1 and word:
+            data = getattr(opendb, method)(date1, word)
+        elif date1:
             data = getattr(opendb, method)(date1)
-    else:
-        with Query(db) as opendb:
+        else:
             data = getattr(opendb, method)
     return data
