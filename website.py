@@ -19,7 +19,9 @@ from current_graphs import (HOMEPAGE_BBC_1, HOMEPAGE_NYT_1,
                             BBC_TODAY_1, BBC_TODAY_2,
                             BBC_WEEK_1, BBC_WEEK_2,
                             BBC_MONTH_1, BBC_MONTH_2,
-                            BBC_EVER_1, BBC_EVER_2)
+                            BBC_EVER_1, BBC_EVER_2,
+                            NYT_WEEK_1,
+                            NYT_MONTH_1, NYT_MONTH_2)
 
 
 app = Flask(__name__)
@@ -128,11 +130,13 @@ def nyt_today():
 def nyt_week():
     title = 'New York Times - Top words this week'
     nyt_words = NYT_WEEK[:TOP_N_WORDS]
+    #plots = (NYT_WEEK_1)
     trend_up = NYT_WEEK_TREND_UP[:SHORT_N_WORDS]
     trend_down = NYT_WEEK_TREND_DOWN[:SHORT_N_WORDS]
     return render_template('nyt.html',
                            title=title,
                            nyt_words=nyt_words,
+                           #plots=plots,
                            trend_up=trend_up,
                            trend_down=trend_down)
 
@@ -140,9 +144,11 @@ def nyt_week():
 def nyt_month():
     title = 'New York Times - Top words this month'
     nyt_words = NYT_MONTH[:TOP_N_WORDS]
+    plots = (NYT_MONTH_1, NYT_MONTH_2)
     return render_template('nyt.html',
                            title=title,
-                           nyt_words=nyt_words)
+                           nyt_words=nyt_words,
+                           plots=plots)
 
 @app.route('/nyt/ever')
 def nyt_ever():

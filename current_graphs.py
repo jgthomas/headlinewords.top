@@ -5,7 +5,7 @@ import plot_words
 from graph import Graph
 
 from query_database import (BBC_WEEK, BBC_MONTH, BBC_EVER,
-                            NYT_EVER,
+                            NYT_WEEK, NYT_EVER,
                             just_words)
 
 from constants import SHORT_N_WORDS
@@ -93,8 +93,25 @@ BBC_EVER_2 = Graph(title="City limits",
 ### NYT TODAY ###
 
 ### NYT WEEK ###
+NYT_WEEK_1 = Graph(title='Top five progress',
+                   db=NYT_DB,
+                   filename='nyt_week_1',
+                   days="7",
+                   words=just_words(NYT_WEEK)[:SHORT_N_WORDS])
+
 
 ### NYT MONTH ###
+NYT_MONTH_1 = Graph(title='The Trumps',
+                    db=NYT_DB,
+                    filename='nyt_month_1',
+                    days="30",
+                    words=['trump', 'ivanka', 'kushner', 'melania'])
+
+NYT_MONTH_2 = Graph(title='The Investigation',
+                    db=NYT_DB,
+                    filename='nyt_month_2',
+                    days="30",
+                    words=['fbi', 'comey', 'russia', 'investigation'])
 
 ### NYT EVER ###
 
@@ -115,6 +132,11 @@ def main():
     ## BBC Ever
     plot_words.main(BBC_EVER_1.args)
     plot_words.main(BBC_EVER_2.args)
+    # NYT Week
+    plot_words.main(NYT_WEEK_1.args)
+    # NYT Month
+    plot_words.main(NYT_MONTH_1.args)
+    plot_words.main(NYT_MONTH_2.args)
 
 
 if __name__ == '__main__':
