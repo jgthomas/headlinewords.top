@@ -3,10 +3,12 @@
 import sqlite3
 import datetime as dt
 
-from constants import DATABASES, THIS_YEAR
+from constants import DATABASES
 
 
 TODAY = dt.datetime.today().date()
+THIS_YEAR = TODAY.year
+
 
 def date_object_factory(start, num_days, plus=None):
     if plus:
@@ -16,12 +18,12 @@ def date_object_factory(start, num_days, plus=None):
     return new_date
 
 
-time_map = {"today": TODAY,
+TIME_MAP = {"today": TODAY,
             "week": date_object_factory(TODAY, 7),
             "month": date_object_factory(TODAY, 30)}
 
 
-calendar_map = {"jan_start": dt.datetime(THIS_YEAR - 1, 12, 31),
+CALENDAR_MAP = {"jan_start": dt.datetime(THIS_YEAR - 1, 12, 31),
                 "jan_end": dt.datetime(THIS_YEAR, 2, 1),
                 "feb_start": dt.datetime(THIS_YEAR, 1, 31),
                 "feb_end": dt.datetime(THIS_YEAR, 3, 1),
@@ -80,12 +82,12 @@ class Query(object):
             self.conn.close()
 
     def ondate(self, date):
-        date = time_map[date]
+        date = TIME_MAP[date]
         self.cur.execute(self.__class__.SPECIFIC_DATE, (date,))
         return self.cur.fetchall()
 
     def since(self, date):
-        date = time_map[date]
+        date = TIME_MAP[date]
         self.cur.execute(self.__class__.SINCE_DATE, (date,))
         return self.cur.fetchall()
 
@@ -101,9 +103,9 @@ class Query(object):
 def data(dbname, method, period, period2=None):
     db = DATABASES[dbname]
     if period2:
-        if period in calendar_map:
-            period = calendar_map[period]
-            period2 = calendar_map[period2]
+        if period in CALENDAR_MAP:
+            period = CALENDAR_MAP[period]
+            period2 = CALENDAR_MAP[period2]
         with Query(db) as opendb:
             data = getattr(opendb, method)(period, period2)
     else:

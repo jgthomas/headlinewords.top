@@ -54,6 +54,3 @@ TABLEAU = [(0.12156862745098039, 0.4666666666666667, 0.7058823529411765),
 # Colour dictionary
 COLOURS =  {'blue': BLUE, 'red': RED, 'green': GREEN, 'grey': GREY,
             'orange': ORANGE, 'pink': PINK}
-
-# Time for database queries
-THIS_YEAR = 2017
