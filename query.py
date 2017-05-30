@@ -96,19 +96,22 @@ class Query(object):
         return self.cur.fetchall()
 
     def between(self, date1, date2):
+        if date1 in CALENDAR_MAP:
+            date1 = CALENDAR_MAP[date1]
+            date2 = CALENDAR_MAP[date2]
         self.cur.execute(self.__class__.DATE_RANGE, (date1, date2))
         return self.cur.fetchall()
 
 
-def data(dbname, method, period, period2=None):
+def data(dbname, method, date1=None, date2=None):
     db = DATABASES[dbname]
-    if period2:
-        if period in CALENDAR_MAP:
-            period = CALENDAR_MAP[period]
-            period2 = CALENDAR_MAP[period2]
+    if date1 and date2:
         with Query(db) as opendb:
-            data = getattr(opendb, method)(period, period2)
+            data = getattr(opendb, method)(date1, date2)
+    elif date1:
+        with Query(db) as opendb:
+            data = getattr(opendb, method)(date1)
     else:
         with Query(db) as opendb:
-            data = getattr(opendb, method)(period)
+            data = getattr(opendb, method)
     return data
