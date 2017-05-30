@@ -82,12 +82,14 @@ class Query(object):
             self.conn.close()
 
     def ondate(self, date):
-        date = TIME_MAP[date]
+        if date in TIME_MAP:
+            date = TIME_MAP[date]
         self.cur.execute(self.__class__.SPECIFIC_DATE, (date,))
         return self.cur.fetchall()
 
     def since(self, date):
-        date = TIME_MAP[date]
+        if date in TIME_MAP:
+            date = TIME_MAP[date]
         self.cur.execute(self.__class__.SINCE_DATE, (date,))
         return self.cur.fetchall()
 
