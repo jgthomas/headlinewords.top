@@ -11,12 +11,12 @@
     {{ nav_link("nyt_today", "NYT") }} 
   </nav>
   <h1 class="subtitle">{{how_many}}</h1>
-  <div class="container">
-    <div class="left">
+  <div class="flex-container">
+    <div class="flex-half-unit">
       <h3 class="title rounded_card home-section">BBC</h3>
       {% include "bbc_data.html" %}
     </div>
-    <div class="right">
+    <div class="flex-half-unit">
       <h3 class="title rounded_card home-section">New York Times</h3>
       {% include "nyt_data.html" %}
     </div>

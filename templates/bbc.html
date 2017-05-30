@@ -10,8 +10,8 @@
     {{ nav_link("nyt_today", "NYT") }} 
     <a id="scroll-button" class="navlink rounded_card" href="#graph-target">Charts</a>
   </nav>
-  <div class="container">
-    <div class="left">
+  <div class="flex-container">
+    <div class="flex-half-unit">
       <h4 class="title rounded_card">BBC News</h4>
       <nav>
         {{ nav_link("bbc_today", "Today") }} 
@@ -21,7 +21,7 @@
       </nav>
       {% include "bbc_data.html" %}
     </div>
-    <div class="right">
+    <div class="flex-half-unit">
       {% include "trend_up.html" %}
       {% include "trend_down.html" %}
     </div>

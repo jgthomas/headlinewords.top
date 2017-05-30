@@ -1,9 +1,8 @@
 {% block content %}
-  <div class="graph-box container">
+  <div class="graph-box flex-container">
     <div id="graph-target"></div>
     {% for plot in plots %}
-    <!--NOT 'left' change when new flex graphs done -->
-    <div class="left">
+    <div class="flex-half-unit">
       <h3 class="graph-box-subtitle">{{plot.source}}</h3>
       <h4 class="img-title">{{plot.title}}</h4>
       <img src={{ url_for('static', filename=plot.plot) }} />
