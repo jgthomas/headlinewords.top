@@ -130,13 +130,13 @@ def nyt_today():
 def nyt_week():
     title = 'New York Times - Top words this week'
     nyt_words = NYT_WEEK[:TOP_N_WORDS]
-    #plots = (NYT_WEEK_1)
+    plots = (NYT_WEEK_1,)
     trend_up = NYT_WEEK_TREND_UP[:SHORT_N_WORDS]
     trend_down = NYT_WEEK_TREND_DOWN[:SHORT_N_WORDS]
     return render_template('nyt.html',
                            title=title,
                            nyt_words=nyt_words,
-                           #plots=plots,
+                           plots=plots,
                            trend_up=trend_up,
                            trend_down=trend_down)
 
