@@ -2,6 +2,7 @@
 
 import sqlite3
 import datetime as dt
+from contextlib import closing
 
 from constants import DATABASES
 
@@ -79,16 +80,14 @@ class Query(object):
 
     def __init__(self, db):
         self.dbname = db
-
-    def __enter__(self):
         self.conn = sqlite3.connect(self.dbname,
                                detect_types=sqlite3.PARSE_DECLTYPES
                                |sqlite3.PARSE_COLNAMES)
         self.cur = self.conn.cursor()
-        return self
-    
-    def __exit__(self, exc_type, exc_val, exc_tb):
+
+    def close(self):
         if self.conn:
+            self.conn.commit()
             self.conn.close()
 
     def ondate(self, date):
@@ -139,7 +138,7 @@ def data(dbname, method, date1=None, date2=None, word=None):
 
     """
     db = DATABASES[dbname]
-    with Query(db) as opendb:
+    with closing( Query(db) ) as opendb:
         if date1 and date2:
             data = getattr(opendb, method)(date1, date2)
         elif date1 and word:
