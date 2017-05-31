@@ -12,7 +12,7 @@ from trending_words import (BBC_DAY_TREND_UP, BBC_DAY_TREND_DOWN,
 from constants import TOP_N_WORDS, SHORT_N_WORDS, MAX_N_WORDS, HIGH_N_WORDS
 
 from standing_queries import (BBC_TODAY, BBC_WEEK, BBC_MONTH, BBC_EVER,
-                             NYT_TODAY, NYT_WEEK, NYT_MONTH, NYT_EVER)
+                              NYT_TODAY, NYT_WEEK, NYT_MONTH, NYT_EVER)
 
 from query_database import just_words
 
