@@ -137,8 +137,10 @@ def data(dbname, method, date1=None, date2=None, word=None):
 
     dbname  :  database to query
     method  :  method to call for the query
-    date1   :  single or first date to query
-    date2   :  second date in a query with a range
+    date1   :  single or first date to query, can be either
+               a date object or key to a date object
+    date2   :  second date in a query with a range, can be either
+               a date object or key to a date object
     word    :  the specific word to query
 
     """
