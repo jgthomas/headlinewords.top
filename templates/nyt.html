@@ -21,10 +21,16 @@
       </nav>
       {% include "table.html" %}
     </div>
-    <div class="flex-half-unit">
-      {% include "trend_up.html" %}
-      {% include "trend_down.html" %}
-    </div>
+   <div class="flex-half-unit">
+     {% for extra in extras %}
+     <h4 class="title rounded_card">{{extra["title"]}}</h4>
+       {% if extra["title"] == "Rising" %}
+         {% include "trend_up.html" %}
+       {% else %}
+         {% include "extra.html" %}
+       {% endif %}
+     {% endfor %}
+   </div>
   </div>
   {% include "new_graph.html" %}
 {% endblock %}

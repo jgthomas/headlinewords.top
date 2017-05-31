@@ -2,7 +2,7 @@
 
 from operator import itemgetter
 
-from constants import BBC_DATABASE, NYT_DATABASE, TOP_N_WORDS, SHORT_N_WORDS
+from constants import BBC_DATABASE, NYT_DATABASE, TOP_N_WORDS, SHORT_N_WORDS, DATABASES
 
 from query_database import (query, TODAY, TOMORROW, DATE_RANGE,
                             date_object_factory, just_words)
@@ -11,6 +11,10 @@ ONE_DAY = 1
 DAY_ON_DAY = 1
 WEEK_ON_WEEK = 7
 MONTH_ON_MONTH = 30
+
+TREND_MAP = {"day_on_day": DAY_ON_DAY,
+             "week_on_week": WEEK_ON_WEEK,
+             "month_on_month": MONTH_ON_MONTH}
 
 
 def trim_data(data):
@@ -81,6 +85,14 @@ def changing_counts(last_period, this_period):
 
 
 def main(db, days):
+    last_period, this_period = successive_periods(db, days)
+    rising, falling = changing_counts(last_period, this_period)
+    return (rising, falling)
+
+
+def trends(db, days):
+    db = DATABASES[db]
+    days = TREND_MAP[days]
     last_period, this_period = successive_periods(db, days)
     rising, falling = changing_counts(last_period, this_period)
     return (rising, falling)

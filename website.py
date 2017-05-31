@@ -4,17 +4,21 @@
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question
 
-from trending_words import (BBC_DAY_TREND_UP, BBC_DAY_TREND_DOWN,
-                            BBC_WEEK_TREND_UP, BBC_WEEK_TREND_DOWN,
-                            NYT_DAY_TREND_UP, NYT_DAY_TREND_DOWN,
-                            NYT_WEEK_TREND_UP, NYT_WEEK_TREND_DOWN)
+#from trending_words import (BBC_DAY_TREND_UP, BBC_DAY_TREND_DOWN,
+#                            BBC_WEEK_TREND_UP, BBC_WEEK_TREND_DOWN,
+#                            NYT_DAY_TREND_UP, NYT_DAY_TREND_DOWN,
+#                            NYT_WEEK_TREND_UP, NYT_WEEK_TREND_DOWN)
 
 from constants import TOP_N_WORDS, SHORT_N_WORDS, MAX_N_WORDS, HIGH_N_WORDS
 
-from standing_queries import (BBC_TODAY, BBC_WEEK, BBC_MONTH, BBC_EVER,
-                              NYT_TODAY, NYT_WEEK, NYT_MONTH, NYT_EVER)
-
 from query_database import just_words
+
+from standing_queries import (BBC_TODAY, BBC_WEEK, BBC_MONTH, BBC_EVER,
+                              NYT_TODAY, NYT_WEEK, NYT_MONTH, NYT_EVER,
+                              BBC_TODAY_RISING, BBC_TODAY_FALLING,
+                              BBC_WEEK_RISING, BBC_WEEK_FALLING,
+                              NYT_TODAY_RISING, NYT_TODAY_FALLING,
+                              NYT_WEEK_RISING, NYT_WEEK_FALLING)
 
 from current_graphs import (HOMEPAGE_BBC_1, HOMEPAGE_NYT_1,
                             BBC_TODAY_1, BBC_TODAY_2,
@@ -66,9 +70,9 @@ def bbc_today():
                            title = 'BBC - Top words today',
                            source = BBC_TODAY,
                            display = TOP_N_WORDS,
-                           plots = (BBC_TODAY_1, BBC_TODAY_2),
-                           trend_up = BBC_DAY_TREND_UP[:SHORT_N_WORDS],
-                           trend_down = BBC_DAY_TREND_DOWN[:SHORT_N_WORDS])
+                           extras = (BBC_TODAY_RISING, BBC_TODAY_FALLING),
+                           extra_display = SHORT_N_WORDS,
+                           plots = (BBC_TODAY_1, BBC_TODAY_2))
 
 @app.route('/bbc/week')
 def bbc_week():
@@ -76,9 +80,9 @@ def bbc_week():
                            title = 'BBC - Top words this week',
                            source = BBC_WEEK,
                            display = TOP_N_WORDS,
-                           plots = (BBC_WEEK_1, BBC_WEEK_2),
-                           trend_up = BBC_WEEK_TREND_UP[:SHORT_N_WORDS],
-                           trend_down = BBC_WEEK_TREND_DOWN[:SHORT_N_WORDS])
+                           extras = (BBC_WEEK_RISING, BBC_WEEK_FALLING),
+                           extra_display = SHORT_N_WORDS,
+                           plots = (BBC_WEEK_1, BBC_WEEK_2))
 
 @app.route('/bbc/month')
 def bbc_month():
@@ -104,8 +108,8 @@ def nyt_today():
                            title = 'New York Times - Top words today',
                            source = NYT_TODAY,
                            display = TOP_N_WORDS,
-                           trend_up = NYT_DAY_TREND_UP[:SHORT_N_WORDS],
-                           trend_down = NYT_DAY_TREND_DOWN[:SHORT_N_WORDS])
+                           extras = (NYT_TODAY_RISING, NYT_TODAY_FALLING),
+                           extra_display = SHORT_N_WORDS)
 
 @app.route('/nyt/week')
 def nyt_week():
@@ -113,9 +117,9 @@ def nyt_week():
                            title = 'New York Times - Top words this week',
                            source = NYT_WEEK,
                            display = TOP_N_WORDS,
-                           plots = (NYT_WEEK_1,),
-                           trend_up = NYT_WEEK_TREND_UP[:SHORT_N_WORDS],
-                           trend_down = NYT_WEEK_TREND_DOWN[:SHORT_N_WORDS])
+                           extras = (NYT_WEEK_RISING, NYT_WEEK_FALLING),
+                           extra_display = SHORT_N_WORDS,
+                           plots = (NYT_WEEK_1,))
 
 @app.route('/nyt/month')
 def nyt_month():

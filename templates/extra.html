@@ -1,0 +1,11 @@
+<!-- Use to fill a pre-made container with data -->
+{% block content %}
+<div id='data_table'>
+  {% for word, count in extra["data"][:extra_display] %}
+  <div class='line rounded_card'>
+    <div class='word'>{{word}}</div>
+    <div class='count'>{{count}}</div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
