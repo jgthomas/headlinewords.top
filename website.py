@@ -4,14 +4,11 @@
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question
 
-#from trending_words import (BBC_DAY_TREND_UP, BBC_DAY_TREND_DOWN,
-#                            BBC_WEEK_TREND_UP, BBC_WEEK_TREND_DOWN,
-#                            NYT_DAY_TREND_UP, NYT_DAY_TREND_DOWN,
-#                            NYT_WEEK_TREND_UP, NYT_WEEK_TREND_DOWN)
-
 from constants import TOP_N_WORDS, SHORT_N_WORDS, MAX_N_WORDS, HIGH_N_WORDS
 
 from query_database import just_words
+
+from query import data
 
 from standing_queries import (BBC_TODAY, BBC_WEEK, BBC_MONTH, BBC_EVER,
                               NYT_TODAY, NYT_WEEK, NYT_MONTH, NYT_EVER,
@@ -94,10 +91,16 @@ def bbc_month():
 
 @app.route('/bbc/ever')
 def bbc_ever():
+    MAY = {"title": "May",
+           "data": data("bbc", "between", "may_start", "may_end")}
+    JUNE = {"title": "June",
+            "data": data("bbc", "between", "jun_start", "jun_end")}
     return render_template('bbc.html',
                            title = 'BBC - Top words ever',
                            source = BBC_EVER,
                            display = TOP_N_WORDS,
+                           extras = (MAY, JUNE),
+                           extra_display = SHORT_N_WORDS,
                            plots = (BBC_EVER_1, BBC_EVER_2))
 
 
@@ -131,10 +134,16 @@ def nyt_month():
 
 @app.route('/nyt/ever')
 def nyt_ever():
+    MAY = {"title": "May",
+           "data": data("nyt", "between", "may_start", "may_end")}
+    JUNE = {"title": "June",
+            "data": data("nyt", "between", "jun_start", "jun_end")}
     return render_template('nyt.html',
                            title = 'New York Times - Top words ever',
                            source = NYT_EVER,
-                           display = TOP_N_WORDS)
+                           display = TOP_N_WORDS,
+                           extras = (MAY, JUNE),
+                           extra_display = SHORT_N_WORDS)
 
 
 ### COMBINED PAGES ###
