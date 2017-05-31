@@ -1,3 +1,4 @@
+<!-- Homepage -->
 {% from "macros.html" import nav_link with context %}
 <!doctype html>
 <head>
@@ -17,12 +18,6 @@
   <h4 class="tag-line">A flavour of what's getting emphasised</h4>
   <div class="flex-container">
     {% include "data2.html" %}
-    <!--<div class="flex-half-unit">
-      <h3 class="title rounded_card home-section">BBC</h3>
-    </div>
-    <div class="flex-half-unit">
-      <h3 class="title rounded_card home-section">New York Times</h3>
-    </div>-->
   </div>
   {% include "new_graph.html" %}
   <script src={{ url_for('static', filename='scripts/pageScroll.js') }}></script>

@@ -10,6 +10,8 @@
     {{ nav_link("bbc_today", "BBC") }} 
     {{ nav_link("nyt_today", "NYT") }} 
   </nav>
-  <h1 class="subtitle">{{how_many}}</h1>
-  {% include "data.html" %}
+  <div class="flex-container">
+    <h1 class="subtitle">{{how_many}}</h1>
+    {% include "data2.html" %}
+  </div>  
 {% endblock %}
