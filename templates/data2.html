@@ -1,0 +1,8 @@
+{% block content %}
+{% for source in sources %}
+<div class="flex-half-unit">
+<h3 class="title rounded_card home-section">{{source["title"]}}</h3>
+  {% include "table.html" %}
+</div>
+{% endfor %}
+{% endblock %}

@@ -32,6 +32,13 @@ def new_date(start, num_days, plus=False):
     return new_date
 
 
+def strip_dates(data):
+    stripped = []
+    for word, count, *_ in data:
+        stripped.append([word, count])
+    return stripped
+
+
 TIME_MAP = {"tomorrow": new_date(TODAY, 1, plus=True),
             "today": TODAY,
             "yesterday": new_date(TODAY, 1),
@@ -153,5 +160,5 @@ def data(dbname, method, date1=None, date2=None, word=None):
         elif date1:
             data = getattr(opendb, method)(date1)
         else:
-            data = getattr(opendb, method)
-    return data
+            data = getattr(opendb, method)()
+    return strip_dates(data)

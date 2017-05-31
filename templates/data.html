@@ -1,0 +1,15 @@
+{% block content %}
+{% for source in sources %}
+<div class="flex-half-unit">
+<h3 class="title rounded_card home-section">{{source["title"]}}</h3>
+   <div id='data_table'>
+     {% for word, count in source["data"][:display] %}
+     <div class='line rounded_card'>
+       <div class='word'>{{word}}</div>
+       <div class='count'>{{count}}</div>
+     </div>
+     {% endfor %}
+   </div>
+</div>
+{% endfor %}
+{% endblock %}

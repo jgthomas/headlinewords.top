@@ -12,14 +12,14 @@
   </nav>
   <div class="flex-container">
     <div class="flex-half-unit">
-      <h4 class="title rounded_card">New York Times</h4>
+            <h4 class="title rounded_card">{{source["title"]}}</h4>
       <nav>
         {{ nav_link("nyt_today", "Today") }}
         {{ nav_link("nyt_week", "Week") }}
         {{ nav_link("nyt_month", "Month") }}
         {{ nav_link("nyt_ever", "Ever") }}
       </nav>
-      {% include "nyt_data.html" %}
+      {% include "table.html" %}
     </div>
     <div class="flex-half-unit">
       {% include "trend_up.html" %}
