@@ -11,6 +11,11 @@ TODAY = dt.datetime.today().date()
 THIS_YEAR = TODAY.year
 
 
+def date_of(year, month, day):
+    """ Return date object for year, month and day. """
+    return dt.datetime(year, month, day).date()
+
+
 def new_date(start, num_days, plus=False):
     """
     Return new date object for num_days prior to (or after) start.
