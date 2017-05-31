@@ -7,7 +7,7 @@ from pythonic_pipes import (is_not_in,
                             filter_by,
                             map_over)
 
-from constants import STOPWORDS, BBC_STOPWORDS, SHORT_WORD
+from constants import STOPWORDS, BBC_STOPWORDS, NYT_STOPWORDS, SHORT_WORD
 
 
 def get_words(source):
@@ -89,4 +89,6 @@ def filter_words(source, words):
     to_ignore = set(line.strip() for line in open(STOPWORDS))
     if source == 'bbc':
         to_ignore = to_ignore.union(set(line.strip() for line in open(BBC_STOPWORDS)))
+    if source == 'nyt':
+        to_ignore = to_ignore.union(set(line.strip() for line in open(NYT_STOPWORDS)))
     return word_filter(words, to_ignore)
