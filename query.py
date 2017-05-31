@@ -93,10 +93,6 @@ class Query(object):
         self.cur.execute(self.__class__.SINCE_DATE, (date,))
         return self.cur.fetchall()
 
-    def ever(self):
-        self.cur.execute(self.__class__.OVERALL_TOTAL)
-        return self.cur.fetchall()
-
     def between(self, date1, date2):
         if date1 in CALENDAR_MAP:
             date1 = CALENDAR_MAP[date1]
@@ -105,7 +101,13 @@ class Query(object):
         return self.cur.fetchall()
 
     def single_word(self, date, word):
+        if date in TIME_MAP:
+            date = TIME_MAP[date]
         self.cur.execute(self.__class__.WORD_ON_DATE, (date, word))
+        return self.cur.fetchall()
+
+    def ever(self):
+        self.cur.execute(self.__class__.OVERALL_TOTAL)
         return self.cur.fetchall()
 
 
