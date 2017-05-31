@@ -10,7 +10,15 @@ TODAY = dt.datetime.today().date()
 THIS_YEAR = TODAY.year
 
 
-def date_object_factory(start, num_days, plus=None):
+def new_date(start, num_days, plus=False):
+    """
+    Return new date object for num_days prior to (or after) start.
+
+    start     :  initial date object, often today's date
+    num_days  :  number of days prior to start to subtract
+    plus      :  option to add days rather than subtract
+
+    """
     if plus:
         new_date = start + dt.timedelta(days=num_days)
     else:
@@ -18,9 +26,11 @@ def date_object_factory(start, num_days, plus=None):
     return new_date
 
 
-TIME_MAP = {"today": TODAY,
-            "week": date_object_factory(TODAY, 7),
-            "month": date_object_factory(TODAY, 30)}
+TIME_MAP = {"tomorrow": new_date(TODAY, 1, plus=True),
+            "today": TODAY,
+            "yesterday": new_date(TODAY, 1),
+            "week": new_date(TODAY, 7),
+            "month": new_date(TODAY, 30)}
 
 
 CALENDAR_MAP = {"jan_start": dt.datetime(THIS_YEAR - 1, 12, 31),
@@ -82,18 +92,21 @@ class Query(object):
             self.conn.close()
 
     def ondate(self, date):
+        """ Return counts for all words ON date. """
         if date in TIME_MAP:
             date = TIME_MAP[date]
         self.cur.execute(self.__class__.SPECIFIC_DATE, (date,))
         return self.cur.fetchall()
 
     def since(self, date):
+        """ Return counts for all words SINCE date. """
         if date in TIME_MAP:
             date = TIME_MAP[date]
         self.cur.execute(self.__class__.SINCE_DATE, (date,))
         return self.cur.fetchall()
 
     def between(self, date1, date2):
+        """ Return counts for all words BETWEEN the two dates. """
         if date1 in CALENDAR_MAP:
             date1 = CALENDAR_MAP[date1]
             date2 = CALENDAR_MAP[date2]
@@ -101,17 +114,30 @@ class Query(object):
         return self.cur.fetchall()
 
     def single_word(self, date, word):
+        """ Return count for a SINGLE WORD on date. """
         if date in TIME_MAP:
             date = TIME_MAP[date]
         self.cur.execute(self.__class__.WORD_ON_DATE, (date, word))
         return self.cur.fetchall()
 
     def ever(self):
+        """ Return counts for all words EVER. """
         self.cur.execute(self.__class__.OVERALL_TOTAL)
         return self.cur.fetchall()
 
 
 def data(dbname, method, date1=None, date2=None, word=None):
+    """
+    Execute the relevant method from the Query class, using the
+    relevant database and parameters.
+
+    dbname  :  database to query
+    method  :  method to call for the query
+    date1   :  single or first date to query
+    date2   :  second date in a query with a range
+    word    :  the specific word to query
+
+    """
     db = DATABASES[dbname]
     with Query(db) as opendb:
         if date1 and date2:
