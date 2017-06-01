@@ -57,11 +57,11 @@ def get_plot_data(db, wordlist, days, period):
                 of _days_ days
 
     Example: Get the word counts for a list of words for each of the
-             last ten days.
+             last ten days, from the BBC.
     >>> get_plot_data('bbc', [wordlist], 10, period=0)
 
     Example: Get word counts for a list of words, summed for
-             the last four weeks
+             the last four weeks, from the BBC.
     >>> get_plot_data('bbc', [wordlist], 7, period=4)
 
     In each case, a sequence of numbers is returned for each word
