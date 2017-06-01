@@ -24,6 +24,8 @@ class Query(object):
     SINCE_DATE = ' '.join([BASE, SINCE, TOTAL])
     DATE_RANGE = ' '.join([BASE, TIMESPAN, TOTAL])
     WORD_ON_DATE = ' '.join([BASE, DATE, SINGLE_WORD])
+    WORD_SINCE = ' '.join([BASE, SINCE, SINGLE_WORD])
+    WORD_RANGE = ' '.join([BASE, TIMESPAN, SINGLE_WORD])
     
 
     def __init__(self, db):
@@ -61,11 +63,27 @@ class Query(object):
         self.cur.execute(self.__class__.DATE_RANGE, (date1, date2))
         return self.cur.fetchall()
 
-    def single_word(self, date, word):
-        """ Return count for a SINGLE WORD on date. """
+    def word_ondate(self, date, word):
+        """ Return count for a single WORD ON DATE. """
         if date in TIME_MAP:
             date = TIME_MAP[date]
         self.cur.execute(self.__class__.WORD_ON_DATE, (date, word))
+        return self.cur.fetchall()
+
+    def word_since(self, date):
+        """ Return counts for single WORD SINCE date. """
+        if date in TIME_MAP:
+            date = TIME_MAP[date]
+        self.cur.execute(self.__class__.WORD_SINCE, (date, word))
+        return self.cur.fetchall()
+
+    def word_between(self, date1, date2, word):
+        """ Return counts for single WORD BETWEEN the two dates. """
+        if date1 in CALENDAR_MAP:
+            date1 = CALENDAR_MAP[date1]
+        if date2 in CALENDAR_MAP:
+            date2 = CALENDAR_MAP[date2]
+        self.cur.execute(self.__class__.WORD_RANGE, (date1, date2, word))
         return self.cur.fetchall()
 
     def ever(self):
@@ -88,16 +106,29 @@ def data(dbname, method, date1=None, date2=None, word=None):
     word    :  the specific word to query
 
     """
+
     db = DATABASES[dbname]
+
     with closing( Query(db) ) as opendb:
-        if date1 and date2:
-            data = getattr(opendb, method)(date1, date2)
+
+        METHODS = {"ondate": opendb.ondate,
+                   "since": opendb.since,
+                   "between": opendb.between,
+                   "word_ondate": opendb.word_ondate,
+                   "word_since": opendb.word_since,
+                   "word_between": opendb.word_between,
+                   "ever": opendb.ever}
+
+        if date1 and date2 and word:
+            data = METHODS[method](date1, date2, word)
+        elif date1 and date2:
+            data = METHODS[method](date1, date2)
         elif date1 and word:
-            data = getattr(opendb, method)(date1, word)
+            data = METHODS[method](date1, word)
         elif date1:
-            data = getattr(opendb, method)(date1)
+            data = METHODS[method](date1)
         else:
-            data = getattr(opendb, method)()
+            data = METHODS[method]()
     return strip_dates(data)
 
 
@@ -120,7 +151,7 @@ def word_count(db, word, dates):
     """
     counts = []
     for date in dates:
-        for _, count in data(db, "single_word", date, word):
+        for _, count in data(db, "word_ondate", date, word):
             if count:
                 counts.append(count)
             else:

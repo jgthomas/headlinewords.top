@@ -1,5 +1,4 @@
 
-
 import datetime as dt
 
 
@@ -74,3 +73,33 @@ def just_words(data):
     for word, *rest in data:
         words.append(word)
     return words
+
+
+def date_spans(days, num_periods):
+    """
+    Return _num_periods_ pairs of date objects all _days_ apart.
+
+    Ranges are *exclusive* when used for database queries.
+
+    Example: Date objects for two successive weeks
+    >>> date_spans(7, 2)
+    >>> [[datetime.date(2017, 5, 25), datetime.date(2017, 6, 2)],
+         [datetime.date(2017, 5, 18), datetime.date(2017, 5, 26)]]
+
+    Example: Date objects for two successive months
+    >>> date_spans(30, 2)
+    >>> [[datetime.date(2017, 5, 2), datetime.date(2017, 6, 2)],
+         [datetime.date(2017, 4, 2), datetime.date(2017, 5, 3)]]
+
+    """
+    dates = []
+    end = TOMORROW
+    start = new_date(TOMORROW, days + 1)
+    dates.append([start, end])
+    num_periods -= 1
+    while num_periods:
+        end = new_date(start, 1, plus=True)
+        start = new_date(start, days)
+        dates.append([start, end])
+        num_periods -= 1
+    return dates

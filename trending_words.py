@@ -4,7 +4,7 @@ from operator import itemgetter
 
 from query import data
 
-from query_functions import TOMORROW, new_date, strip_dates
+from query_functions import TOMORROW, new_date, strip_dates, date_spans
 
 
 TREND_MAP = {"day_on_day": 1,
@@ -20,19 +20,12 @@ def successive_periods(db, days):
     db   :  the database to query
     days :  the number of days each period should be
 
-    Example:
-    Returns two lists from the BBC database: the first is
-    the frequencies of all words over the last seven
-    days, the second the frequencies of all words
-    over the previous seven days.
-    >>> successive_periods(BBC_DATABASE, WEEK_ON_WEEK)
-
     """
-    one_back = new_date(TOMORROW, days + 1)
-    pivot = new_date(one_back, 1, plus=True)
-    two_back = new_date(one_back, days)
-    this_period = data(db, "between", one_back, "tomorrow")
-    last_period = data(db, "between", two_back, pivot)
+    this, last = date_spans(days, 2)
+    this_start, this_end = this
+    last_start, last_end = last
+    this_period = data(db, "between", this_start, this_end)
+    last_period = data(db, "between", last_start, last_end)
     return (last_period, this_period)
 
 
