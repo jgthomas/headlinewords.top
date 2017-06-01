@@ -4,7 +4,7 @@ from operator import itemgetter
 
 from query import data
 
-from query_functions import new_date, strip_dates, TIME_MAP
+from query_functions import TOMORROW, new_date, strip_dates
 
 
 TREND_MAP = {"day_on_day": 1,
@@ -28,7 +28,7 @@ def successive_periods(db, days):
     >>> successive_periods(BBC_DATABASE, WEEK_ON_WEEK)
 
     """
-    one_back = new_date(TIME_MAP["tomorrow"], days + 1)
+    one_back = new_date(TOMORROW, days + 1)
     pivot = new_date(one_back, 1, plus=True)
     two_back = new_date(one_back, days)
     this_period = data(db, "between", one_back, "tomorrow")
