@@ -21,11 +21,11 @@ def successive_periods(db, days):
     days :  the number of days each period should be
 
     """
-    this, last = date_spans(days, 2)
-    this_start, this_end = this
+    last, this = date_spans(days, 2)
     last_start, last_end = last
-    this_period = data(db, "between", this_start, this_end)
+    this_start, this_end = this
     last_period = data(db, "between", last_start, last_end)
+    this_period = data(db, "between", this_start, this_end)
     return (last_period, this_period)
 
 
