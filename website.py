@@ -4,7 +4,7 @@
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question
 
-from constants import TOP_N_WORDS, SHORT_N_WORDS, MAX_N_WORDS, HIGH_N_WORDS
+from constants import TOP_N_WORDS, SHORT_N_WORDS, MAX_N_WORDS, HIGH_N_WORDS, DOUBLE_N_WORDS
 
 from query_functions import just_words
 
@@ -98,9 +98,9 @@ def bbc_ever():
     return render_template('bbc.html',
                            title = 'BBC - Top words ever',
                            source = BBC_EVER,
-                           display = TOP_N_WORDS,
+                           display = DOUBLE_N_WORDS,
                            extras = (MAY, JUNE),
-                           extra_display = SHORT_N_WORDS,
+                           extra_display = TOP_N_WORDS,
                            plots = (BBC_EVER_1, BBC_EVER_2))
 
 
@@ -141,9 +141,9 @@ def nyt_ever():
     return render_template('nyt.html',
                            title = 'New York Times - Top words ever',
                            source = NYT_EVER,
-                           display = TOP_N_WORDS,
+                           display = DOUBLE_N_WORDS,
                            extras = (MAY, JUNE),
-                           extra_display = SHORT_N_WORDS)
+                           extra_display = TOP_N_WORDS)
 
 
 ### COMBINED PAGES ###

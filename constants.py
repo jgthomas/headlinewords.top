@@ -9,6 +9,7 @@ SHORT_WORD = 2
 # Retrieve this many words for queries
 SHORT_N_WORDS = 5
 TOP_N_WORDS = 10
+DOUBLE_N_WORDS = 20
 MID_N_WORDS = 50
 HIGH_N_WORDS = 200
 MAX_N_WORDS = 500
