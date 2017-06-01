@@ -32,11 +32,24 @@ def new_date(start, num_days, plus=False):
     return new_date
 
 
+def date_range(start, days):
+    """ Return range of consecutive date objects. """
+    day_nums = [n for n in range(days, -1, -1)]
+    return [new_date(start, n) for n in day_nums]
+
+
 def strip_dates(data):
     stripped = []
     for word, count, *_ in data:
         stripped.append([word, count])
     return stripped
+
+
+def just_words(data):
+    words = []
+    for word, *rest in data:
+        words.append(word)
+    return words
 
 
 TIME_MAP = {"tomorrow": new_date(TODAY, 1, plus=True),
