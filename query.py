@@ -14,8 +14,8 @@ class Query(object):
     BASE = 'SELECT word, SUM(count), date as "[date]" FROM hw'
     TOTAL = 'GROUP BY word ORDER BY SUM(count) DESC'
     DATE = 'WHERE "[date]"=?'
-    SINCE = 'WHERE "[date]">?'
-    TIMESPAN = 'WHERE "[date]">? AND "[date]"<?'
+    SINCE = 'WHERE "[date]">=?'
+    TIMESPAN = 'WHERE "[date]">=? AND "[date]"<?'
     SINGLE_WORD = ' AND word=?'
 
     # Compound query strings

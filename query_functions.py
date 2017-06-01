@@ -23,30 +23,19 @@ TIME_MAP = {"tomorrow": TOMORROW,
             "week": new_date(TODAY, 7),
             "month": new_date(TODAY, 30)}
 
-CALENDAR_MAP = {"jan_start": dt.datetime(THIS_YEAR - 1, 12, 31),
-                "jan_end": dt.datetime(THIS_YEAR, 2, 1),
-                "feb_start": dt.datetime(THIS_YEAR, 1, 31),
-                "feb_end": dt.datetime(THIS_YEAR, 3, 1),
-                "mar_start": dt.datetime(THIS_YEAR, 2, 28),
-                "mar_end": dt.datetime(THIS_YEAR, 4, 1),
-                "apr_start": dt.datetime(THIS_YEAR, 3, 31),
-                "apr_end": dt.datetime(THIS_YEAR, 5, 1),
-                "may_start": dt.datetime(THIS_YEAR, 4, 30),
-                "may_end": dt.datetime(THIS_YEAR, 6, 1),
-                "jun_start": dt.datetime(THIS_YEAR, 5, 31),
-                "jun_end": dt.datetime(THIS_YEAR, 7, 1),
-                "jul_start": dt.datetime(THIS_YEAR, 6, 30),
-                "jul_end": dt.datetime(THIS_YEAR, 8, 1),
-                "aug_start": dt.datetime(THIS_YEAR, 7, 31),
-                "aug_end": dt.datetime(THIS_YEAR, 9, 1),
-                "sep_start": dt.datetime(THIS_YEAR, 8, 31),
-                "sep_end": dt.datetime(THIS_YEAR, 10, 1),
-                "oct_start": dt.datetime(THIS_YEAR, 9, 30),
-                "oct_end": dt.datetime(THIS_YEAR, 11, 1),
-                "nov_start": dt.datetime(THIS_YEAR, 10, 31),
-                "nov_end": dt.datetime(THIS_YEAR, 12, 1),
-                "dec_start": dt.datetime(THIS_YEAR, 11, 30),
-                "dec_end": dt.datetime(THIS_YEAR + 1, 1, 1)}
+CALENDAR_MAP = {"jan_start": dt.datetime(THIS_YEAR, 1, 1).date(),
+                "feb_start": dt.datetime(THIS_YEAR, 2, 1).date(),
+                "mar_start": dt.datetime(THIS_YEAR, 3, 1).date(),
+                "apr_start": dt.datetime(THIS_YEAR, 4, 1).date(),
+                "may_start": dt.datetime(THIS_YEAR, 5, 1).date(),
+                "jun_start": dt.datetime(THIS_YEAR, 6, 1).date(),
+                "jul_start": dt.datetime(THIS_YEAR, 7, 1).date(),
+                "aug_start": dt.datetime(THIS_YEAR, 8, 1).date(),
+                "sep_start": dt.datetime(THIS_YEAR, 9, 1).date(),
+                "oct_start": dt.datetime(THIS_YEAR, 10, 1).date(),
+                "nov_start": dt.datetime(THIS_YEAR, 11, 1).date(),
+                "dec_start": dt.datetime(THIS_YEAR, 12, 1).date(),
+                "dec_end": dt.datetime(THIS_YEAR + 1, 1, 1).date()}
 
 
 
@@ -96,11 +85,11 @@ def date_spans(days, num_periods):
     """
     dates = []
     end = TOMORROW
-    start = new_date(TOMORROW, days + 1)
+    start = new_date(TOMORROW, days)
     dates.append([start, end])
     num_periods -= 1
     while num_periods:
-        end = new_date(start, 1, plus=True)
+        end = start
         start = new_date(start, days)
         dates.append([start, end])
         num_periods -= 1
