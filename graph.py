@@ -6,6 +6,7 @@ class Graph(object):
     ext = '.png'
     
     def __init__(self, title, db, filename, days, words, colour=None, source=None, period=False):
+        self.title = title
         self.db = db
         self.filename = filename
         self.days = days
