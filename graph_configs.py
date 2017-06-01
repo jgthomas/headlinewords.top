@@ -67,8 +67,9 @@ BBC_WEEK_2 = Graph(title='Follow the leader',
 BBC_MONTH_1 = Graph(title="Top five progress",
                     db=BBC_DB,
                     filename='bbc_month_1',
-                    days="30",
-                    words=just_words(BBC_MONTH["data"])[:SHORT_N_WORDS])
+                    days="7",
+                    words=just_words(BBC_MONTH["data"])[:SHORT_N_WORDS],
+                    period="4")
 
 BBC_MONTH_2 = Graph(title="The grimmest reaper",
                     db=BBC_DB,

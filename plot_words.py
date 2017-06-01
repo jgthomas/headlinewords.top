@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 from query import word_count, word_count_period
 
-from query_functions import YESTERDAY, date_range, date_spans
+from query_functions import TODAY, YESTERDAY, date_range, date_spans
 
 from constants import (DATABASES, DEFAULT_DATABASE,
                        PLOT_PATH, DEFAULT_PLOT_DAYS,
@@ -54,7 +54,7 @@ def get_plot_data(db, wordlist, days, period):
                 in each successive period, i.e. 7 in a week
     period   :  defaults to 0, if another number passed, the query
                 switches to word counts for _period_ number sequences
-                of _days_
+                of _days_ days
 
     Example: Get the word counts for a list of words for each of the
              last ten days.
@@ -78,15 +78,10 @@ def get_plot_data(db, wordlist, days, period):
         counts = [word_count_period(db, word, dates) for word in wordlist]
         for date in dates:
             start, end = date
-            date_labels.append(start.strftime('%d %B'))
+            date_labels.append(end.strftime('%d %B'))
+        # Reset final date label to today
+        date_labels[-1] = TODAY.strftime('%d %B')
     return (wordlist, date_labels, counts)
-
-
-#def get_plot_data(db, wordlist, days):
-#    dates = date_range(YESTERDAY, days)
-#    counts = [word_count(db, word, dates) for word in wordlist]
-#    date_labels = [date.strftime('%d %B') for date in dates]
-#    return (wordlist, date_labels, counts)
 
 
 def plot_words(data, *, filename=None, colour=None):
