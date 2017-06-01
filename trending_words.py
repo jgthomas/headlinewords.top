@@ -3,6 +3,7 @@
 from operator import itemgetter
 
 from query import data
+
 from query_functions import new_date, strip_dates, TIME_MAP
 
 

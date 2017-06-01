@@ -118,7 +118,7 @@ NYT_MONTH_2 = Graph(title='The Investigation',
 
 
 def main():
-    # Homepage
+    ## Homepage
     plot_words.main(HOMEPAGE_BBC_1.args)
     plot_words.main(HOMEPAGE_NYT_1.args)
     ## BBC Today
@@ -130,7 +130,7 @@ def main():
     ## BBC Month
     plot_words.main(BBC_MONTH_1.args)
     plot_words.main(BBC_MONTH_2.args)
-    ### BBC Ever
+    ## BBC Ever
     plot_words.main(BBC_EVER_1.args)
     plot_words.main(BBC_EVER_2.args)
     ## NYT Week

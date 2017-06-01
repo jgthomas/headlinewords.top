@@ -17,13 +17,13 @@ from standing_queries import (BBC_TODAY, BBC_WEEK, BBC_MONTH, BBC_EVER,
                               NYT_TODAY_RISING, NYT_TODAY_FALLING,
                               NYT_WEEK_RISING, NYT_WEEK_FALLING)
 
-from current_graphs import (HOMEPAGE_BBC_1, HOMEPAGE_NYT_1,
-                            BBC_TODAY_1, BBC_TODAY_2,
-                            BBC_WEEK_1, BBC_WEEK_2,
-                            BBC_MONTH_1, BBC_MONTH_2,
-                            BBC_EVER_1, BBC_EVER_2,
-                            NYT_WEEK_1,
-                            NYT_MONTH_1, NYT_MONTH_2)
+from graph_configs import (HOMEPAGE_BBC_1, HOMEPAGE_NYT_1,
+                           BBC_TODAY_1, BBC_TODAY_2,
+                           BBC_WEEK_1, BBC_WEEK_2,
+                           BBC_MONTH_1, BBC_MONTH_2,
+                           BBC_EVER_1, BBC_EVER_2,
+                           NYT_WEEK_1,
+                           NYT_MONTH_1, NYT_MONTH_2)
 
 
 app = Flask(__name__)

@@ -1,6 +1,7 @@
 
 
 from query import data
+
 from trending_words import trends
 
 
