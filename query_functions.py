@@ -81,15 +81,17 @@ def date_spans(days, num_periods):
 
     Ranges are *exclusive* when used for database queries.
 
+    Sequence of date-ranges returned reversed to aid graph plotting.
+
     Example: Date objects for two successive weeks
     >>> date_spans(7, 2)
-    >>> [[datetime.date(2017, 5, 25), datetime.date(2017, 6, 2)],
-         [datetime.date(2017, 5, 18), datetime.date(2017, 5, 26)]]
+    >>> [[datetime.date(2017, 5, 18), datetime.date(2017, 5, 26)],
+         [datetime.date(2017, 5, 25), datetime.date(2017, 6, 2)]]
 
     Example: Date objects for two successive months
     >>> date_spans(30, 2)
-    >>> [[datetime.date(2017, 5, 2), datetime.date(2017, 6, 2)],
-         [datetime.date(2017, 4, 2), datetime.date(2017, 5, 3)]]
+    >>> [[datetime.date(2017, 4, 2), datetime.date(2017, 5, 3)],
+         [datetime.date(2017, 5, 2), datetime.date(2017, 6, 2)]]
 
     """
     dates = []
@@ -102,4 +104,5 @@ def date_spans(days, num_periods):
         start = new_date(start, days)
         dates.append([start, end])
         num_periods -= 1
+    dates.reverse()
     return dates

@@ -9,9 +9,9 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-from query import word_count
+from query import word_count, word_count_period
 
-from query_functions import YESTERDAY, date_range
+from query_functions import YESTERDAY, date_range, date_spans
 
 from constants import (DATABASES, DEFAULT_DATABASE,
                        PLOT_PATH, DEFAULT_PLOT_DAYS,
@@ -28,6 +28,7 @@ def get_args(args):
     parser.add_argument('--days', type=int)
     parser.add_argument('--colour', nargs='+')
     parser.add_argument('--words', nargs='+')
+    parser.add_argument('--period', nargs='?', const=0, type=int)
     return parser.parse_args(args)
 
 
@@ -42,11 +43,50 @@ def pick_colours(colour_list, num):
     return colours
 
 
-def get_plot_data(db, wordlist, days):
-    dates = date_range(YESTERDAY, days)
-    counts = [word_count(db, word, dates) for word in wordlist]
-    date_labels = [date.strftime('%d %B') for date in dates]
+def get_plot_data(db, wordlist, days, period):
+    """
+    Return sequence of values to plot for each word in _wordlist_.
+
+    db       :  database to query
+    wordlist :  words to query
+    days     :  number of days to query for each word, OR,
+                if period is greater than 0, the number of days
+                in each successive period, i.e. 7 in a week
+    period   :  defaults to 0, if another number passed, the query
+                switches to word counts for _period_ number sequences
+                of _days_
+
+    Example: Get the word counts for a list of words for each of the
+             last ten days.
+    >>> get_plot_data('bbc', [wordlist], 10, period=0)
+
+    Example: Get word counts for a list of words, summed for
+             the last four weeks
+    >>> get_plot_data('bbc', [wordlist], 7, period=4)
+
+    In each case, a sequence of numbers is returned for each word
+    in _wordlist_, which is then used to plot that word on a graph.
+
+    """
+    if not period:
+        dates = date_range(YESTERDAY, days)
+        counts = [word_count(db, word, dates) for word in wordlist]
+        date_labels = [date.strftime('%d %B') for date in dates]
+    else:
+        date_labels = []
+        dates = date_spans(days, period)
+        counts = [word_count_period(db, word, dates) for word in wordlist]
+        for date in dates:
+            start, end = date
+            date_labels.append(start.strftime('%d %B'))
     return (wordlist, date_labels, counts)
+
+
+#def get_plot_data(db, wordlist, days):
+#    dates = date_range(YESTERDAY, days)
+#    counts = [word_count(db, word, dates) for word in wordlist]
+#    date_labels = [date.strftime('%d %B') for date in dates]
+#    return (wordlist, date_labels, counts)
 
 
 def plot_words(data, *, filename=None, colour=None):
@@ -120,12 +160,13 @@ def main(args):
     filename = args.filename if args.filename else None
     days = args.days if args.days else DEFAULT_PLOT_DAYS
     database = args.database
+    period = args.period
     colour, *_ = args.colour if args.colour else None
     if "random" in colour:
         colour = None
     else:
         colour = [COLOURS[col] for col in colour]
-    data = get_plot_data(database, words, days)
+    data = get_plot_data(database, words, days, period)
     plot_words(data, filename=filename, colour=colour)
 
 

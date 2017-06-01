@@ -70,7 +70,7 @@ class Query(object):
         self.cur.execute(self.__class__.WORD_ON_DATE, (date, word))
         return self.cur.fetchall()
 
-    def word_since(self, date):
+    def word_since(self, date, word):
         """ Return counts for single WORD SINCE date. """
         if date in TIME_MAP:
             date = TIME_MAP[date]
@@ -145,13 +145,30 @@ def word_count(db, word, dates):
     >>> word_counts('bbc', 'election', [list of date objects])
     >>> [1, 3, 0, 4, 6, 7, 2]
 
-    Where each number represents the frequency of the word
-    'election' on each of the last seven days.
-
     """
     counts = []
     for date in dates:
         for _, count in data(db, "word_ondate", date, word):
+            if count:
+                counts.append(count)
+            else:
+                counts.append(0)
+    return counts
+
+
+def word_count_period(db, word, dates):
+    """
+    Return number of times a single word was used in each period.
+
+    db    : database to query
+    word  : target word
+    dates : pairs of date object delimiting the query periods
+
+    """
+    counts = []
+    for date in dates:
+        start, end = date
+        for _, count in data(db, "word_between", start, end, word):
             if count:
                 counts.append(count)
             else:

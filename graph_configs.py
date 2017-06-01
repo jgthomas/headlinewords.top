@@ -87,8 +87,9 @@ BBC_EVER_1 = Graph(title="Top five progress",
 BBC_EVER_2 = Graph(title="City limits",
                    db=BBC_DB,
                    filename="bbc_ever_2",
-                   days="30",
-                   words=["london", "manchester", "birmingham", "liverpool", "newcastle"])
+                   days="7",
+                   words=["london", "manchester", "birmingham", "liverpool", "newcastle"],
+                   period="4")
 
 
 ### NYT TODAY ###
@@ -119,25 +120,25 @@ NYT_MONTH_2 = Graph(title='The Investigation',
 
 def main():
     ## Homepage
-    plot_words.main(HOMEPAGE_BBC_1.args)
-    plot_words.main(HOMEPAGE_NYT_1.args)
+    plot_words.main(HOMEPAGE_BBC_1.args())
+    plot_words.main(HOMEPAGE_NYT_1.args())
     ## BBC Today
-    plot_words.main(BBC_TODAY_1.args)
-    plot_words.main(BBC_TODAY_2.args)
+    plot_words.main(BBC_TODAY_1.args())
+    plot_words.main(BBC_TODAY_2.args())
     ## BBC Week
-    plot_words.main(BBC_WEEK_1.args)
-    plot_words.main(BBC_WEEK_2.args)
+    plot_words.main(BBC_WEEK_1.args())
+    plot_words.main(BBC_WEEK_2.args())
     ## BBC Month
-    plot_words.main(BBC_MONTH_1.args)
-    plot_words.main(BBC_MONTH_2.args)
+    plot_words.main(BBC_MONTH_1.args())
+    plot_words.main(BBC_MONTH_2.args())
     ## BBC Ever
-    plot_words.main(BBC_EVER_1.args)
-    plot_words.main(BBC_EVER_2.args)
+    plot_words.main(BBC_EVER_1.args())
+    plot_words.main(BBC_EVER_2.args())
     ## NYT Week
-    plot_words.main(NYT_WEEK_1.args)
+    plot_words.main(NYT_WEEK_1.args())
     ## NYT Month
-    plot_words.main(NYT_MONTH_1.args)
-    plot_words.main(NYT_MONTH_2.args)
+    plot_words.main(NYT_MONTH_1.args())
+    plot_words.main(NYT_MONTH_2.args())
 
 
 if __name__ == '__main__':
