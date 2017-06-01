@@ -2,27 +2,12 @@
 
 from operator import itemgetter
 
-from constants import BBC_DATABASE, NYT_DATABASE, TOP_N_WORDS, SHORT_N_WORDS, DATABASES
-
-from query_database import (query, TODAY, TOMORROW, DATE_RANGE,
-                            date_object_factory, just_words)
-
-ONE_DAY = 1
-DAY_ON_DAY = 1
-WEEK_ON_WEEK = 7
-MONTH_ON_MONTH = 30
-
-TREND_MAP = {"day_on_day": DAY_ON_DAY,
-             "week_on_week": WEEK_ON_WEEK,
-             "month_on_month": MONTH_ON_MONTH}
+from query import data, new_date, strip_dates, TIME_MAP
 
 
-def trim_data(data):
-    """ Remove date objects to simplify processing. """
-    trimmed = []
-    for word, count, *_ in data:
-        trimmed.append([word, count])
-    return trimmed
+TREND_MAP = {"day_on_day": 1,
+             "week_on_week": 7,
+             "month_on_month": 30}
 
 
 def successive_periods(db, days):
@@ -41,18 +26,18 @@ def successive_periods(db, days):
     >>> successive_periods(BBC_DATABASE, WEEK_ON_WEEK)
 
     """
-    one_back = date_object_factory(TOMORROW, days + ONE_DAY)
-    pivot = date_object_factory(one_back, ONE_DAY, plus=True)
-    two_back = date_object_factory(one_back, days)
-    this_period = query(db, DATE_RANGE, (one_back, TOMORROW))
-    last_period = query(db, DATE_RANGE, (two_back, pivot))
+    one_back = new_date(TIME_MAP["tomorrow"], days + 1)
+    pivot = new_date(one_back, 1, plus=True)
+    two_back = new_date(one_back, days)
+    this_period = data(db, "between", one_back, "tomorrow")
+    last_period = data(db, "between", two_back, pivot)
     return (last_period, this_period)
 
 
 def changing_counts(last_period, this_period):
     changes = []
-    last = trim_data(last_period)
-    this = trim_data(this_period)
+    last = strip_dates(last_period)
+    this = strip_dates(this_period)
     last_map = {word: count for word, count in last} 
     this_map = {word: count for word, count in this} 
 
@@ -84,22 +69,8 @@ def changing_counts(last_period, this_period):
     return (rising_words, falling_words)
 
 
-def main(db, days):
-    last_period, this_period = successive_periods(db, days)
-    rising, falling = changing_counts(last_period, this_period)
-    return (rising, falling)
-
-
 def trends(db, days):
-    db = DATABASES[db]
     days = TREND_MAP[days]
     last_period, this_period = successive_periods(db, days)
     rising, falling = changing_counts(last_period, this_period)
     return (rising, falling)
-
-
-BBC_DAY_TREND_UP, BBC_DAY_TREND_DOWN = main(BBC_DATABASE, DAY_ON_DAY)
-BBC_WEEK_TREND_UP, BBC_WEEK_TREND_DOWN = main(BBC_DATABASE, WEEK_ON_WEEK)
-
-NYT_DAY_TREND_UP, NYT_DAY_TREND_DOWN = main(NYT_DATABASE, DAY_ON_DAY)
-NYT_WEEK_TREND_UP, NYT_WEEK_TREND_DOWN = main(NYT_DATABASE, WEEK_ON_WEEK)

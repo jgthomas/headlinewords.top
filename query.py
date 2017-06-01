@@ -120,6 +120,7 @@ class Query(object):
         """ Return counts for all words BETWEEN the two dates. """
         if date1 in CALENDAR_MAP:
             date1 = CALENDAR_MAP[date1]
+        if date2 in CALENDAR_MAP:
             date2 = CALENDAR_MAP[date2]
         self.cur.execute(self.__class__.DATE_RANGE, (date1, date2))
         return self.cur.fetchall()
