@@ -17,12 +17,15 @@ MAX_N_WORDS = 500
 # Databases for each source
 BBC_DATABASE = 'data/bbc_headline_words.db'
 NYT_DATABASE = 'data/nyt_headline_words.db'
+DML_DATABASE = 'data/dml_headline_words.db'
+FOX_DATABASE = 'data/fox_headline_words.db'
 
 # Database to use if not specified
 DEFAULT_DATABASE = BBC_DATABASE
 
 # Database dictionary
-DATABASES = {'bbc': BBC_DATABASE, 'nyt': NYT_DATABASE}
+DATABASES = {'bbc': BBC_DATABASE, 'nyt': NYT_DATABASE,
+             'dml': DML_DATABASE, 'fox': FOX_DATABASE}
 
 # Number of days to plot if not specified
 DEFAULT_PLOT_DAYS = 7

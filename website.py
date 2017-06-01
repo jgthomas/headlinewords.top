@@ -54,9 +54,14 @@ def read_top_nyt_words():
 ### HOMEPAGE ###
 @app.route('/')
 def home():
+    NEW_SOURCE_1 = {"title": "Daily Mail",
+                    "data": data('dml', 'ondate', 'today')}
+    NEW_SOURCE_2 = {"title": "Fox News",
+                    "data": data('fox', 'ondate', 'today')}
     return render_template('index.html',
                            title = 'BBC - Top words today',
-                           sources = (BBC_TODAY, NYT_TODAY),
+                           sources = (BBC_TODAY, NYT_TODAY,
+                                      NEW_SOURCE_1, NEW_SOURCE_2),
                            display = SHORT_N_WORDS,
                            plots = (HOMEPAGE_BBC_1, HOMEPAGE_NYT_1))
 
