@@ -6,7 +6,7 @@ from flask_ask import Ask, statement, question
 
 from constants import TOP_N_WORDS, SHORT_N_WORDS, MAX_N_WORDS, HIGH_N_WORDS
 
-from query_database import just_words
+from query_functions import just_words
 
 from query import data
 

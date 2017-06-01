@@ -9,7 +9,9 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-from query_database import YESTERDAY, date_object_range, word_counts
+from query import word_count
+
+from query_functions import YESTERDAY, date_range
 
 from constants import (DATABASES, DEFAULT_DATABASE,
                        PLOT_PATH, DEFAULT_PLOT_DAYS,
@@ -41,8 +43,8 @@ def pick_colours(colour_list, num):
 
 
 def get_plot_data(db, wordlist, days):
-    dates = date_object_range(YESTERDAY, days)
-    counts = [word_counts(db, word, dates) for word in wordlist]
+    dates = date_range(YESTERDAY, days)
+    counts = [word_count(db, word, dates) for word in wordlist]
     date_labels = [date.strftime('%d %B') for date in dates]
     return (wordlist, date_labels, counts)
 
@@ -117,7 +119,7 @@ def main(args):
     words, *_ = args.words
     filename = args.filename if args.filename else None
     days = args.days if args.days else DEFAULT_PLOT_DAYS
-    database = DATABASES[args.database] if args.database else DEFAULT_DATABASE
+    database = args.database
     colour, *_ = args.colour if args.colour else None
     if "random" in colour:
         colour = None

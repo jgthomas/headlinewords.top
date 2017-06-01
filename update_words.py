@@ -6,7 +6,7 @@ import json
 import os.path
 from collections import Counter
 
-from query_database import TODAY
+from query_functions import TODAY
 from feed_getter import SOURCES
 from process_words import get_words, filter_words
 

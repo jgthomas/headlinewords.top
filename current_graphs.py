@@ -4,11 +4,12 @@ import plot_words
 
 from graph import Graph
 
-from query_database import (BBC_WEEK, BBC_MONTH, BBC_EVER,
-                            NYT_WEEK, NYT_EVER,
-                            just_words)
+from query_functions import just_words
 
 from constants import SHORT_N_WORDS
+
+from standing_queries import (BBC_WEEK, BBC_MONTH, BBC_EVER,
+                              NYT_WEEK, NYT_EVER)
 
 
 BBC_DB = "bbc"
@@ -28,7 +29,7 @@ HOMEPAGE_NYT_1 = Graph(title="All Trump, all the time",
                        db=NYT_DB,
                        filename="homepage_nyt_1",
                        days="14",
-                       words=just_words(NYT_EVER)[:SHORT_N_WORDS],
+                       words=just_words(NYT_EVER["data"])[:SHORT_N_WORDS],
                        source='NYT')
 
 
@@ -52,7 +53,7 @@ BBC_WEEK_1 = Graph(title='Top five progress',
                    db=BBC_DB,
                    filename='bbc_week_1',
                    days="7",
-                   words=just_words(BBC_WEEK)[:SHORT_N_WORDS])
+                   words=just_words(BBC_WEEK["data"])[:SHORT_N_WORDS])
 
 BBC_WEEK_2 = Graph(title='Follow the leader',
                    db=BBC_DB,
@@ -67,7 +68,7 @@ BBC_MONTH_1 = Graph(title="Top five progress",
                     db=BBC_DB,
                     filename='bbc_month_1',
                     days="30",
-                    words=just_words(BBC_MONTH)[:SHORT_N_WORDS])
+                    words=just_words(BBC_MONTH["data"])[:SHORT_N_WORDS])
 
 BBC_MONTH_2 = Graph(title="The grimmest reaper",
                     db=BBC_DB,
@@ -81,7 +82,7 @@ BBC_EVER_1 = Graph(title="Top five progress",
                    db=BBC_DB,
                    filename="bbc_ever_1",
                    days="30",
-                   words=just_words(BBC_EVER)[:SHORT_N_WORDS])
+                   words=just_words(BBC_EVER["data"])[:SHORT_N_WORDS])
 
 BBC_EVER_2 = Graph(title="City limits",
                    db=BBC_DB,
@@ -97,7 +98,7 @@ NYT_WEEK_1 = Graph(title='Top five progress',
                    db=NYT_DB,
                    filename='nyt_week_1',
                    days="7",
-                   words=just_words(NYT_WEEK)[:SHORT_N_WORDS])
+                   words=just_words(NYT_WEEK["data"])[:SHORT_N_WORDS])
 
 
 ### NYT MONTH ###
@@ -120,7 +121,7 @@ def main():
     # Homepage
     plot_words.main(HOMEPAGE_BBC_1.args)
     plot_words.main(HOMEPAGE_NYT_1.args)
-    # BBC Today
+    ## BBC Today
     plot_words.main(BBC_TODAY_1.args)
     plot_words.main(BBC_TODAY_2.args)
     ## BBC Week
@@ -129,12 +130,12 @@ def main():
     ## BBC Month
     plot_words.main(BBC_MONTH_1.args)
     plot_words.main(BBC_MONTH_2.args)
-    ## BBC Ever
+    ### BBC Ever
     plot_words.main(BBC_EVER_1.args)
     plot_words.main(BBC_EVER_2.args)
-    # NYT Week
+    ## NYT Week
     plot_words.main(NYT_WEEK_1.args)
-    # NYT Month
+    ## NYT Month
     plot_words.main(NYT_MONTH_1.args)
     plot_words.main(NYT_MONTH_2.args)
 

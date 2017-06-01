@@ -2,7 +2,8 @@
 
 from operator import itemgetter
 
-from query import data, new_date, strip_dates, TIME_MAP
+from query import data
+from query_functions import new_date, strip_dates, TIME_MAP
 
 
 TREND_MAP = {"day_on_day": 1,
