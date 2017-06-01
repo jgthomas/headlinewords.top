@@ -97,9 +97,9 @@ def bbc_month():
 @app.route('/bbc/ever')
 def bbc_ever():
     MAY = {"title": "May",
-           "data": data("bbc", "between", "may_start", "may_end")}
+           "data": data("bbc", "between", "may_start", "jun_start")}
     JUNE = {"title": "June",
-            "data": data("bbc", "between", "jun_start", "jun_end")}
+            "data": data("bbc", "between", "jun_start", "jul_start")}
     return render_template('bbc.html',
                            title = 'BBC - Top words ever',
                            source = BBC_EVER,
@@ -140,9 +140,9 @@ def nyt_month():
 @app.route('/nyt/ever')
 def nyt_ever():
     MAY = {"title": "May",
-           "data": data("nyt", "between", "may_start", "may_end")}
+           "data": data("nyt", "between", "may_start", "jun_start")}
     JUNE = {"title": "June",
-            "data": data("nyt", "between", "jun_start", "jun_end")}
+            "data": data("nyt", "between", "jun_start", "jul_start")}
     return render_template('nyt.html',
                            title = 'New York Times - Top words ever',
                            source = NYT_EVER,
