@@ -5,30 +5,21 @@ from query import data
 from trending_words import trends
 
 
+## BASE DATA
+BBC_BASE = {"source": "bbc", "title": "BBC"}
+NYT_BASE = {"source": "nyt", "title": "New York Times"}
+
+
 ## TIME PERIODS
-BBC_TODAY = {"title": "BBC",
-             "data": data("bbc", "ondate", "today")}
+BBC_TODAY = {**BBC_BASE, **{"data": data("bbc", "ondate", "today")}}
+BBC_WEEK = {**BBC_BASE, **{"data": data("bbc", "since", "week")}}
+BBC_MONTH = {**BBC_BASE, **{"data": data("bbc", "since", "month")}}
+BBC_EVER = {**BBC_BASE, **{"data": data("bbc", "ever")}}
 
-BBC_WEEK = {"title": "BBC",
-            "data": data("bbc", "since", "week")}
-
-BBC_MONTH = {"title": "BBC",
-             "data": data("bbc", "since", "month")}
-
-BBC_EVER = {"title": "BBC",
-            "data": data("bbc", "ever")}
-
-NYT_TODAY = {"title": "New York Times",
-             "data": data("nyt", "ondate", "today")}
-
-NYT_WEEK = {"title": "New York Times",
-            "data": data("nyt", "since", "week")}
-
-NYT_MONTH = {"title": "New York Times",
-             "data": data("nyt", "since", "month")}
-
-NYT_EVER = {"title": "New York Times",
-            "data": data("nyt", "ever")}
+NYT_TODAY = {**NYT_BASE, **{"data": data("nyt", "ondate", "today")}}
+NYT_WEEK = {**NYT_BASE, **{"data": data("nyt", "since", "week")}}
+NYT_MONTH = {**NYT_BASE, **{"data": data("nyt", "since", "month")}}
+NYT_EVER = {**NYT_BASE, **{"data": data("nyt", "ever")}}
 
 
 ## TRENDING
