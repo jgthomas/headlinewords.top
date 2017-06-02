@@ -26,6 +26,13 @@ html {
         padding: 1em;
 }
 
+.hometitle {
+        background: #515557;
+        display: block;
+        color: #515557;
+        text-decoration: none;
+}
+
 .subtitle{
         text-align: center;
         margin-left: auto;
