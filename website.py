@@ -133,7 +133,9 @@ def dml_today():
     return render_template('source.html',
                            title = 'Daily Mail - Top words today',
                            source = DML_TODAY,
-                           display = TOP_N_WORDS)
+                           display = TOP_N_WORDS,
+                           extras = (DML_TODAY_RISING, DML_TODAY_FALLING),
+                           extra_display = SHORT_N_WORDS)
 @app.route('/dml/week')
 def dml_week():
     return render_template('source.html',
@@ -160,7 +162,9 @@ def fox_today():
     return render_template('source.html',
                            title = 'Fox News - Top words today',
                            source = FOX_TODAY,
-                           display = TOP_N_WORDS)
+                           display = TOP_N_WORDS,
+                           extras = (FOX_TODAY_RISING, FOX_TODAY_FALLING),
+                           extra_display = SHORT_N_WORDS)
 @app.route('/fox/week')
 def fox_week():
     return render_template('source.html',

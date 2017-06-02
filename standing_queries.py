@@ -66,3 +66,11 @@ NYT_TODAY_RISING["data"], NYT_TODAY_FALLING["data"] = trends("nyt", "day_on_day"
 NYT_WEEK_RISING = {**RISING_BASE}
 NYT_WEEK_FALLING  = {**FALLING_BASE}
 NYT_WEEK_RISING["data"], NYT_WEEK_FALLING["data"] = trends("nyt", "week_on_week")
+
+DML_TODAY_RISING = {**RISING_BASE}
+DML_TODAY_FALLING  = {**FALLING_BASE}
+DML_TODAY_RISING["data"], DML_TODAY_FALLING["data"] = trends("dml", "day_on_day")
+
+FOX_TODAY_RISING = {**RISING_BASE}
+FOX_TODAY_FALLING  = {**FALLING_BASE}
+FOX_TODAY_RISING["data"], FOX_TODAY_FALLING["data"] = trends("fox", "day_on_day")
