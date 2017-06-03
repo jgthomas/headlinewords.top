@@ -27,6 +27,12 @@ DEFAULT_DATABASE = BBC_DATABASE
 DATABASES = {'bbc': BBC_DATABASE, 'nyt': NYT_DATABASE,
              'dml': DML_DATABASE, 'fox': FOX_DATABASE}
 
+# Base data for queries
+BBC_BASE = {"source": "bbc", "title": "BBC"}
+NYT_BASE = {"source": "nyt", "title": "New York Times"}
+DML_BASE = {"source": "dml", "title": "Daily Mail"}
+FOX_BASE = {"source": "fox", "title": "Fox News"}
+
 # Number of days to plot if not specified
 DEFAULT_PLOT_DAYS = 7
 
