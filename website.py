@@ -11,6 +11,7 @@ from query_functions import just_words
 from query import data
 from trending_words import trends
 from graph import get_plot
+from composite_counts import composite_ranks
 
 
 app = Flask(__name__)
@@ -53,8 +54,8 @@ def home():
     plot_2 = get_plot(title="All Trump, all the time",
                       filename="homepage_nyt_1.png",
                       source="NYT")
-    #more = [["Trending", "Words going up and down"],
-    #        ["Country", "The USA vs the UK"],
+    #more = [["Country", "The USA vs the UK"]]
+    #        ["Trending", "Words going up and down"],
     #        ["Politics", "Left vs right leaning"],
     #        ["By Month", "Each source, each month"]]
     return render_template('index.html',
