@@ -1,0 +1,9 @@
+<!-- Use to dynamically fill a flex container with flex units -->
+{% block content %}
+{% for section, desc in more %}
+<div class="flex-quarter-unit">
+  <a class="title hometitle rounded_card home-section" href="#">{{section}}</a>
+  <p class="more-text">{{desc}}</p>
+</div>
+{% endfor %}
+{% endblock %}

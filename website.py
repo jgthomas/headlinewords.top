@@ -53,12 +53,17 @@ def home():
     plot_2 = get_plot(title="All Trump, all the time",
                       filename="homepage_nyt_1.png",
                       source="NYT")
+    #more = [["Trending", "Words going up and down"],
+    #        ["Country", "The USA vs the UK"],
+    #        ["Politics", "Left vs right leaning"],
+    #        ["By Month", "Each source, each month"]]
     return render_template('index.html',
                            title = 'BBC - Top words today',
                            sources = (bbc_data, nyt_data,
                                       dml_data, fox_data),
                            display = SHORT_N_WORDS,
                            plots = (plot_1, plot_2))
+                           #more = more)
 
 ### BBC PAGES ###
 @app.route('/bbc/today')

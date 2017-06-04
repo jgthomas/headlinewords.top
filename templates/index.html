@@ -11,6 +11,7 @@
   <nav>
     {{ nav_link("home", "Home") }}
     <a id="scroll-button" class="navlink rounded_card" href="#graph-target">Charts</a>
+    <!--<a id="more-scroll" class="navlink rounded_card" href="#more-target">More</a>-->
   </nav>
   <h1 class="subtitle">Headline Words</h1>
   <h4 class="tag-line">A flavour of what's getting emphasised</h4>
@@ -19,4 +20,8 @@
   </div>
   {% include "new_graph.html" %}
   <script src={{ url_for('static', filename='scripts/pageScroll.js') }}></script>
+  <!--<div class="more-box flex-container">
+    <h1 id="more-target" class="section-title">More</h1>
+    {% include "more.html" %}
+  </div>-->
 </body>
