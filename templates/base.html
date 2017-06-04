@@ -1,5 +1,5 @@
-<!-- Extended by: bbc.html, nyt.html, top_many.html -->
-<!doctype html>
+<!-- Extended by: source.html, top_many.html -->
+{% from "macros.html" import nav_link with context %}
 <head>
   {% block head %}
   <title>{% block title %}{% endblock %} - Headline Words</title>
@@ -7,6 +7,10 @@
   {% endblock %}
 </head>
 <body>
+  <nav>
+    {{ nav_link("home", "Home") }}
+    <a id="scroll-button" class="navlink rounded_card" href="#graph-target">Charts</a>
+  </nav>
   <div id="content">
     {% block content %}
     {% endblock %}
