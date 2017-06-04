@@ -27,7 +27,8 @@ html {
 }
 
 .hometitle {
-        background: #515557;
+        /*background: #515557;*/
+        background: #D2D5D6;
         display: block;
         color: #515557;
         text-decoration: none;

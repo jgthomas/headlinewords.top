@@ -1,0 +1,7 @@
+{% macro more_nav_link(endpoint, name) %}
+{% if request.endpoint.endswith(endpoint) %}
+  <a href="{{ url_for(endpoint) }}" class="current title hometitle rounded_card home-section">{{name}}</a>
+{% else %}
+  <a href="{{ url_for(endpoint) }}" class="title hometitle rounded_card home-section">{{name}}</a>
+{% endif %}
+{% endmacro %}

@@ -1,5 +1,6 @@
 <!-- Extended by: source.html, top_many.html -->
 {% from "macros.html" import nav_link with context %}
+{% from "more_macros.html" import more_nav_link with context %}
 <head>
   {% block head %}
   <title>{% block title %}{% endblock %} - Headline Words</title>
@@ -11,21 +12,16 @@
   <nav>
     {{ nav_link("home", "Home") }}
     <a id="scroll-button" class="navlink rounded_card" href="#graph-target">Charts</a>
+    <a id="more-scroll" class="navlink rounded_card" href="#more-target">More</a>
   </nav>
  
-  <!--<div id="slider" class="menu">
-    <div id="menu-title" class="menu-title">More</div>
-      <nav>
-        <a href="#" class="rounded_card">Trending</a>
-        <a href="#" class="rounded_card">Country</a>
-        <a href="#" class="rounded_card">Politics</a>
-      </nav>
-  </div>-->
-
   <div id="content">
     {% block content %}
     {% endblock %}
   </div>
+  <div class="more-box flex-container">
+    <h1 id="more-target" class="section-title">More</h1>
+    {{ more_nav_link("country", "By Country")  }}
+  </div>
   <script src={{ url_for('static', filename='scripts/pageScroll.js') }}></script>
-  <!--<script src={{ url_for('static', filename='scripts/slideMenu.js') }}></script>-->
 </body>

@@ -32,6 +32,8 @@ BBC_BASE = {"source": "bbc", "title": "BBC"}
 NYT_BASE = {"source": "nyt", "title": "New York Times"}
 DML_BASE = {"source": "dml", "title": "Daily Mail"}
 FOX_BASE = {"source": "fox", "title": "Fox News"}
+UK_BASE = {"title": "UK"}
+US_BASE = {"title": "USA"}
 
 # Number of days to plot if not specified
 DEFAULT_PLOT_DAYS = 7

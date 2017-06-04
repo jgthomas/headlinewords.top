@@ -1,8 +1,8 @@
 <!-- Use to dynamically fill a flex container with flex units -->
 {% block content %}
-{% for section, desc in more %}
+{% for section, desc, link in more %}
 <div class="flex-quarter-unit">
-  <a class="title hometitle rounded_card home-section" href="#">{{section}}</a>
+        <a class="title hometitle rounded_card home-section" href="{{ url_for(link) }}">{{section}}</a>
   <p class="more-text">{{desc}}</p>
 </div>
 {% endfor %}

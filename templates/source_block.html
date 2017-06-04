@@ -1,0 +1,9 @@
+<!-- Use to dynamically fill a flex container with flex units -->
+{% block content %}
+{% for source in sources %}
+<div class="flex-half-unit">
+  <div class="title hometitle rounded_card home-section">{{source["title"]}}</div>
+  {% include "table.html" %}
+</div>
+{% endfor %}
+{% endblock %}

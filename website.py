@@ -5,7 +5,8 @@ from flask import Flask, render_template
 from flask_ask import Ask, statement, question
 
 from constants import (SHORT_N_WORDS, TOP_N_WORDS, DOUBLE_N_WORDS,
-                       BBC_BASE, NYT_BASE, DML_BASE, FOX_BASE)
+                       BBC_BASE, NYT_BASE, DML_BASE, FOX_BASE,
+                       UK_BASE, US_BASE)
 
 from query_functions import just_words
 from query import data
@@ -54,17 +55,12 @@ def home():
     plot_2 = get_plot(title="All Trump, all the time",
                       filename="homepage_nyt_1.png",
                       source="NYT")
-    #more = [["Country", "The USA vs the UK"]]
-    #        ["Trending", "Words going up and down"],
-    #        ["Politics", "Left vs right leaning"],
-    #        ["By Month", "Each source, each month"]]
     return render_template('index.html',
                            title = 'BBC - Top words today',
                            sources = (bbc_data, nyt_data,
                                       dml_data, fox_data),
                            display = SHORT_N_WORDS,
                            plots = (plot_1, plot_2))
-                           #more = more)
 
 ### BBC PAGES ###
 @app.route('/bbc/today')
@@ -299,4 +295,22 @@ def fox_ever():
     return render_template('source.html',
                            title = title,
                            source = main_data,
+                           display = DOUBLE_N_WORDS)
+
+
+### COMBINED ###
+@app.route('/country')
+def country():
+    title = 'By Country'
+    page_title = "Country Comparison"
+    uk_sources = [data('bbc', 'ondate', 'today'),
+                  data('dml', 'ondate', 'today')]
+    uk_combined = {**UK_BASE, **{"data": composite_ranks(uk_sources)}}
+    us_sources = [data('nyt', 'ondate', 'today'),
+                  data('fox', 'ondate', 'today')]
+    us_combined = {**US_BASE, **{"data": composite_ranks(us_sources)}}
+    return render_template('combined.html',
+                           page_title = page_title,
+                           title = title,
+                           sources = (uk_combined, us_combined),
                            display = DOUBLE_N_WORDS)

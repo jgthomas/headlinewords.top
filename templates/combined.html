@@ -1,0 +1,15 @@
+{% from "macros.html" import nav_link with context %}
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+<body>
+  <h1 class="subtitle">{{page_title}}</h1>
+  <div class="flex-container">
+    {% include "source_block.html" %}
+  </div>
+  {% include "new_graph.html" %}
+</body>
+{% endblock %}
