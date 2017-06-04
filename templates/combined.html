@@ -7,6 +7,12 @@
 {% block content %}
 <body>
   <h1 class="subtitle">{{page_title}}</h1>
+  <nav>
+    {{ nav_link("country_day", "Today") }}
+    {{ nav_link("country_week", "Week") }}
+    {{ nav_link("country_month", "Month") }}
+    {{ nav_link("country_ever", "Ever") }}
+  </nav>
   <div class="flex-container">
     {% include "source_block.html" %}
   </div>

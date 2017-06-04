@@ -300,14 +300,62 @@ def fox_ever():
 
 ### COMBINED ###
 @app.route('/country')
-def country():
-    title = 'By Country'
+def country_day():
+    title = 'By Country - Today'
     page_title = "Country Comparison"
     uk_sources = [data('bbc', 'ondate', 'today'),
                   data('dml', 'ondate', 'today')]
     uk_combined = {**UK_BASE, **{"data": composite_ranks(uk_sources)}}
     us_sources = [data('nyt', 'ondate', 'today'),
                   data('fox', 'ondate', 'today')]
+    us_combined = {**US_BASE, **{"data": composite_ranks(us_sources)}}
+    return render_template('combined.html',
+                           page_title = page_title,
+                           title = title,
+                           sources = (uk_combined, us_combined),
+                           display = DOUBLE_N_WORDS)
+
+@app.route('/country/week')
+def country_week():
+    title = 'By Country - This Week'
+    page_title = "Country Comparison"
+    uk_sources = [data('bbc', 'since', 'week'),
+                  data('dml', 'since', 'week')]
+    uk_combined = {**UK_BASE, **{"data": composite_ranks(uk_sources)}}
+    us_sources = [data('nyt', 'since', 'week'),
+                  data('fox', 'since', 'week')]
+    us_combined = {**US_BASE, **{"data": composite_ranks(us_sources)}}
+    return render_template('combined.html',
+                           page_title = page_title,
+                           title = title,
+                           sources = (uk_combined, us_combined),
+                           display = DOUBLE_N_WORDS)
+
+@app.route('/country/month')
+def country_month():
+    title = 'By Country - This Month'
+    page_title = "Country Comparison"
+    uk_sources = [data('bbc', 'since', 'month'),
+                  data('dml', 'since', 'month')]
+    uk_combined = {**UK_BASE, **{"data": composite_ranks(uk_sources)}}
+    us_sources = [data('nyt', 'since', 'month'),
+                  data('fox', 'since', 'month')]
+    us_combined = {**US_BASE, **{"data": composite_ranks(us_sources)}}
+    return render_template('combined.html',
+                           page_title = page_title,
+                           title = title,
+                           sources = (uk_combined, us_combined),
+                           display = DOUBLE_N_WORDS)
+
+@app.route('/country/ever')
+def country_ever():
+    title = 'By Country - Ever'
+    page_title = "Country Comparison"
+    uk_sources = [data('bbc', 'ever'),
+                  data('dml', 'ever')]
+    uk_combined = {**UK_BASE, **{"data": composite_ranks(uk_sources)}}
+    us_sources = [data('nyt', 'ever'),
+                  data('fox', 'ever')]
     us_combined = {**US_BASE, **{"data": composite_ranks(us_sources)}}
     return render_template('combined.html',
                            page_title = page_title,
