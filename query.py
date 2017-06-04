@@ -17,6 +17,7 @@ class Query(object):
     SINCE = 'WHERE "[date]">=?'
     TIMESPAN = 'WHERE "[date]">=? AND "[date]"<?'
     SINGLE_WORD = ' AND word=?'
+    SINGLE_WORD_ONLY = 'WHERE word=?'
 
     # Compound query strings
     OVERALL_TOTAL = ' '.join([BASE, TOTAL])
@@ -26,6 +27,7 @@ class Query(object):
     WORD_ON_DATE = ' '.join([BASE, DATE, SINGLE_WORD])
     WORD_SINCE = ' '.join([BASE, SINCE, SINGLE_WORD])
     WORD_RANGE = ' '.join([BASE, TIMESPAN, SINGLE_WORD])
+    WORD_EVER = ' '.join([BASE, SINGLE_WORD_ONLY])
     
 
     def __init__(self, db):
@@ -91,6 +93,11 @@ class Query(object):
         self.cur.execute(self.__class__.OVERALL_TOTAL)
         return self.cur.fetchall()
 
+    def word_ever(self, word):
+        """ Return count for a single word EVER. """
+        self.cur.execute(self.__class__.WORD_EVER, (word,))
+        return self.cur.fetchall()
+
 
 def data(dbname, method, date1=None, date2=None, word=None):
     """
@@ -117,7 +124,8 @@ def data(dbname, method, date1=None, date2=None, word=None):
                    "word_ondate": opendb.word_ondate,
                    "word_since": opendb.word_since,
                    "word_between": opendb.word_between,
-                   "ever": opendb.ever}
+                   "ever": opendb.ever,
+                   "word_ever": opendb.word_ever}
 
         if date1 and date2 and word:
             data = METHODS[method](date1, date2, word)
