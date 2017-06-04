@@ -4,6 +4,7 @@
   {% block head %}
   <title>{% block title %}{% endblock %} - Headline Words</title>
   <link rel=stylesheet href="{{ url_for('static', filename='style.css') }}">
+  <!--<link rel=stylesheet href="{{ url_for('static', filename='styles/slideout.css') }}">-->
   {% endblock %}
 </head>
 <body>
@@ -11,9 +12,20 @@
     {{ nav_link("home", "Home") }}
     <a id="scroll-button" class="navlink rounded_card" href="#graph-target">Charts</a>
   </nav>
+ 
+  <!--<div id="slider" class="menu">
+    <div id="menu-title" class="menu-title">More</div>
+      <nav>
+        <a href="#" class="rounded_card">Trending</a>
+        <a href="#" class="rounded_card">Country</a>
+        <a href="#" class="rounded_card">Politics</a>
+      </nav>
+  </div>-->
+
   <div id="content">
     {% block content %}
     {% endblock %}
   </div>
   <script src={{ url_for('static', filename='scripts/pageScroll.js') }}></script>
+  <!--<script src={{ url_for('static', filename='scripts/slideMenu.js') }}></script>-->
 </body>

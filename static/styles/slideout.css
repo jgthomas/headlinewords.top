@@ -1,0 +1,125 @@
+
+/* Shared by all devices */
+
+
+body {
+  transition: background-color .5s;
+}
+
+.slide-body {
+        background-color: rgba(0,0,0,0.4);
+}
+
+.menu {
+        background-color: #D2D5D6;
+        font-weight: 100;
+        color: #222;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 100;
+        transition: all 0.5s;
+        overflow: visible;
+}
+
+.menu nav {
+        font-weight: bold;
+        position: relative;
+        display: block;
+        width: 100%;
+        border-radius: 8px;
+        color: #515557;
+        text-align: center;
+}
+
+.menu a {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s;
+        padding: 15%;
+        background-color: #D2D5D6;
+        margin-bottom: 5%;
+}
+
+.slide-button {
+        width: 20%;
+        float: left;
+        display: inline;
+        text-align: center;
+        transition: margin-right .5s;
+}
+
+.menu-title {
+        margin-left: -45%;
+        background-color: #D2D5D6;
+        padding-top: 13%;
+        padding-bottom: 13%;
+        padding-left: 3%;
+        border-radius: 8px;
+        transition: background-color .5s;
+}
+
+.slide-title {
+        background-color: #e6e6e6;
+}
+
+.slide {
+        background-color: #e6e6e6;
+}
+
+
+/* Assume mobile */
+
+.menu {
+        width: 40%;
+        right: -40%;
+}
+
+.menu nav {
+        font-size: 2.25em;
+}
+
+.slide {
+        right: 0;
+}
+
+.main-slide {
+        margin-right: 40%;
+}
+
+.menu-title {
+        font-size: 6vw;
+}
+
+
+/* Modify for desktop */
+
+@media only screen and (min-device-width: 961px) {
+        .menu {
+                width: 150px;
+                right: -150px;
+        }
+        
+        .menu nav {
+                font-size: 1em;
+        }
+
+        .menu a {
+                padding: 15%;
+        }
+        
+        .menu a:hover {
+                background-color: #fff;
+        }
+
+        .slide {
+                right: 0;
+        }
+        
+        .menu-title {
+                font-size: 2em;
+                margin-left: -65%;
+        }
+}
