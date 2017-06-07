@@ -19,21 +19,27 @@ BBC_DATABASE = 'data/bbc_headline_words.db'
 NYT_DATABASE = 'data/nyt_headline_words.db'
 DML_DATABASE = 'data/dml_headline_words.db'
 FOX_DATABASE = 'data/fox_headline_words.db'
+SMH_DATABASE = 'data/smh_headline_words.db'
+ABC_DATABASE = 'data/abc_headline_words.db'
 
 # Database to use if not specified
 DEFAULT_DATABASE = BBC_DATABASE
 
 # Database dictionary
 DATABASES = {'bbc': BBC_DATABASE, 'nyt': NYT_DATABASE,
-             'dml': DML_DATABASE, 'fox': FOX_DATABASE}
+             'dml': DML_DATABASE, 'fox': FOX_DATABASE,
+             'smh': SMH_DATABASE, 'abc': ABC_DATABASE}
 
 # Base data for queries
 BBC_BASE = {"source": "bbc", "title": "BBC"}
 NYT_BASE = {"source": "nyt", "title": "New York Times"}
 DML_BASE = {"source": "dml", "title": "Daily Mail"}
 FOX_BASE = {"source": "fox", "title": "Fox News"}
+SMH_BASE = {"source": "smh", "title": "Sydney Morning Herald"}
+ABC_BASE = {"source": "abc", "title": "ABC Australia"}
 UK_BASE = {"title": "UK"}
 US_BASE = {"title": "USA"}
+AU_BASE = {"title": "Australia"}
 
 # Number of days to plot if not specified
 DEFAULT_PLOT_DAYS = 7

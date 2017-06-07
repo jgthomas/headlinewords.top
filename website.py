@@ -6,7 +6,8 @@ from flask_ask import Ask, statement, question
 
 from constants import (SHORT_N_WORDS, TOP_N_WORDS, DOUBLE_N_WORDS,
                        BBC_BASE, NYT_BASE, DML_BASE, FOX_BASE,
-                       UK_BASE, US_BASE)
+                       SMH_BASE, ABC_BASE,
+                       UK_BASE, US_BASE, AU_BASE)
 
 from query_functions import just_words
 from query import data
@@ -49,6 +50,8 @@ def home():
     nyt_data = {**NYT_BASE, **{"data": data("nyt", "ondate", "today")}}
     dml_data = {**DML_BASE, **{"data": data("dml", "ondate", "today")}}
     fox_data = {**FOX_BASE, **{"data": data("fox", "ondate", "today")}}
+    smh_data = {**SMH_BASE, **{"data": data("smh", "ondate", "today")}}
+    abc_data = {**ABC_BASE, **{"data": data("abc", "ondate", "today")}}
     plot_1 = get_plot(title="Manchester",
                       filename="homepage_bbc_1.png",
                       source="BBC")
@@ -56,9 +59,10 @@ def home():
                       filename="homepage_nyt_1.png",
                       source="NYT")
     return render_template('index.html',
-                           title = 'BBC - Top words today',
+                           title = 'All top words today',
                            sources = (bbc_data, nyt_data,
-                                      dml_data, fox_data),
+                                      dml_data, fox_data,
+                                      smh_data, abc_data),
                            display = SHORT_N_WORDS,
                            plots = (plot_1, plot_2))
 
@@ -298,6 +302,85 @@ def fox_ever():
                            display = DOUBLE_N_WORDS)
 
 
+### SYDNEY MORNING HERALD
+@app.route('/smh/today')
+def smh_today():
+    title = 'Sydney Morning Herald - Top words today'
+    main_data = {**SMH_BASE, **{"data": data("smh", "ondate", "today")}}
+    return render_template('source.html',
+                           title = title,
+                           source = main_data,
+                           display = TOP_N_WORDS)
+
+@app.route('/smh/week')
+def smh_week():
+    title = 'Sydney Morning Herald - Top words this week'
+    main_data = {**SMH_BASE, **{"data": data("smh", "since", "week")}}
+    return render_template('source.html',
+                           title = title,
+                           source = main_data,
+                           display = TOP_N_WORDS)
+
+@app.route('/smh/month')
+def smh_month():
+    title = 'Sydney Morning Herald - Top words this month'
+    main_data = {**SMH_BASE, **{"data": data("smh", "since", "month")}}
+    return render_template('source.html',
+                           title = title,
+                           source = main_data,
+                           display = TOP_N_WORDS)
+
+@app.route('/smh/ever')
+def smh_ever():
+    title = 'Sydney Morning Herald - Top words ever'
+    main_data = {**SMH_BASE, **{"data": data("smh", "ever")}}
+    return render_template('source.html',
+                           title = title,
+                           source = main_data,
+                           display = DOUBLE_N_WORDS)
+
+
+### ABC AUSTRALIA
+@app.route('/abc/today')
+def abc_today():
+    title = 'ABC Australia - Top words today'
+    main_data = {**ABC_BASE, **{"data": data("abc", "ondate", "today")}}
+    return render_template('source.html',
+                           title = title,
+                           source = main_data,
+                           display = TOP_N_WORDS)
+
+@app.route('/abc/week')
+def abc_week():
+    title = 'ABC Australia - Top words this week'
+    main_data = {**ABC_BASE, **{"data": data("abc", "since", "week")}}
+    return render_template('source.html',
+                           title = title,
+                           source = main_data,
+                           display = TOP_N_WORDS)
+
+@app.route('/abc/month')
+def abc_month():
+    title = 'ABC Australia - Top words this month'
+    main_data = {**ABC_BASE, **{"data": data("abc", "since", "month")}}
+    return render_template('source.html',
+                           title = title,
+                           source = main_data,
+                           display = TOP_N_WORDS)
+
+@app.route('/abc/ever')
+def abc_ever():
+    title = 'ABC Australia - Top words ever'
+    main_data = {**ABC_BASE, **{"data": data("abc", "ever")}}
+    return render_template('source.html',
+                           title = title,
+                           source = main_data,
+                           display = DOUBLE_N_WORDS)
+
+
+
+
+
 ### COMBINED ###
 @app.route('/country')
 def country_day():
@@ -309,10 +392,15 @@ def country_day():
     us_sources = [data('nyt', 'ondate', 'today'),
                   data('fox', 'ondate', 'today')]
     us_combined = {**US_BASE, **{"data": composite_ranks(us_sources)}}
+    au_sources = [data('smh', 'ondate', 'today'),
+                  data('abc', 'ondate', 'today')]
+    au_combined = {**AU_BASE, **{"data": composite_ranks(au_sources)}}
     return render_template('combined.html',
                            page_title = page_title,
                            title = title,
-                           sources = (uk_combined, us_combined),
+                           sources = (uk_combined,
+                                      us_combined,
+                                      au_combined),
                            display = DOUBLE_N_WORDS)
 
 @app.route('/country/week')
