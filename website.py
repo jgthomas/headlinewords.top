@@ -23,6 +23,7 @@ from overviews.by_country import by_country
 
 
 app = Flask(__name__)
+
 app.register_blueprint(bbc, url_prefix='/bbc')
 app.register_blueprint(nyt, url_prefix='/nyt')
 app.register_blueprint(dml, url_prefix='/dml')
