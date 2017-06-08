@@ -47,7 +47,7 @@ def nyt_week():
                            source=main_data,
                            display=TOP_N_WORDS,
                            extras=(extra_data_1, extra_data_2),
-                           extra_display= SHORT_N_WORDS,
+                           extra_display=SHORT_N_WORDS,
                            plots=(plot_1,))
 
 

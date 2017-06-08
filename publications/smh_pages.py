@@ -19,6 +19,7 @@ def smh_today():
                            source=main_data,
                            display=TOP_N_WORDS)
 
+
 @smh.route('/week')
 def smh_week():
     title = 'Sydney Morning Herald - Top words this week'
@@ -28,6 +29,7 @@ def smh_week():
                            source=main_data,
                            display=TOP_N_WORDS)
 
+
 @smh.route('/month')
 def smh_month():
     title = 'Sydney Morning Herald - Top words this month'
@@ -36,6 +38,7 @@ def smh_month():
                            title=title,
                            source=main_data,
                            display=TOP_N_WORDS)
+
 
 @smh.route('/ever')
 def smh_ever():

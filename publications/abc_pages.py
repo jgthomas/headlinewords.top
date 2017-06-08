@@ -19,6 +19,7 @@ def abc_today():
                            source=main_data,
                            display=TOP_N_WORDS)
 
+
 @abc.route('/week')
 def abc_week():
     title = 'ABC Australia - Top words this week'
@@ -28,6 +29,7 @@ def abc_week():
                            source=main_data,
                            display=TOP_N_WORDS)
 
+
 @abc.route('/month')
 def abc_month():
     title = 'ABC Australia - Top words this month'
@@ -36,6 +38,7 @@ def abc_month():
                            title=title,
                            source=main_data,
                            display=TOP_N_WORDS)
+
 
 @abc.route('/ever')
 def abc_ever():
