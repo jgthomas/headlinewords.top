@@ -15,13 +15,13 @@ from trending_words import trends
 from graph import get_plot
 from composite_counts import composite_ranks
 
-from bbc_pages import bbc
-from nyt_pages import nyt
-from dml_pages import dml
-from fox_pages import fox
-from smh_pages import smh
-from abc_pages import abc
-from by_country import by_country
+from sources.bbc_pages import bbc
+from sources.nyt_pages import nyt
+from sources.dml_pages import dml
+from sources.fox_pages import fox
+from sources.smh_pages import smh
+from sources.abc_pages import abc
+from sources.by_country import by_country
 
 
 app = Flask(__name__)
