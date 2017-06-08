@@ -11,7 +11,7 @@ BBC_DB = "bbc"
 NYT_DB = "nyt"
 
 
-### HOMEPAGE ###
+# HOMEPAGE
 HOMEPAGE_BBC_1 = Graph(db = BBC_DB,
                        filename = "homepage_bbc_1",
                        days = "7",
@@ -26,7 +26,7 @@ HOMEPAGE_NYT_1 = Graph(db = NYT_DB,
                        period = "4")
 
 
-### BBC TODAY ###
+# BBC
 BBC_TODAY_1 = Graph(db = BBC_DB,
                     filename = "bbc_today_1",
                     days = "7",
@@ -39,8 +39,6 @@ BBC_TODAY_2 = Graph(db = BBC_DB,
                     days = "14",
                     words = ['attack', 'bomb', 'threat', 'terror'])
 
-
-### BBC WEEK ###
 BBC_WEEK_1 = Graph(db = BBC_DB,
                    filename = 'bbc_week_1',
                    days = "7",
@@ -52,8 +50,6 @@ BBC_WEEK_2 = Graph(db = BBC_DB,
                    words = ['corbyn', 'may'],
                    colour = ['red', 'blue'])
 
-
-### BBC MONTH ###
 BBC_MONTH_1 = Graph(db = BBC_DB,
                     filename = 'bbc_month_1',
                     days = "7",
@@ -66,8 +62,6 @@ BBC_MONTH_2 = Graph(db = BBC_DB,
                     words = ["death", "dead", "murder", "killed"],
                     period="4")
 
-
-### BBC EVER ###
 BBC_EVER_1 = Graph(db = BBC_DB,
                    filename = "bbc_ever_1",
                    days = "7",
@@ -81,8 +75,7 @@ BBC_EVER_2 = Graph(db = BBC_DB,
                    period = "4")
 
 
-
-### NYT TODAY ###
+# NYT
 NYT_TODAY_1 = Graph(db = NYT_DB,
                     filename = 'nyt_today_1',
                     days = "7",
@@ -93,57 +86,46 @@ NYT_TODAY_2 = Graph(db = NYT_DB,
                     filename = 'nyt_today_2',
                     days = "7",
                     words = ['fbi', 'comey', 'russia', 'investigation'],
-                    period =  "4")
+                    period = "4")
 
-
-### NYT WEEK ###
 NYT_WEEK_1 = Graph(db = NYT_DB,
                    filename = 'nyt_week_1',
                    days = "7",
                    words = just_words(data("nyt", "since", "week"))[:SHORT_N_WORDS])
 
-
-### NYT MONTH ###
 NYT_MONTH_1 = Graph(db = NYT_DB,
                     filename = 'nyt_month_1',
                     days = "7",
                     words = just_words(data("nyt", "since", "month"))[:SHORT_N_WORDS],
-                    period="4")
+                    period = "4")
 
-
-### NYT EVER ###
 NYT_EVER_1 = Graph(db = NYT_DB,
                    filename = 'nyt_ever_1',
                    days = "7",
                    words = just_words(data("nyt", "ever"))[:SHORT_N_WORDS],
-                   period="4")
+                   period = "4")
+
+
+GRAPHS_IN_USE = [HOMEPAGE_BBC_1,
+                 HOMEPAGE_NYT_1,
+                 BBC_TODAY_1,
+                 BBC_TODAY_2,
+                 BBC_WEEK_1,
+                 BBC_WEEK_2,
+                 BBC_MONTH_1,
+                 BBC_MONTH_2,
+                 BBC_EVER_1,
+                 BBC_EVER_2,
+                 NYT_TODAY_1,
+                 NYT_TODAY_2,
+                 NYT_WEEK_1,
+                 NYT_MONTH_1,
+                 NYT_EVER_1]
 
 
 def main():
-    # Homepage
-    plot_words.main(HOMEPAGE_BBC_1.args())
-    plot_words.main(HOMEPAGE_NYT_1.args())
-    # BBC Today
-    plot_words.main(BBC_TODAY_1.args())
-    plot_words.main(BBC_TODAY_2.args())
-    # BBC Week
-    plot_words.main(BBC_WEEK_1.args())
-    plot_words.main(BBC_WEEK_2.args())
-    # BBC Month
-    plot_words.main(BBC_MONTH_1.args())
-    plot_words.main(BBC_MONTH_2.args())
-    # BBC Ever
-    plot_words.main(BBC_EVER_1.args())
-    plot_words.main(BBC_EVER_2.args())
-    # NYT Today
-    plot_words.main(NYT_TODAY_1.args())
-    plot_words.main(NYT_TODAY_2.args())
-    # NYT Week
-    plot_words.main(NYT_WEEK_1.args())
-    # NYT Month
-    plot_words.main(NYT_MONTH_1.args())
-    # NYT Ever
-    plot_words.main(NYT_EVER_1.args())
+    for graph in GRAPHS_IN_USE:
+        plot_words.main(graph.args())
 
 
 if __name__ == '__main__':
