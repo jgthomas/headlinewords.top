@@ -31,6 +31,7 @@ def country_day():
                                     au_combined),
                            display=DOUBLE_N_WORDS)
 
+
 @by_country.route('/week')
 def country_week():
     title = 'By Country - This Week'
@@ -52,6 +53,7 @@ def country_week():
                                     au_combined),
                            display=DOUBLE_N_WORDS)
 
+
 @by_country.route('/month')
 def country_month():
     title = 'By Country - This Month'
@@ -72,6 +74,7 @@ def country_month():
                                     us_combined,
                                     au_combined),
                            display=DOUBLE_N_WORDS)
+
 
 @by_country.route('/ever')
 def country_ever():
