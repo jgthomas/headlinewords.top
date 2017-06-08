@@ -1,4 +1,3 @@
-import os
 from flask import Blueprint, render_template
 
 from constants import (BBC_BASE,
@@ -26,12 +25,12 @@ def bbc_today():
     plot_2 = get_plot(title="Danger!",
                       filename="bbc_today_2.png")
     return render_template('source.html',
-                           title = title,
-                           source = main_data,
-                           display = TOP_N_WORDS,
-                           extras = (extra_data_1, extra_data_2),
-                           extra_display = SHORT_N_WORDS,
-                           plots = (plot_1, plot_2))
+                           title=title,
+                           source=main_data,
+                           display=TOP_N_WORDS,
+                           extras=(extra_data_1, extra_data_2),
+                           extra_display=SHORT_N_WORDS,
+                           plots=(plot_1, plot_2))
 
 
 @bbc.route('/week')
@@ -46,12 +45,12 @@ def bbc_week():
     plot_2 = get_plot(title="Follow the leader",
                       filename="bbc_week_2.png")
     return render_template('source.html',
-                           title = title,
-                           source = main_data,
-                           display = TOP_N_WORDS,
-                           extras = (extra_data_1, extra_data_2),
-                           extra_display = SHORT_N_WORDS,
-                           plots = (plot_1, plot_2))
+                           title=title,
+                           source=main_data,
+                           display=TOP_N_WORDS,
+                           extras=(extra_data_1, extra_data_2),
+                           extra_display=SHORT_N_WORDS,
+                           plots=(plot_1, plot_2))
 
 
 @bbc.route('/month')
@@ -63,10 +62,10 @@ def bbc_month():
     plot_2 = get_plot(title="The grimmest reaper",
                       filename="bbc_month_2.png")
     return render_template('source.html',
-                           title = title,
-                           source = main_data,
-                           display = TOP_N_WORDS,
-                           plots = (plot_1, plot_2))
+                           title=title,
+                           source=main_data,
+                           display=TOP_N_WORDS,
+                           plots=(plot_1, plot_2))
 
 
 @bbc.route('/ever')
@@ -82,9 +81,9 @@ def bbc_ever():
     plot_2 = get_plot(title="City limits",
                       filename="bbc_ever_2.png")
     return render_template('source.html',
-                           title = title,
-                           source = main_data,
-                           display = DOUBLE_N_WORDS,
-                           extras = (extra_data_1, extra_data_2),
-                           extra_display = TOP_N_WORDS,
-                           plots = (plot_1, plot_2))
+                           title=title,
+                           source=main_data,
+                           display=DOUBLE_N_WORDS,
+                           extras=(extra_data_1, extra_data_2),
+                           extra_display=TOP_N_WORDS,
+                           plots=(plot_1, plot_2))

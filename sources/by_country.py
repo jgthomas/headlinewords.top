@@ -24,12 +24,12 @@ def country_day():
                   data('abc', 'ondate', 'today')]
     au_combined = {**AU_BASE, **{"data": composite_ranks(au_sources)}}
     return render_template('combined.html',
-                           page_title = page_title,
-                           title = title,
-                           sources = (uk_combined,
-                                      us_combined,
-                                      au_combined),
-                           display = DOUBLE_N_WORDS)
+                           page_title=page_title,
+                           title=title,
+                           sources=(uk_combined,
+                                    us_combined,
+                                    au_combined),
+                           display=DOUBLE_N_WORDS)
 
 @by_country.route('/week')
 def country_week():
@@ -45,12 +45,12 @@ def country_week():
                   data('abc', 'since', 'week')]
     au_combined = {**AU_BASE, **{"data": composite_ranks(au_sources)}}
     return render_template('combined.html',
-                           page_title = page_title,
-                           title = title,
-                           sources = (uk_combined,
-                                      us_combined,
-                                      au_combined),
-                           display = DOUBLE_N_WORDS)
+                           page_title=page_title,
+                           title=title,
+                           sources=(uk_combined,
+                                    us_combined,
+                                    au_combined),
+                           display=DOUBLE_N_WORDS)
 
 @by_country.route('/month')
 def country_month():
@@ -66,12 +66,12 @@ def country_month():
                   data('abc', 'since', 'month')]
     au_combined = {**AU_BASE, **{"data": composite_ranks(au_sources)}}
     return render_template('combined.html',
-                           page_title = page_title,
-                           title = title,
-                           sources = (uk_combined,
-                                      us_combined,
-                                      au_combined),
-                           display = DOUBLE_N_WORDS)
+                           page_title=page_title,
+                           title=title,
+                           sources=(uk_combined,
+                                    us_combined,
+                                    au_combined),
+                           display=DOUBLE_N_WORDS)
 
 @by_country.route('/ever')
 def country_ever():
@@ -87,9 +87,9 @@ def country_ever():
                   data('abc', 'ever')]
     au_combined = {**AU_BASE, **{"data": composite_ranks(au_sources)}}
     return render_template('combined.html',
-                           page_title = page_title,
-                           title = title,
-                           sources = (uk_combined,
-                                      us_combined,
-                                      au_combined),
-                           display = DOUBLE_N_WORDS)
+                           page_title=page_title,
+                           title=title,
+                           sources=(uk_combined,
+                                    us_combined,
+                                    au_combined),
+                           display=DOUBLE_N_WORDS)
