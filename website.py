@@ -52,7 +52,7 @@ def home():
     fox_data = {**FOX_BASE, **{"data": data("fox", "ondate", "today")}}
     smh_data = {**SMH_BASE, **{"data": data("smh", "ondate", "today")}}
     abc_data = {**ABC_BASE, **{"data": data("abc", "ondate", "today")}}
-    plot_1 = get_plot(title="Manchester",
+    plot_1 = get_plot(title="Manchester, then London",
                       filename="homepage_bbc_1.png",
                       source="BBC")
     plot_2 = get_plot(title="All Trump, all the time",
@@ -151,12 +151,17 @@ def nyt_today():
     extra_data_1 = {"title": "Rising"}
     extra_data_2 = {"title": "Falling"}
     extra_data_1["data"], extra_data_2["data"] = trends("nyt", "day_on_day")
+    plot_1 = get_plot(title="The Trumps",
+                      filename="nyt_today_1.png")
+    plot_2 = get_plot(title="The investigation",
+                      filename="nyt_today_2.png")
     return render_template('source.html',
                            title = title,
                            source = main_data,
                            display = TOP_N_WORDS,
                            extras = (extra_data_1, extra_data_2),
-                           extra_display = SHORT_N_WORDS)
+                           extra_display = SHORT_N_WORDS,
+                           plots = (plot_1, plot_2))
 
 
 @app.route('/nyt/week')
@@ -181,15 +186,13 @@ def nyt_week():
 def nyt_month():
     title = 'New York Times - Top words this month'
     main_data = {**NYT_BASE, **{"data": data("nyt", "since", "month")}}
-    plot_1 = get_plot(title="The Trumps",
+    plot_1 = get_plot(title="Top five progress",
                       filename="nyt_month_1.png")
-    plot_2 = get_plot(title="The investigation",
-                      filename="nyt_month_2.png")
     return render_template('source.html',
                            title = title,
                            source = main_data,
                            display = TOP_N_WORDS,
-                           plots = (plot_1, plot_2))
+                           plots = (plot_1,))
 
 
 @app.route('/nyt/ever')
@@ -200,12 +203,15 @@ def nyt_ever():
                     "data": data("nyt", "between", "may_start", "jun_start")}
     extra_data_2 = {"title": "June",
                     "data": data("nyt", "between", "jun_start", "jul_start")}
+    plot_1 = get_plot(title="Top five progress",
+                      filename="nyt_ever_1.png")
     return render_template('source.html',
                            title = title,
                            source = main_data,
                            display = DOUBLE_N_WORDS,
                            extras = (extra_data_1, extra_data_2),
-                           extra_display = TOP_N_WORDS)
+                           extra_display = TOP_N_WORDS,
+                           plots = (plot_1,))
 
 
 
