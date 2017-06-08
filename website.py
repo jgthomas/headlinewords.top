@@ -63,16 +63,18 @@ def start_skill():
     welcome_message = "Pick a news source"
     return question(welcome_message)
 
+
 @ask.intent('BbcIntent')
 def read_top_bbc_words():
     words = just_words(data("bbc", "ondate", "today"))[:SHORT_N_WORDS]
     words_message = "The top five from the BBC {}".format(words)
-    return statement(words_message) \
-           .simple_card(title="Top BBC Words", content=' '.join(words))
+    return statement(words_message).simple_card(title="Top BBC Words",
+                                                content=' '.join(words))
+
 
 @ask.intent('NytIntent')
 def read_top_nyt_words():
     words = just_words(data("nyt", "ondate", "today"))[:SHORT_N_WORDS]
     words_message = "The top five from the New York Times {}".format(words)
-    return statement(words_message) \
-           .simple_card(title="Top NYT Words", content=' '.join(words))
+    return statement(words_message).simple_card(title="Top NYT Words",
+                                                content=' '.join(words))
