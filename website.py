@@ -12,13 +12,14 @@ from query_functions import just_words
 from query import data
 from graph import get_plot
 
-from sources.bbc_pages import bbc
-from sources.nyt_pages import nyt
-from sources.dml_pages import dml
-from sources.fox_pages import fox
-from sources.smh_pages import smh
-from sources.abc_pages import abc
-from sources.by_country import by_country
+from publications.bbc_pages import bbc
+from publications.nyt_pages import nyt
+from publications.dml_pages import dml
+from publications.fox_pages import fox
+from publications.smh_pages import smh
+from publications.abc_pages import abc
+
+from overviews.by_country import by_country
 
 
 app = Flask(__name__)
