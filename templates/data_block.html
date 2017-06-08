@@ -2,7 +2,7 @@
 {% block content %}
 {% for source in sources %}
 <div class="flex-half-unit">
-  {% set link = [source["source"], "_today"]|join %}
+  {% set link = [source["source"], ".", source["source"], "_today"]|join %}
   <a class="title hometitle rounded_card home-section" href="{{ url_for(link) }}">{{source["title"]}}</a>
   {% include "table.html" %}
 </div>

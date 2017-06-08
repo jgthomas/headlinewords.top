@@ -9,13 +9,13 @@
     <div class="flex-half-unit">
       <h4 class="title rounded_card">{{source["title"]}}</h4>
       <nav>
-        {% set today = [source["source"], "_today"]|join %}
+        {% set today = [source["source"], ".", source["source"], "_today"]|join %}
         {{ nav_link(today, "Today") }}
-        {% set week = [source["source"], "_week"]|join %}
+        {% set week = [source["source"], ".", source["source"], "_week"]|join %}
         {{ nav_link(week, "Week") }}
-        {% set month = [source["source"], "_month"]|join %}
+        {% set month = [source["source"], ".", source["source"], "_month"]|join %}
         {{ nav_link(month, "Month") }}
-        {% set ever = [source["source"], "_ever"]|join %}
+        {% set ever = [source["source"], ".", source["source"], "_ever"]|join %}
         {{ nav_link(ever, "Ever") }}
       </nav>
       {% include "table.html" %}
