@@ -7,14 +7,14 @@ import os.path
 from collections import Counter
 
 from query_functions import TODAY
-
 from feed_getter import SOURCES
-
 from process_words import get_words, filter_words
 
 
 HL_FILE = 'headlines.json'
 HL_WORDS_FILE = 'headline_words.json'
+JSON_PATH = 'data/json/'
+
 DB_NAME = 'headline_words.db'
 DB_PATH = 'data/'
 
@@ -79,13 +79,16 @@ def main():
         headlines_filename = '_'.join([name, HL_FILE])
         new_headlines = get_new_headlines(headlines_filename, headlines)
 
-        save_to_json(headlines_filename, headlines)
+        headlines_path = ''.join([JSON_PATH, headlines_filename])
+        save_to_json(headlines_path, headlines)
         if new_headlines:
             word_frequencies = Counter(filter_words(name, get_words(new_headlines)))
             new_words = word_frequencies.most_common()
 
             new_words_filename = '_'.join([name, HL_WORDS_FILE])
-            save_to_json(new_words_filename, new_words)
+
+            new_words_path = ''.join([JSON_PATH, new_words_filename])
+            save_to_json(new_words_path, new_words)
 
             db = '_'.join([name, DB_NAME])
             db_path = ''.join([DB_PATH, db])

@@ -71,7 +71,6 @@ def read_top_bbc_words():
     return statement(words_message).simple_card(title="Top BBC Words",
                                                 content=' '.join(words))
 
-
 @ask.intent('NytIntent')
 def read_top_nyt_words():
     words = just_words(data("nyt", "ondate", "today"))[:SHORT_N_WORDS]
