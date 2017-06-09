@@ -77,9 +77,9 @@ def main():
         name, headlines = source
 
         headlines_filename = '_'.join([name, HL_FILE])
-        new_headlines = get_new_headlines(headlines_filename, headlines)
-
         headlines_path = ''.join([JSON_PATH, headlines_filename])
+        new_headlines = get_new_headlines(headlines_path, headlines)
+
         save_to_json(headlines_path, headlines)
         if new_headlines:
             word_frequencies = Counter(filter_words(name, get_words(new_headlines)))
