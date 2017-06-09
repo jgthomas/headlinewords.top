@@ -86,7 +86,6 @@ def main():
             new_words = word_frequencies.most_common()
 
             new_words_filename = '_'.join([name, HL_WORDS_FILE])
-
             new_words_path = ''.join([JSON_PATH, new_words_filename])
             save_to_json(new_words_path, new_words)
 
