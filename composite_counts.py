@@ -3,10 +3,6 @@
 from operator import itemgetter
 
 
-a = [["donkey", 10], ["monkey", 2], ["fool", 13]]
-b = [["donkey", 10], ["ape", 4], ["fool", 1]]
-
-
 def composite_ranks(data):
     """
     Return ordered sequence of summed counts for all
