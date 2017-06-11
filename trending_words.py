@@ -30,6 +30,13 @@ def successive_periods(db, days):
 
 
 def changing_counts(last_period, this_period):
+    """
+    Return sorted sequence of words with the greatest 
+    frequency changes from one import period to the next.
+    
+    Separate sequences for rising and falling words.
+
+    """
     changes = []
     last = strip_dates(last_period)
     this = strip_dates(this_period)
