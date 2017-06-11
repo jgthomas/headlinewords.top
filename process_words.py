@@ -7,7 +7,10 @@ from pythonic_pipes import (is_not_in,
                             filter_by,
                             map_over)
 
-from constants import STOPWORDS, BBC_STOPWORDS, NYT_STOPWORDS, SHORT_WORD
+from constants import (STOPWORDS,
+                       BBC_STOPWORDS,
+                       NYT_STOPWORDS,
+                       SHORT_WORD)
 
 
 def get_words(source):
@@ -31,18 +34,25 @@ def no_non_word(x):
     """
     return re.sub(r'[^\w\'-]', '', x)
 
+
 def no_unicode_apostrophe(x):
     """ Replace the funky unicode apostrophe. """
     return re.sub(r"\u2019", "\'", x)
 
+
+def no_quote_marks(x):
+   """ Remove pairs of opening and closing quote marks.  """
+   if re.search(r'^[\'\"\u2018\u201C]', x) is not None:
+     if re.search(r'[\'\"\u2019\u201D]$', x) is not None:
+       y = re.sub(r'^[\'\"\u2018\u201C]', '', x)
+       y = re.sub(r'[\'\"\u2019\u201D]$', '', y)
+       return y
+   return x
+
+
 def no_initial_quote(x):
-    """ Remove initial quotation marks. """
-    return re.sub(r'^[\'\"]', '', x)
-
-
-def no_trailing_quote(x):
-    """ Remove trailing quotation marks. """
-    return re.sub(r'[\'\"]$', '', x)
+    """ Remove stray initial quotation marks. """
+    return re.sub(r'^[\'\"\u2018\u201C]', '', x)
 
 
 def too_short(x):
@@ -65,7 +75,7 @@ def word_filter(words, to_ignore):
     to_lowercase = map_over(lower)
     del_non_word_chars = map_over(no_non_word)
     del_initial_quote = map_over(no_initial_quote)
-    del_trailing_quote = map_over(no_trailing_quote)
+    del_quote_marks = map_over(no_quote_marks)
     convert_unicode_apostrope = map_over(no_unicode_apostrophe)
 
     # Filters - remove words based on these
@@ -73,12 +83,12 @@ def word_filter(words, to_ignore):
     remove_initial_non_letters = filter_by(starts_with_num_or_non_word)
     remove_short_words = filter_by(too_short)
 
-    filtered_words = (del_non_word_chars
+    filtered_words = (remove_stopwords
                       (remove_short_words
                        (remove_initial_non_letters
-                        (remove_stopwords
-                         (del_trailing_quote
-                          (del_initial_quote
+                        (del_non_word_chars
+                         (del_initial_quote
+                          (del_quote_marks
                            (convert_unicode_apostrope
                             (to_lowercase(words)))))))))
     return filtered_words
@@ -86,9 +96,12 @@ def word_filter(words, to_ignore):
 
 def filter_words(source, words):
     """ Set the correct stopwords and filter words. """
-    to_ignore = set(line.strip() for line in open(STOPWORDS))
+    with open(STOPWORDS) as swf:
+        to_ignore = set(line.strip() for line in swf)
     if source == 'bbc':
-        to_ignore = to_ignore.union(set(line.strip() for line in open(BBC_STOPWORDS)))
+        with open(BBC_STOPWORDS) as bbcswf:
+            to_ignore = to_ignore.union(set(line.strip() for line in bbcswf))
     if source == 'nyt':
-        to_ignore = to_ignore.union(set(line.strip() for line in open(NYT_STOPWORDS)))
+        with open(NYT_STOPWORDS) as nytswf:
+            to_ignore = to_ignore.union(set(line.strip() for line in nytswf))
     return word_filter(words, to_ignore)
