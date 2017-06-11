@@ -68,7 +68,10 @@ def date_spans(days, num_periods):
     """
     Return _num_periods_ pairs of date objects all _days_ apart.
 
-    Ranges are *exclusive* when used for database queries.
+    Ranges are run from midnight (i.e. the start) of the first day,
+    to midnight (i.e the start) of the last day.
+
+    Range is >= first date; < second date.
 
     Sequence of date-ranges returned reversed to aid graph plotting.
 
