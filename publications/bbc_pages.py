@@ -6,6 +6,7 @@ from constants import (BBC_BASE,
                        DOUBLE_N_WORDS)
 
 from query import data
+from query_functions import TODAY, MONTHS
 from trending_words import trends
 from graph import get_plot
 

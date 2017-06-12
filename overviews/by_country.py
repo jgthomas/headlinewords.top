@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
 
 from constants import (UK_BASE, US_BASE, AU_BASE,
+                       UK_SOURCES, US_SOURCES, AU_SOURCES,
                        DOUBLE_N_WORDS)
 
 from query import data
@@ -14,14 +15,11 @@ by_country = Blueprint("by_country", __name__)
 def country_day():
     title = 'By Country - Today'
     page_title = "Country Comparison"
-    uk_sources = [data('bbc', 'ondate', 'today'),
-                  data('dml', 'ondate', 'today')]
+    uk_sources = [data(source, 'ondate', 'today') for source in UK_SOURCES]
+    us_sources = [data(source, 'ondate', 'today') for source in US_SOURCES]
+    au_sources = [data(source, 'ondate', 'today') for source in AU_SOURCES]
     uk_combined = {**UK_BASE, **{"data": composite_ranks(uk_sources)}}
-    us_sources = [data('nyt', 'ondate', 'today'),
-                  data('fox', 'ondate', 'today')]
     us_combined = {**US_BASE, **{"data": composite_ranks(us_sources)}}
-    au_sources = [data('smh', 'ondate', 'today'),
-                  data('abc', 'ondate', 'today')]
     au_combined = {**AU_BASE, **{"data": composite_ranks(au_sources)}}
     return render_template('combined.html',
                            page_title=page_title,
@@ -36,14 +34,11 @@ def country_day():
 def country_week():
     title = 'By Country - This Week'
     page_title = "Country Comparison"
-    uk_sources = [data('bbc', 'since', 'week'),
-                  data('dml', 'since', 'week')]
+    uk_sources = [data(source, 'since', 'week') for source in UK_SOURCES]
+    us_sources = [data(source, 'since', 'week') for source in US_SOURCES]
+    au_sources = [data(source, 'since', 'week') for source in AU_SOURCES]
     uk_combined = {**UK_BASE, **{"data": composite_ranks(uk_sources)}}
-    us_sources = [data('nyt', 'since', 'week'),
-                  data('fox', 'since', 'week')]
     us_combined = {**US_BASE, **{"data": composite_ranks(us_sources)}}
-    au_sources = [data('smh', 'since', 'week'),
-                  data('abc', 'since', 'week')]
     au_combined = {**AU_BASE, **{"data": composite_ranks(au_sources)}}
     return render_template('combined.html',
                            page_title=page_title,
@@ -58,14 +53,11 @@ def country_week():
 def country_month():
     title = 'By Country - This Month'
     page_title = "Country Comparison"
-    uk_sources = [data('bbc', 'since', 'month'),
-                  data('dml', 'since', 'month')]
+    uk_sources = [data(source, 'since', 'month') for source in UK_SOURCES]
+    us_sources = [data(source, 'since', 'month') for source in US_SOURCES]
+    au_sources = [data(source, 'since', 'month') for source in AU_SOURCES]
     uk_combined = {**UK_BASE, **{"data": composite_ranks(uk_sources)}}
-    us_sources = [data('nyt', 'since', 'month'),
-                  data('fox', 'since', 'month')]
     us_combined = {**US_BASE, **{"data": composite_ranks(us_sources)}}
-    au_sources = [data('smh', 'since', 'month'),
-                  data('abc', 'since', 'month')]
     au_combined = {**AU_BASE, **{"data": composite_ranks(au_sources)}}
     return render_template('combined.html',
                            page_title=page_title,
@@ -80,14 +72,11 @@ def country_month():
 def country_ever():
     title = 'By Country - Ever'
     page_title = "Country Comparison"
-    uk_sources = [data('bbc', 'ever'),
-                  data('dml', 'ever')]
+    uk_sources = [data(source, 'ever') for source in UK_SOURCES]
+    us_sources = [data(source, 'ever') for source in US_SOURCES]
+    au_sources = [data(source, 'ever') for source in AU_SOURCES]
     uk_combined = {**UK_BASE, **{"data": composite_ranks(uk_sources)}}
-    us_sources = [data('nyt', 'ever'),
-                  data('fox', 'ever')]
     us_combined = {**US_BASE, **{"data": composite_ranks(us_sources)}}
-    au_sources = [data('smh', 'ever'),
-                  data('abc', 'ever')]
     au_combined = {**AU_BASE, **{"data": composite_ranks(au_sources)}}
     return render_template('combined.html',
                            page_title=page_title,

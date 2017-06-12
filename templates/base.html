@@ -22,6 +22,9 @@
   <div class="more-box flex-container">
     <h1 id="more-target" class="section-title">More</h1>
     {{ more_nav_link("by_country.country_day", "By Country")  }}
+    {{ more_nav_link("uk.uk_today", "UK Totals")  }}
+    {{ more_nav_link("us.us_today", "USA Totals")  }}
+    {{ more_nav_link("au.au_today", "Australia Totals")  }}
   </div>
   <script src={{ url_for('static', filename='scripts/pageScroll.js') }}></script>
 </body>

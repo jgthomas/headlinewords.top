@@ -38,9 +38,14 @@ DML_BASE = {"source": "dml", "title": "Daily Mail"}
 FOX_BASE = {"source": "fox", "title": "Fox News"}
 SMH_BASE = {"source": "smh", "title": "Sydney Morning Herald"}
 ABC_BASE = {"source": "abc", "title": "ABC Australia"}
+
 UK_BASE = {"title": "UK"}
 US_BASE = {"title": "USA"}
 AU_BASE = {"title": "Australia"}
+
+UK_SOURCES = ['bbc', 'dml']
+US_SOURCES = ['nyt', 'fox']
+AU_SOURCES = ['smh', 'abc']
 
 # Number of days to plot if not specified
 DEFAULT_PLOT_DAYS = 7

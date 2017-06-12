@@ -3,7 +3,7 @@
 from operator import itemgetter
 
 
-def composite_ranks(data):
+def composite_ranks(data, rev=True):
     """
     Return ordered sequence of summed counts for all
     words from all sources specified in data.
@@ -18,4 +18,4 @@ def composite_ranks(data):
             else:
                 combined_count[word] += count
     ranked = [(k, v) for k, v in combined_count.items()]
-    return sorted(ranked, key=itemgetter(1), reverse=True)
+    return sorted(ranked, key=itemgetter(1), reverse=rev)

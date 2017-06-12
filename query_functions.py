@@ -23,7 +23,8 @@ TIME_MAP = {"tomorrow": TOMORROW,
             "week": new_date(TODAY, 7),
             "month": new_date(TODAY, 30)}
 
-CALENDAR_MAP = {"jan_start": dt.datetime(THIS_YEAR, 1, 1).date(),
+CALENDAR_MAP = {"prev_dec": dt.datetime(THIS_YEAR - 1, 12, 1).date(),
+                "jan_start": dt.datetime(THIS_YEAR, 1, 1).date(),
                 "feb_start": dt.datetime(THIS_YEAR, 2, 1).date(),
                 "mar_start": dt.datetime(THIS_YEAR, 3, 1).date(),
                 "apr_start": dt.datetime(THIS_YEAR, 4, 1).date(),
@@ -35,8 +36,23 @@ CALENDAR_MAP = {"jan_start": dt.datetime(THIS_YEAR, 1, 1).date(),
                 "oct_start": dt.datetime(THIS_YEAR, 10, 1).date(),
                 "nov_start": dt.datetime(THIS_YEAR, 11, 1).date(),
                 "dec_start": dt.datetime(THIS_YEAR, 12, 1).date(),
-                "dec_end": dt.datetime(THIS_YEAR + 1, 1, 1).date()}
+                "next_jan": dt.datetime(THIS_YEAR + 1, 1, 1).date()}
 
+
+MONTHS = {0: {"start": "prev_dec", "name": "December"},
+          1: {"start": "jan_start", "name": "January"},
+          2: {"start": "feb_start", "name": "Feburary"},
+          3: {"start": "mar_start", "name": "March"},
+          4: {"start": "apr_start", "name": "April"},
+          5: {"start": "may_start", "name": "May"},
+          6: {"start": "jun_start", "name": "June"},
+          7: {"start": "jul_start", "name": "July"},
+          8: {"start": "aug_start", "name": "August"},
+          9: {"start": "sep_start", "name": "September"},
+          10: {"start": "oct_start", "name": "October"},
+          11: {"start": "nov_start", "name": "November"},
+          12: {"start": "dec_start", "name": "December"},
+          13: {"start": "next_jan", "name": "January"}}
 
 
 def date_of(year, month, day):

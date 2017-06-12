@@ -20,6 +20,9 @@ from publications.smh_pages import smh
 from publications.abc_pages import abc
 
 from overviews.by_country import by_country
+from overviews.uk import uk
+from overviews.us import us
+from overviews.au import au
 
 
 app = Flask(__name__)
@@ -30,7 +33,11 @@ app.register_blueprint(dml, url_prefix='/dml')
 app.register_blueprint(fox, url_prefix='/fox')
 app.register_blueprint(smh, url_prefix='/smh')
 app.register_blueprint(abc, url_prefix='/abc')
+
 app.register_blueprint(by_country, url_prefix='/country')
+app.register_blueprint(uk, url_prefix='/uk')
+app.register_blueprint(us, url_prefix='/us')
+app.register_blueprint(au, url_prefix='/au')
 
 ask = Ask(app, "/alexa_skill")
 
