@@ -2,6 +2,7 @@
 STOPWORDS = 'static/wordlists/stopwords.txt'
 BBC_STOPWORDS = 'static/wordlists/bbc_stopwords.txt'
 NYT_STOPWORDS = 'static/wordlists/nyt_stopwords.txt'
+FOX_STOPWORDS = 'static/wordlists/fox_stopwords.txt'
 
 # Exclude words shorter than
 SHORT_WORD = 2

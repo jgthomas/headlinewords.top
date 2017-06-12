@@ -10,6 +10,7 @@ from pythonic_pipes import (is_not_in,
 from constants import (STOPWORDS,
                        BBC_STOPWORDS,
                        NYT_STOPWORDS,
+                       FOX_STOPWORDS,
                        SHORT_WORD)
 
 
@@ -111,4 +112,7 @@ def filter_words(source, words):
     if source == 'nyt':
         with open(NYT_STOPWORDS) as nytswf:
             to_ignore = to_ignore.union(set(line.strip() for line in nytswf))
+    if source == 'fox':
+        with open(FOX_STOPWORDS) as foxswf:
+            to_ignore = to_ignore.union(set(line.strip() for line in foxswf))
     return word_filter(words, to_ignore)

@@ -29,6 +29,13 @@ class Test(unittest.TestCase):
         words_out = ["news", "headlines"]
         self.assertListEqual(words_out, list(filter_words(source, words_in)))
 
+    def test_fox_stopwords(self):
+        """ Block main and FOX-specific stopwords. """
+        source = 'fox'
+        words_in = ["other", "this", "that", "the",
+                    "news", "headlines", "briefing", "latest"]
+        words_out = ["news", "headlines", "briefing"]
+        self.assertListEqual(words_out, list(filter_words(source, words_in)))
 
 if __name__ == '__main__':
 
