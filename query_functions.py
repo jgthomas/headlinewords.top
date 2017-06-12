@@ -54,6 +54,9 @@ MONTHS = {0: {"start": "prev_dec", "name": "December"},
           12: {"start": "dec_start", "name": "December"},
           13: {"start": "next_jan", "name": "January"}}
 
+THIS = TODAY.month
+LAST = THIS - 1
+NEXT = THIS + 1
 
 def date_of(year, month, day):
     """ Return date object for year, month and day. """

@@ -6,7 +6,7 @@ from constants import (UK_SOURCES,
                        DOUBLE_N_WORDS)
 
 from query import data
-from query_functions import TODAY, MONTHS
+from query_functions import MONTHS, THIS, LAST, NEXT
 from trending_words import trends
 from composite_counts import composite_ranks
 
@@ -73,9 +73,6 @@ def uk_month():
 
 @uk.route('/ever')
 def uk_ever():
-    THIS = TODAY.month
-    LAST = THIS - 1
-    NEXT = THIS + 1
     title = 'Top words in UK ever'
     uk_ever = [data(source, "ever") for source in UK_SOURCES]
     uk_combined = {"source": "uk",

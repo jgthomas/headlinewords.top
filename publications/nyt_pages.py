@@ -6,6 +6,7 @@ from constants import (NYT_BASE,
                        DOUBLE_N_WORDS)
 
 from query import data
+from query_functions import MONTHS, THIS, LAST, NEXT
 from trending_words import trends
 from graph import get_plot
 
@@ -68,10 +69,12 @@ def nyt_month():
 def nyt_ever():
     title = 'New York Times - Top words ever'
     main_data = {**NYT_BASE, **{"data": data("nyt", "ever")}}
-    extra_data_1 = {"title": "May",
-                    "data": data("nyt", "between", "may_start", "jun_start")}
-    extra_data_2 = {"title": "June",
-                    "data": data("nyt", "between", "jun_start", "jul_start")}
+    extra_data_1 = {"title": MONTHS[LAST]["name"],
+                    "data": data("nyt", "between", MONTHS[LAST]["start"],
+                                                   MONTHS[THIS]["start"])}
+    extra_data_2 = {"title": MONTHS[THIS]["name"],
+                    "data": data("nyt", "between", MONTHS[THIS]["start"],
+                                                   MONTHS[NEXT]["start"])}
     plot_1 = get_plot(title="Top five progress",
                       filename="nyt_ever_1.png")
     return render_template('source.html',

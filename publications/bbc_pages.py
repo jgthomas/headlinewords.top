@@ -6,7 +6,7 @@ from constants import (BBC_BASE,
                        DOUBLE_N_WORDS)
 
 from query import data
-from query_functions import TODAY, MONTHS
+from query_functions import MONTHS, THIS, LAST, NEXT
 from trending_words import trends
 from graph import get_plot
 
@@ -78,10 +78,12 @@ def bbc_month():
 def bbc_ever():
     title = 'BBC - Top words ever'
     main_data = {**BBC_BASE, **{"data": data("bbc", "ever")}}
-    extra_data_1 = {"title": "May",
-                    "data": data("bbc", "between", "may_start", "jun_start")}
-    extra_data_2 = {"title": "June",
-                    "data": data("bbc", "between", "jun_start", "jul_start")}
+    extra_data_1 = {"title": MONTHS[LAST]["name"],
+                    "data": data("bbc", "between", MONTHS[LAST]["start"],
+                                                   MONTHS[THIS]["start"])}
+    extra_data_2 = {"title": MONTHS[THIS]["name"],
+                    "data": data("bbc", "between", MONTHS[THIS]["start"],
+                                                   MONTHS[NEXT]["start"])}
     plot_1 = get_plot(title="Top five progress",
                       filename="bbc_ever_1.png")
     plot_2 = get_plot(title="City limits",

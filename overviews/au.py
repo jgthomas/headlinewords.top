@@ -6,7 +6,7 @@ from constants import (AU_SOURCES,
                        DOUBLE_N_WORDS)
 
 from query import data
-from query_functions import TODAY, MONTHS
+from query_functions import MONTHS, THIS, LAST, NEXT
 from trending_words import trends
 from composite_counts import composite_ranks
 
@@ -73,9 +73,6 @@ def au_month():
 
 @au.route('/ever')
 def au_ever():
-    THIS = TODAY.month
-    LAST = THIS - 1
-    NEXT = THIS + 1
     title = 'Top words in Australia ever'
     au_ever = [data(source, "ever") for source in AU_SOURCES]
     au_combined = {"source": "au",
