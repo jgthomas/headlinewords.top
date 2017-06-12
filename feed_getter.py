@@ -16,6 +16,7 @@ EXP_URL = 'https://feeds.feedburner.com/daily-express-uk-news'
 ABC_URL = 'http://feeds.abcnews.com/abcnews/topstories'
 SMH_URL = 'http://www.smh.com.au/rssheadlines/top.xml'
 ABC_URL = 'http://www.abc.net.au/news/feed/45910/rss.xml'
+WPO_URL = 'http://feeds.washingtonpost.com/rss/national'
 
 
 def get_headlines(url):
@@ -28,13 +29,8 @@ def get_headlines(url):
 # Sources
 BBC = get_headlines(BBC_URL)
 NYT = get_headlines(NYT_URL)
-GDN = get_headlines(GDN_URL)
 DML = get_headlines(DML_URL)
 FOX = get_headlines(FOX_URL)
-SKY = get_headlines(SKY_URL)
-NYP = get_headlines(NYP_URL)
-IND = get_headlines(IND_URL)
-EXP = get_headlines(EXP_URL)
 SMH = get_headlines(SMH_URL)
 ABC = get_headlines(ABC_URL)
 
