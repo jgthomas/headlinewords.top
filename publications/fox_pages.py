@@ -31,10 +31,15 @@ def fox_today():
 def fox_week():
     title = 'Fox News - Top words this week',
     main_data = {**FOX_BASE, **{"data": data("fox", "since", "week")}}
+    extra_data_1 = {"title": "Rising"}
+    extra_data_2 = {"title": "Falling"}
+    extra_data_1["data"], extra_data_2["data"] = trends("fox", "week_on_week")
     return render_template('source.html',
                            title=title,
                            source=main_data,
-                           display=TOP_N_WORDS)
+                           display=TOP_N_WORDS,
+                           extras=(extra_data_1, extra_data_2),
+                           extra_display=SHORT_N_WORDS)
 
 
 @fox.route('/month')
