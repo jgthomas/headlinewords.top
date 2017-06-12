@@ -57,6 +57,9 @@ def bbc_week():
 def bbc_month():
     title = 'BBC - Top words this month'
     main_data = {**BBC_BASE, **{"data": data("bbc", "since", "month")}}
+    extra_data_1 = {"title": "Rising"}
+    extra_data_2 = {"title": "Falling"}
+    extra_data_1["data"], extra_data_2["data"] = trends("bbc", "month_on_month")
     plot_1 = get_plot(title="Top five progress",
                       filename="bbc_month_1.png")
     plot_2 = get_plot(title="The grimmest reaper",
@@ -65,6 +68,8 @@ def bbc_month():
                            title=title,
                            source=main_data,
                            display=TOP_N_WORDS,
+                           extras=(extra_data_1, extra_data_2),
+                           extra_display=SHORT_N_WORDS,
                            plots=(plot_1, plot_2))
 
 
