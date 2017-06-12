@@ -37,6 +37,9 @@ ask = Ask(app, "/alexa_skill")
 
 @app.route('/')
 def home():
+    title = 'All top words today'
+    subtitle = 'Headline Words'
+    tag_line = "A flavour of what's getting emphasised"
     bbc_data = {**BBC_BASE, **{"data": data("bbc", "ondate", "today")}}
     nyt_data = {**NYT_BASE, **{"data": data("nyt", "ondate", "today")}}
     dml_data = {**DML_BASE, **{"data": data("dml", "ondate", "today")}}
@@ -50,7 +53,9 @@ def home():
                       filename="homepage_nyt_1.png",
                       source="NYT")
     return render_template('index.html',
-                           title='All top words today',
+                           title=title,
+                           subtitle=subtitle,
+                           tag_line=tag_line,
                            sources=(bbc_data, nyt_data,
                                     dml_data, fox_data,
                                     smh_data, abc_data),
