@@ -55,6 +55,11 @@ def no_initial_quote(x):
     return re.sub(r'^[\'\"\u2018\u201C]', '', x)
 
 
+def no_end_quote(x):
+    """ Remove stray ending quotation marks. """
+    return re.sub(r'[\'\"\u2019\u201D]$', '', x)
+
+
 def too_short(x):
     """ Return True if word is too short. """
     return len(x) > SHORT_WORD
@@ -75,6 +80,7 @@ def word_filter(words, to_ignore):
     to_lowercase = map_over(lower)
     del_non_word_chars = map_over(no_non_word)
     del_initial_quote = map_over(no_initial_quote)
+    del_end_quote = map_over(no_end_quote)
     del_quote_marks = map_over(no_quote_marks)
     convert_unicode_apostrope = map_over(no_unicode_apostrophe)
 
@@ -88,9 +94,10 @@ def word_filter(words, to_ignore):
                        (remove_initial_non_letters
                         (del_non_word_chars
                          (del_initial_quote
-                          (del_quote_marks
-                           (convert_unicode_apostrope
-                            (to_lowercase(words)))))))))
+                          (del_end_quote
+                           (del_quote_marks
+                            (convert_unicode_apostrope
+                             (to_lowercase(words))))))))))
     return filtered_words
 
 
