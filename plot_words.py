@@ -152,11 +152,13 @@ def plot_words(data, *, filename=None, colour=None):
 def main(args):
     args = get_args(args)
     words, *_ = args.words
+    #words = args.words
     filename = args.filename if args.filename else None
     days = args.days if args.days else DEFAULT_PLOT_DAYS
     database = args.database
     period = args.period
     colour, *_ = args.colour if args.colour else None
+    #colour = args.colour if args.colour else None
     if "random" in colour:
         colour = None
     else:
