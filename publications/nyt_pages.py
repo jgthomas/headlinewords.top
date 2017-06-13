@@ -56,12 +56,17 @@ def nyt_week():
 def nyt_month():
     title = 'New York Times - Top words this month'
     main_data = {**NYT_BASE, **{"data": data("nyt", "since", "month")}}
+    extra_data_1 = {"title": "Rising"}
+    extra_data_2 = {"title": "Falling"}
+    extra_data_1["data"], extra_data_2["data"] = trends("nyt", "month_on_month")
     plot_1 = get_plot(title="Top five progress",
                       filename="nyt_month_1.png")
     return render_template('source.html',
                            title=title,
                            source=main_data,
                            display=TOP_N_WORDS,
+                           extras=(extra_data_1, extra_data_2),
+                           extra_display=SHORT_N_WORDS,
                            plots=(plot_1,))
 
 
