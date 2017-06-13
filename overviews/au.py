@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
 
 from constants import (AU_SOURCES,
+                       AU_BASE,
                        SHORT_N_WORDS,
                        TOP_N_WORDS,
                        DOUBLE_N_WORDS)
@@ -18,9 +19,7 @@ au = Blueprint("au", __name__)
 def au_today():
     title = 'Top words in Australia today'
     au_today = [data(source, "ondate", "today") for source in AU_SOURCES]
-    au_combined = {"source": "au",
-                   "title": "Australia",
-                   "data": composite_ranks(au_today)}
+    au_combined = {**AU_BASE, "data": composite_ranks(au_today)}
     day_up, day_down = zip(*[trends(source, "day_on_day")
                              for source in AU_SOURCES])
     rising = {"title": "Rising", "data": composite_ranks(day_up)}
@@ -37,9 +36,7 @@ def au_today():
 def au_week():
     title = 'Top words in Australia this week'
     au_week = [data(source, "since", "week") for source in AU_SOURCES]
-    au_combined = {"source": "au",
-                   "title": "Australia",
-                   "data": composite_ranks(au_week)}
+    au_combined = {**AU_BASE, "data": composite_ranks(au_week)}
     week_up, week_down = zip(*[trends(source, "week_on_week")
                                for source in AU_SOURCES])
     rising = {"title": "Rising", "data": composite_ranks(week_up)}
@@ -56,9 +53,7 @@ def au_week():
 def au_month():
     title = 'Top words in Australia this month'
     au_month = [data(source, "since", "month") for source in AU_SOURCES]
-    au_combined = {"source": "au",
-                   "title": "Australia",
-                   "data": composite_ranks(au_month)}
+    au_combined = {**AU_BASE, "data": composite_ranks(au_month)}
     month_up, month_down = zip(*[trends(source, "month_on_month")
                                  for source in AU_SOURCES])
     rising = {"title": "Rising", "data": composite_ranks(month_up)}
@@ -75,9 +70,7 @@ def au_month():
 def au_ever():
     title = 'Top words in Australia ever'
     au_ever = [data(source, "ever") for source in AU_SOURCES]
-    au_combined = {"source": "au",
-                   "title": "Australia",
-                   "data": composite_ranks(au_ever)}
+    au_combined = {**AU_BASE, "data": composite_ranks(au_ever)}
     last = [data(source, "between", MONTHS[LAST]["start"], MONTHS[THIS]["start"])
             for source in AU_SOURCES]
     this = [data(source, "between", MONTHS[THIS]["start"], MONTHS[NEXT]["start"])

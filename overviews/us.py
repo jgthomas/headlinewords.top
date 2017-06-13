@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
 
 from constants import (US_SOURCES,
+                       US_BASE,
                        SHORT_N_WORDS,
                        TOP_N_WORDS,
                        DOUBLE_N_WORDS)
@@ -18,9 +19,7 @@ us = Blueprint("us", __name__)
 def us_today():
     title = 'Top words in USA today'
     us_today = [data(source, "ondate", "today") for source in US_SOURCES]
-    us_combined = {"source": "us",
-                   "title": "USA",
-                   "data": composite_ranks(us_today)}
+    us_combined = {**US_BASE, "data": composite_ranks(us_today)}
     day_up, day_down = zip(*[trends(source, "day_on_day")
                              for source in US_SOURCES])
     rising = {"title": "Rising", "data": composite_ranks(day_up)}
@@ -37,9 +36,7 @@ def us_today():
 def us_week():
     title = 'Top words in USA this week'
     us_week = [data(source, "since", "week") for source in US_SOURCES]
-    us_combined = {"source": "us",
-                   "title": "USA",
-                   "data": composite_ranks(us_week)}
+    us_combined = {**US_BASE, "data": composite_ranks(us_week)}
     week_up, week_down = zip(*[trends(source, "week_on_week")
                                for source in US_SOURCES])
     rising = {"title": "Rising", "data": composite_ranks(week_up)}
@@ -56,9 +53,7 @@ def us_week():
 def us_month():
     title = 'Top words in USA this month'
     us_month = [data(source, "since", "month") for source in US_SOURCES]
-    us_combined = {"source": "us",
-                   "title": "USA",
-                   "data": composite_ranks(us_month)}
+    us_combined = {**US_BASE, "data": composite_ranks(us_month)}
     month_up, month_down = zip(*[trends(source, "month_on_month")
                                  for source in US_SOURCES])
     rising = {"title": "Rising", "data": composite_ranks(month_up)}
@@ -75,9 +70,7 @@ def us_month():
 def us_ever():
     title = 'Top words in USA ever'
     us_ever = [data(source, "ever") for source in US_SOURCES]
-    us_combined = {"source": "us",
-                   "title": "USA",
-                   "data": composite_ranks(us_ever)}
+    us_combined = {**US_BASE, "data": composite_ranks(us_ever)}
     last = [data(source, "between", MONTHS[LAST]["start"], MONTHS[THIS]["start"])
             for source in US_SOURCES]
     this = [data(source, "between", MONTHS[THIS]["start"], MONTHS[NEXT]["start"])
