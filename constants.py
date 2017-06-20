@@ -39,6 +39,10 @@ FOX_BASE = {"source": "fox", "title": "Fox News"}
 SMH_BASE = {"source": "smh", "title": "Sydney Morning Herald"}
 ABC_BASE = {"source": "abc", "title": "ABC Australia"}
 
+SOURCE_BASE = {"bbc": BBC_BASE, "nyt": NYT_BASE,
+               "dml": DML_BASE, "fox": FOX_BASE,
+               "smh": SMH_BASE, "abc": ABC_BASE}
+
 UK_BASE = {"source": "uk", "title": "UK"}
 US_BASE = {"source": "us", "title": "USA"}
 AU_BASE = {"source": "au", "title": "Australia"}
