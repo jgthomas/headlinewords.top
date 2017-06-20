@@ -1,0 +1,46 @@
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 5px #fff;
+    font-size: 1.5em;
+    background: #D2D5D6;
+    color: white;
+}
+
+input[type=text]:focus {
+    outline: none;
+    background: white;
+    color: #777D80;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: #fff;
+    border: none;
+    padding: 12px 20px;
+    text-decoration: none;
+    margin: 8px 0;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.form-block {
+        margin-top: 2em;
+}
+
+.checkbox {
+        display: inline;
+}
+
+
+
+@media only screen and (min-device-width: 961px) {
+
+        .form-block {
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 600px;
+        }
+}

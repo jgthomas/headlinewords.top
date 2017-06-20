@@ -281,6 +281,13 @@ nav {
                 align-items: flex-start;
         }
 
+        .flex-full-unit {
+                flex: 0 0 100%;
+                margin-left: auto;
+                margin-right: auto;
+                min-width: 600px;
+        }
+
         .flex-half-unit {
                 flex: 0 0 50%;
                 margin-left: auto;
