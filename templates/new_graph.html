@@ -14,7 +14,7 @@
     <div class="form-block">
         <form action="{{ url_for('serve.graph') }}">
         <div>
-          <label for="word" class="img-title">Request Graph</label>
+          <label id="pick-graph" for="word" class="img-title">Request Graph</label>
         </div>
         <input type="text" id="chosen_word" name="word_to_graph" placeholder="pick a word...">
         <input type="submit" value="Submit" class="graph-button">
