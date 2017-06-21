@@ -20,7 +20,7 @@ def graph():
     filename = ''.join([word, '_', source, date])
     full_filename = ''.join([filename, ".png"])
 
-    if not os.path.isfile(''.join(["./", PLOT_PATH, filename])):
+    if not os.path.isfile(''.join([PLOT_PATH, full_filename])):
         graph = Graph(db = source,
                   filename = filename,
                   days = "7",
