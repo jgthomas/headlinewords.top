@@ -1,3 +1,4 @@
-body {
-        background: black;
+.output-graph {
+        margin-top: 2em;
+        background: linear-gradient(to top, #deefff 0%,#98bede 100%);
 }

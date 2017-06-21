@@ -24,6 +24,8 @@ from overviews.uk import uk
 from overviews.us import us
 from overviews.au import au
 
+from interactive.serve_resource import serve
+
 
 app = Flask(__name__)
 
@@ -38,6 +40,8 @@ app.register_blueprint(by_country, url_prefix='/country')
 app.register_blueprint(uk, url_prefix='/uk')
 app.register_blueprint(us, url_prefix='/us')
 app.register_blueprint(au, url_prefix='/au')
+
+app.register_blueprint(serve, url_prefix='/serve')
 
 ask = Ask(app, "/alexa_skill")
 
