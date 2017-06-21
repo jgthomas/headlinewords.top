@@ -1,3 +1,4 @@
+{% block content %}
 <div class="flex-half-unit">
   {% if plot["source"] %}
     <h3 class="graph-box-subtitle">{{plot["source"]}}</h3>
@@ -5,3 +6,4 @@
   <h4 class="img-title">{{plot["title"]}}</h4>
   <img src={{ url_for('static', filename=plot["plot"]) }} />
 </div>
+{% endblock %}

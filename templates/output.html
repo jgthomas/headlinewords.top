@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+  {% block head %}
   <head>
   <link rel=stylesheet href="{{ url_for('static', filename='style.css') }}">
   <link rel=stylesheet href="{{ url_for('static', filename='output.css') }}">
   </head>
+  {% endblock %}
   <body>
     <h1>{{publication["title"]}}</h1>
     <div class="flex-container">
