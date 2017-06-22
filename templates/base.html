@@ -1,12 +1,11 @@
-<!-- Extended by: source.html, top_many.html -->
+<!-- Extended by: source.html-->
 {% from "macros.html" import nav_link with context %}
 {% from "more_macros.html" import more_nav_link with context %}
 <head>
   {% block head %}
-  <title>{% block title %}{% endblock %} - Headline Words</title>
-  <link rel=stylesheet href="{{ url_for('static', filename='style.css') }}">
-  <link rel=stylesheet href="{{ url_for('static', filename='form.css') }}">
-  <!--<link rel=stylesheet href="{{ url_for('static', filename='styles/slideout.css') }}">-->
+    <title>{% block title %}{% endblock %} - Headline Words</title>
+    <link rel=stylesheet href="{{ url_for('static', filename='style.css') }}">
+    <link rel=stylesheet href="{{ url_for('static', filename='form.css') }}">
   {% endblock %}
 </head>
 <body>
