@@ -1,6 +1,4 @@
-
-
-GRAPH_PATH = 'images/plots/'
+from constants import GRAPH_PATH
 
 
 class Graph(object):

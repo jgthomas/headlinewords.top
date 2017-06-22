@@ -1,9 +1,5 @@
-
-
 from operator import itemgetter
-
 from query import data
-
 from query_functions import TOMORROW, new_date, strip_dates, date_spans
 
 

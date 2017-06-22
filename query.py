@@ -1,10 +1,6 @@
-
-
 import sqlite3
 from contextlib import closing
-
 from constants import DATABASES
-
 from query_functions import strip_dates, TIME_MAP, CALENDAR_MAP
 
 

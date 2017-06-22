@@ -56,6 +56,7 @@ DEFAULT_PLOT_DAYS = 7
 
 # To store graphs
 PLOT_PATH = 'static/images/plots/'
+GRAPH_PATH = 'images/plots/'
 
 # Some nice plot colours: [0, 1] scaled RGB
 BLUE = (0.12156862745098039, 0.4666666666666667, 0.7058823529411765)
