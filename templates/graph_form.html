@@ -6,16 +6,17 @@
         <label id="pick-graph" for="word" class="img-title">Request Graph</label>
       </div>
       <input type="text" id="chosen_word" name="word_to_graph" placeholder="pick a word...">
-      <input type="submit" value="Submit" class="graph-button">
       <div>
         <div class="radio-block">
           <div class="checkbox">
-            <label class="checkbox"><input name="check" type="radio" value="bbc" checked="checked">BBC</label>
-          </div>
-          <div class="checkbox">
-           <label class="checkbox"><input name="check" type="radio" value="nyt">New York Times</label>
+            <label class="img-title">Pick source</label>
+            <select id="source", name="check">
+              <option name="check" value="bbc" selected="selected">BBC</option>
+              <option name="check" value="nyt">New York Times</option>
+            </select>
           </div>
         </div>
+      <input type="submit" value="Submit" class="graph-button">
       </div>
     </form>
   </div>
