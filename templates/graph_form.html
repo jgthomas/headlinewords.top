@@ -1,18 +1,26 @@
 {% block content %}
 <div class="flex-full-unit">
   <div class="form-block">
+    <h3 id="graph-maker" class="graph-box-subtitle">Create Graph</h3>
     <form action="{{ url_for('serve.graph') }}">
       <div>
-        <label id="pick-graph" for="word" class="img-title">Request Graph</label>
+        <label id="pick-graph" for="word" class="img-title">Word</label>
       </div>
       <input type="text" id="chosen_word" name="word_to_graph" placeholder="pick a word...">
       <div>
         <div class="radio-block">
           <div class="checkbox">
-            <label class="img-title">Pick source</label>
+            <label class="img-title">Source</label>
             <select id="source", name="check">
               <option name="check" value="bbc" selected="selected">BBC</option>
               <option name="check" value="nyt">New York Times</option>
+            </select>
+          </div>
+          <div class="checkbox">
+            <label class="img-title">Colour</label>
+            <select id="colour", name="colour">
+              <option name="colour" value="blue" selected="selected">Blue</option>
+              <option name="colour" value="red">Red</option>
             </select>
           </div>
         </div>

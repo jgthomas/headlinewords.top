@@ -13,8 +13,9 @@ serve = Blueprint("serve", __name__)
 def graph():
     word = request.args.get("word_to_graph", "").lower()
     source = request.args.get("check", "")
+    colour = request.args.get("colour", "")
     if not word:
-        return redirect(url_for("home", _anchor="pick-graph"))
+        return redirect(url_for("home", _anchor="graph-maker"))
 
     date = TODAY.strftime("_%d_%B_%Y")
     filename = ''.join([word, '_', source, date])
@@ -25,7 +26,7 @@ def graph():
                   filename = filename,
                   days = "7",
                   words = [word],
-                  colour = ["blue"],
+                  colour = [colour],
                   period = "4")
         plot_words.main(graph.args())
 
