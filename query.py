@@ -62,6 +62,11 @@ class Query(object):
         self.cur.execute(self.__class__.DATE_RANGE, (date1, date2))
         return self.cur.fetchall()
 
+    def ever(self):
+        """ Return counts for all words EVER. """
+        self.cur.execute(self.__class__.OVERALL_TOTAL)
+        return self.cur.fetchall()
+
     def word_ondate(self, date, word):
         """ Return count for a single WORD ON DATE. """
         if date in TIME_MAP:
@@ -85,11 +90,6 @@ class Query(object):
         self.cur.execute(self.__class__.WORD_RANGE, (date1, date2, word))
         return self.cur.fetchall()
 
-    def ever(self):
-        """ Return counts for all words EVER. """
-        self.cur.execute(self.__class__.OVERALL_TOTAL)
-        return self.cur.fetchall()
-
     def word_ever(self, word):
         """ Return count for a single word EVER. """
         self.cur.execute(self.__class__.WORD_EVER, (word,))
@@ -103,10 +103,10 @@ def data(dbname, method, date1=None, date2=None, word=None):
 
     dbname  :  database to query
     method  :  method to call for the query
-    date1   :  single or first date to query, can be either
-               a date object or key to a date object
-    date2   :  second date in a query with a range, can be either
-               a date object or key to a date object
+    date1   :  single or first date to query
+               can be a date object or key to a date object
+    date2   :  second date in a query with a range
+               can be a date object or key to a date object
     word    :  the specific word to query
 
     """
@@ -191,10 +191,8 @@ def word_count_by_source(word, method, sources, date1=None, date2=None):
     word    :  target word
     method  :  query object method to use
     source  :  sources to search
-    date1   :  single or first date to query, can be either
-               a date object or key to a date object
-    date2   :  second date in a query with a range, can be either
-               a date object or key to a date object
+    date1   :  single or first date to query
+    date2   :  second date in a query with a range
 
     """
     counts = {"word": word, "data": {source: 0 for source in sources}}
