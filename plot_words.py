@@ -59,6 +59,9 @@ def plot_bar(sources, filename, colour="blue", path=PLOT_PATH):
     # Remove tick marks
     plt.tick_params(bottom="off", left="off")
 
+    # Set plot colour
+    colour = COLOURS[colour]
+
     # Plot graph and axes
     plt.bar(range(len(sources["data"])),
             sources["data"].values(),
