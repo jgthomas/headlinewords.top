@@ -1,4 +1,6 @@
 from constants import GRAPH_PATH
+from query import word_count, word_count_period
+from query_functions import TODAY, YESTERDAY, date_range, date_spans
 
 
 class Graph(object):
@@ -25,24 +27,25 @@ class Graph(object):
         self.filename = filename
         self.days = days
         self.words = words
-        self.colour = colour if colour else ["random"]
+        self.colour = colour
         self.period = period
         self.path = path
 
-    def args(self):
-        """ Command line parameters passed to plot_words module. """
-        args = ["--words", self.words,
-                "--days", self.days,
-                "--colour", self.colour,
-                "--database", self.db,
-                "--filename", self.filename]
-        if self.period:
-            args.append("--period")
-            args.append(self.period)
-        if self.path:
-            args.append("--path")
-            args.append(self.path)
-        return args
+    def plot_data(self):
+        if not self.period:
+            dates = date_range(YESTERDAY, self.days)
+            counts = [word_count(self.db, word, dates) for word in self.words]
+            date_labels = [date.strftime('%d %B') for date in dates]
+        else:
+            date_labels = []
+            dates = date_spans(self.days, self.period)
+            counts = [word_count_period(self.db, word, dates) for word in self.words]
+            for date in dates:
+                start, end = date
+                date_labels.append(end.strftime('%d %B'))
+            # Reset final date label to today
+            date_labels[-1] = TODAY.strftime('%d %B')
+        return (self.words, date_labels, counts)
 
 
 def get_plot(title, filename, source=None, path=GRAPH_PATH):
