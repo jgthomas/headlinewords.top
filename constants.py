@@ -1,3 +1,5 @@
+# WORDS
+
 # Words to exclude from the database
 STOPWORDS = 'static/wordlists/stopwords.txt'
 BBC_STOPWORDS = 'static/wordlists/bbc_stopwords.txt'
@@ -14,6 +16,15 @@ DOUBLE_N_WORDS = 20
 MID_N_WORDS = 50
 HIGH_N_WORDS = 200
 MAX_N_WORDS = 500
+
+
+# SOURCES
+
+# Three-letter codes for each source
+SOURCES = ["bbc", "nyt", "dml", "fox", "smh", "abc"]
+UK_SOURCES = ['bbc', 'dml']
+US_SOURCES = ['nyt', 'fox']
+AU_SOURCES = ['smh', 'abc']
 
 # Databases for each source
 BBC_DATABASE = 'data/bbc_headline_words.db'
@@ -47,9 +58,8 @@ UK_BASE = {"source": "uk", "title": "UK"}
 US_BASE = {"source": "us", "title": "USA"}
 AU_BASE = {"source": "au", "title": "Australia"}
 
-UK_SOURCES = ['bbc', 'dml']
-US_SOURCES = ['nyt', 'fox']
-AU_SOURCES = ['smh', 'abc']
+
+# GRAPHS
 
 # Number of days to plot if not specified
 DEFAULT_PLOT_DAYS = 7

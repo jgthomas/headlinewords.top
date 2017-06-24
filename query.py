@@ -1,6 +1,7 @@
 import sqlite3
+from itertools import chain
 from contextlib import closing
-from constants import DATABASES
+from constants import SOURCES, DATABASES
 from query_functions import strip_dates, TIME_MAP, CALENDAR_MAP
 
 
@@ -131,6 +132,8 @@ def data(dbname, method, date1=None, date2=None, word=None):
             data = METHODS[method](date1, word)
         elif date1:
             data = METHODS[method](date1)
+        elif word:
+            data = METHODS[method](word)
         else:
             data = METHODS[method]()
     return strip_dates(data)
@@ -166,7 +169,7 @@ def word_count_period(db, word, dates):
 
     db    : database to query
     word  : target word
-    dates : pairs of date object delimiting the query periods
+    dates : pairs of date objects delimiting each query period
 
     """
     counts = []
@@ -177,4 +180,27 @@ def word_count_period(db, word, dates):
                 counts.append(count)
             else:
                 counts.append(0)
+    return counts
+
+
+def word_count_by_source(word, method, sources, date1=None, date2=None):
+    """
+    Return the number of times a word was used by each of the specified
+    sources, either ever or since/between the specified dates.
+
+    word    :  target word
+    method  :  query object method to use
+    source  :  sources to search
+    date1   :  single or first date to query, can be either
+               a date object or key to a date object
+    date2   :  second date in a query with a range, can be either
+               a date object or key to a date object
+
+    """
+    counts = {"word": word, "data": {source: 0 for source in sources}}
+    for source in sources:
+        info = data(source, method, date1=date1, date2=date2, word=word)
+        *_, count = chain.from_iterable(info)
+        if count:
+            counts["data"][source] = count
     return counts
