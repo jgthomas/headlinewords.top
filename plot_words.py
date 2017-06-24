@@ -44,7 +44,7 @@ def pick_colours(colour_list, num):
     return colours
 
 
-def plot_bar(sources, colour="blue", path=PLOT_PATH):
+def plot_bar(sources, filename, colour="blue", path=PLOT_PATH):
     # Set parameters
     params = {'figure.figsize': [16, 12]}
     plt.rcParams.update(params)
@@ -77,7 +77,7 @@ def plot_bar(sources, colour="blue", path=PLOT_PATH):
     plt.subplots_adjust(bottom=0.33)
 
     # Save
-    outfile = ''.join([path, sources["word"], ".png"])
+    outfile = ''.join([path, filename])
     plt.savefig(outfile)
 
     # Close

@@ -25,6 +25,8 @@ SOURCES = ["bbc", "nyt", "dml", "fox", "smh", "abc"]
 UK_SOURCES = ['bbc', 'dml']
 US_SOURCES = ['nyt', 'fox']
 AU_SOURCES = ['smh', 'abc']
+COUNTRY_SOURCES = {"all": SOURCES, "all_uk": UK_SOURCES,
+                   "all_us": US_SOURCES, "all_au": AU_SOURCES}
 
 # Databases for each source
 BBC_DATABASE = 'data/bbc_headline_words.db'

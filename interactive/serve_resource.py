@@ -2,7 +2,7 @@ import os.path
 from flask import Blueprint, render_template, request, redirect, url_for
 import plot_words
 from graph import Graph, get_plot
-from constants import SOURCES, SOURCE_BASE, PLOT_PATH, ON_DEMAND_PATH, ON_DEMAND_LOAD
+from constants import COUNTRY_SOURCES, SOURCES, SOURCE_BASE, PLOT_PATH, ON_DEMAND_PATH, ON_DEMAND_LOAD
 from query import word_count_by_source
 from query_functions import TODAY
 
@@ -19,12 +19,17 @@ def graph():
     if not word:
         return redirect(url_for("home", _anchor="graph-maker"))
 
-    if source == "all":
-        if not os.path.isfile(''.join([ON_DEMAND_PATH, word, ".png"])):
-                sources = word_count_by_source(word, "word_ever", SOURCES)
-                plot_words.plot_bar(sources, colour=colour, path=ON_DEMAND_PATH)
+    if source in COUNTRY_SOURCES:
+        source_orgs = COUNTRY_SOURCES[source]
+        filename = ''.join([source, "_", word, ".png"])
+        if not os.path.isfile(''.join([ON_DEMAND_PATH, filename])):
+                sources = word_count_by_source(word, "word_ever", source_orgs)
+                plot_words.plot_bar(sources,
+                                    filename,
+                                    colour=colour,
+                                    path=ON_DEMAND_PATH)
         plot = get_plot(title=word,
-                        filename=''.join([word, ".png"]),
+                        filename=filename,
                         source="Comparative Frequency",
                         path=ON_DEMAND_LOAD)
 
