@@ -1,7 +1,7 @@
 import sqlite3
 from itertools import chain
 from contextlib import closing
-from constants import SOURCES, DATABASES
+from constants import SOURCES, SOURCE_BASE, DATABASES
 from query_functions import strip_dates, TIME_MAP, CALENDAR_MAP
 
 
@@ -195,10 +195,11 @@ def word_count_by_source(word, method, sources, date1=None, date2=None):
     date2   :  second date in a query with a range
 
     """
-    counts = {"word": word, "data": {source: 0 for source in sources}}
+    counts = {"word": word,
+              "data": {SOURCE_BASE[source]["title"]: 0 for source in sources}}
     for source in sources:
         info = data(source, method, date1=date1, date2=date2, word=word)
         *_, count = chain.from_iterable(info)
         if count:
-            counts["data"][source] = count
+            counts["data"][SOURCE_BASE[source]["title"]] = count
     return counts

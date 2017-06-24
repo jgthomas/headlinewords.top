@@ -24,6 +24,7 @@ from constants import (DATABASES, DEFAULT_DATABASE,
 def get_args(args):
     parser = argparse.ArgumentParser()
     parser.add_argument('--filename', type=str)
+    parser.add_argument('--path', type=str)
     parser.add_argument('--database', type=str)
     parser.add_argument('--days', type=int)
     parser.add_argument('--colour', nargs='+')
@@ -41,6 +42,46 @@ def pick_colours(colour_list, num):
         opts.remove(choice)
         colours.append(choice)
     return colours
+
+
+def plot_bar(sources, colour="blue", path=PLOT_PATH):
+    # Set parameters
+    params = {'figure.figsize': [16, 12]}
+    plt.rcParams.update(params)
+
+    # Remove frame
+    ax = plt.subplot(111)
+    ax.spines["top"].set_visible(False)
+    ax.spines["bottom"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.spines["left"].set_visible(False)
+
+    # Remove tick marks
+    plt.tick_params(bottom="off", left="off")
+
+    # Plot graph and axes
+    plt.bar(range(len(sources["data"])),
+            sources["data"].values(),
+            align="center",
+            color=colour)
+    plt.xticks(range(len(sources["data"])),
+               list(sources["data"].keys()),
+               rotation=55,
+               fontsize=24,
+               ha="right")
+    plt.yticks(fontsize=24, weight='bold')
+    plt.title("'{}'".format(sources["word"]),
+              fontsize=28)
+
+    # Adjust
+    plt.subplots_adjust(bottom=0.33)
+
+    # Save
+    outfile = ''.join([path, sources["word"], ".png"])
+    plt.savefig(outfile)
+
+    # Close
+    plt.clf()
 
 
 def get_plot_data(db, wordlist, days, period):
@@ -84,7 +125,7 @@ def get_plot_data(db, wordlist, days, period):
     return (wordlist, date_labels, counts)
 
 
-def plot_words(data, *, filename=None, colour=None):
+def plot_words(data, *, filename=None, colour=None, path=PLOT_PATH):
     words, x_data, y_data = data
 
     # set plot parameters
@@ -142,7 +183,7 @@ def plot_words(data, *, filename=None, colour=None):
     # save: if no name specified, use first word
     if not filename:
         filename, *rest = words
-    outfile = ''.join([PLOT_PATH, filename, '.png'])
+    outfile = ''.join([path, filename, '.png'])
     plt.savefig(outfile)
 
     # close
@@ -154,8 +195,9 @@ def main(args):
     words, *_ = args.words
     #words = args.words
     filename = args.filename if args.filename else None
+    path = args.path if args.path else PLOT_PATH
     days = args.days if args.days else DEFAULT_PLOT_DAYS
-    database = args.database
+    database = args.database if args.database else DEFAULT_DATABASE
     period = args.period
     colour, *_ = args.colour if args.colour else None
     #colour = args.colour if args.colour else None
@@ -164,7 +206,7 @@ def main(args):
     else:
         colour = [COLOURS[col] for col in colour]
     data = get_plot_data(database, words, days, period)
-    plot_words(data, filename=filename, colour=colour)
+    plot_words(data, filename=filename, colour=colour, path=path)
 
 
 if __name__=='__main__':
