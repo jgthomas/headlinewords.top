@@ -1,9 +1,9 @@
 import random
+import functools
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from constants import (DATABASES,
-                       PLOT_PATH,
+from constants import (PLOT_PATH,
                        TABLEAU, COLOURS,
                        RED, BLUE, PINK,
                        GREY, ORANGE, GREEN,
@@ -22,6 +22,8 @@ def pick_colours(colour_list, num):
 
 
 def plot_style(func):
+    """ Shared style for graphs. """
+    @functools.wraps(func)
     def style_wrapper(*args, **kwargs):
         params = {'figure.figsize': [16, 12],
                   'legend.frameon': False,
