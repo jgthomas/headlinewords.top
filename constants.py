@@ -21,14 +21,17 @@ MAX_N_WORDS = 500
 # SOURCES
 SOURCES = ["bbc", "nyt", "dml",
            "fox", "smh", "abc",
-           "sky", "ind"]
+           "sky", "ind", "toi",
+           "hit"]
 
 UK_SOURCES = ['bbc', 'dml', "sky", "ind"]
 US_SOURCES = ['nyt', 'fox']
 AU_SOURCES = ['smh', 'abc']
+IN_SOURCES = ['toi', 'hit']
 
 COUNTRY_SOURCES = {"all": SOURCES, "all_uk": UK_SOURCES,
-                   "all_us": US_SOURCES, "all_au": AU_SOURCES}
+                   "all_us": US_SOURCES, "all_au": AU_SOURCES,
+                   "all_in": IN_SOURCES}
 
 # Databases for each source
 BBC_DATABASE = 'data/bbc_headline_words.db'
@@ -40,11 +43,15 @@ ABC_DATABASE = 'data/abc_headline_words.db'
 SKY_DATABASE = 'data/sky_headline_words.db'
 IND_DATABASE = 'data/ind_headline_words.db'
 
+TOI_DATABASE = 'data/toi_headline_words.db'
+HIT_DATABASE = 'data/hit_headline_words.db'
+
 # Database dictionary
 DATABASES = {'bbc': BBC_DATABASE, 'nyt': NYT_DATABASE,
              'dml': DML_DATABASE, 'fox': FOX_DATABASE,
              'smh': SMH_DATABASE, 'abc': ABC_DATABASE,
-             'sky': SKY_DATABASE, 'ind': IND_DATABASE}
+             'sky': SKY_DATABASE, 'ind': IND_DATABASE,
+             'toi': TOI_DATABASE, 'hit': HIT_DATABASE}
 
 # Base data for queries
 BBC_BASE = {"source": "bbc", "title": "BBC"}
@@ -56,14 +63,19 @@ ABC_BASE = {"source": "abc", "title": "ABC Australia"}
 SKY_BASE = {"source": "sky", "title": "SKY News"}
 IND_BASE = {"source": "ind", "title": "The Independent"}
 
+TOI_BASE = {"source": "toi", "title": "Times of India"}
+HIT_BASE = {"source": "hit", "title": "Hindustan Times"}
+
 SOURCE_BASE = {"bbc": BBC_BASE, "nyt": NYT_BASE,
                "dml": DML_BASE, "fox": FOX_BASE,
                "smh": SMH_BASE, "abc": ABC_BASE,
-               "sky": SKY_BASE, "ind": IND_BASE}
+               "sky": SKY_BASE, "ind": IND_BASE,
+               "toi": TOI_BASE, "hit": HIT_BASE}
 
 UK_BASE = {"source": "uk", "title": "UK"}
 US_BASE = {"source": "us", "title": "USA"}
 AU_BASE = {"source": "au", "title": "Australia"}
+IN_BASE = {"source": "inn", "title": "India"}
 
 
 # GRAPHS

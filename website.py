@@ -7,7 +7,8 @@ from constants import (SHORT_N_WORDS,
                        BBC_BASE, NYT_BASE,
                        DML_BASE, FOX_BASE,
                        SMH_BASE, ABC_BASE,
-                       SKY_BASE, IND_BASE)
+                       SKY_BASE, IND_BASE,
+                       TOI_BASE, HIT_BASE)
 
 from query_functions import just_words
 from query import data
@@ -21,11 +22,14 @@ from publications.smh_pages import smh
 from publications.abc_pages import abc
 from publications.sky_pages import sky
 from publications.ind_pages import ind
+from publications.toi_pages import toi
+from publications.hit_pages import hit
 
 from overviews.by_country import by_country
 from overviews.uk import uk
 from overviews.us import us
 from overviews.au import au
+from overviews.inn import inn
 
 from interactive.serve_resource import serve
 
@@ -40,11 +44,14 @@ app.register_blueprint(smh, url_prefix='/smh')
 app.register_blueprint(abc, url_prefix='/abc')
 app.register_blueprint(sky, url_prefix='/sky')
 app.register_blueprint(ind, url_prefix='/ind')
+app.register_blueprint(toi, url_prefix='/toi')
+app.register_blueprint(hit, url_prefix='/hit')
 
 app.register_blueprint(by_country, url_prefix='/country')
 app.register_blueprint(uk, url_prefix='/uk')
 app.register_blueprint(us, url_prefix='/us')
 app.register_blueprint(au, url_prefix='/au')
+app.register_blueprint(inn, url_prefix='/in')
 
 app.register_blueprint(serve, url_prefix='/serve')
 
@@ -64,6 +71,8 @@ def home():
     abc_data = {**ABC_BASE, **{"data": data("abc", "ondate", "today")}}
     sky_data = {**SKY_BASE, **{"data": data("sky", "ondate", "today")}}
     ind_data = {**IND_BASE, **{"data": data("ind", "ondate", "today")}}
+    toi_data = {**TOI_BASE, **{"data": data("toi", "ondate", "today")}}
+    hit_data = {**HIT_BASE, **{"data": data("hit", "ondate", "today")}}
     plot_1 = get_plot(title="Manchester, then London",
                       filename="homepage_bbc_1.png",
                       source="BBC")
@@ -77,7 +86,8 @@ def home():
                            sources=(bbc_data, nyt_data,
                                     dml_data, fox_data,
                                     smh_data, abc_data,
-                                    sky_data, ind_data),
+                                    sky_data, ind_data,
+                                    toi_data, hit_data),
                            display=SHORT_N_WORDS,
                            plots=(plot_1, plot_2))
 
