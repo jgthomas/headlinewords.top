@@ -1,9 +1,9 @@
 {% block content %}
   <div class="graph-box flex-container">
     <div id="graph-target"></div>
+    {% include "graph_form.html" %}
     {% for plot in plots %}
       {% include "graph.html" %}
     {% endfor %}
-    {% include "graph_form.html" %}
   </div>
 {% endblock %}
