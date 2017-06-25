@@ -25,7 +25,6 @@ from publications.ind_pages import ind
 from publications.toi_pages import toi
 from publications.hit_pages import hit
 
-from overviews.by_country import by_country
 from overviews.uk import uk
 from overviews.us import us
 from overviews.au import au
@@ -47,7 +46,6 @@ app.register_blueprint(ind, url_prefix='/ind')
 app.register_blueprint(toi, url_prefix='/toi')
 app.register_blueprint(hit, url_prefix='/hit')
 
-app.register_blueprint(by_country, url_prefix='/country')
 app.register_blueprint(uk, url_prefix='/uk')
 app.register_blueprint(us, url_prefix='/us')
 app.register_blueprint(au, url_prefix='/au')
