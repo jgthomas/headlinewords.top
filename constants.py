@@ -19,8 +19,6 @@ MAX_N_WORDS = 500
 
 
 # SOURCES
-
-# Three-letter codes for each source
 SOURCES = ["bbc", "nyt", "dml",
            "fox", "smh", "abc",
            "sky", "ind"]
@@ -41,9 +39,6 @@ SMH_DATABASE = 'data/smh_headline_words.db'
 ABC_DATABASE = 'data/abc_headline_words.db'
 SKY_DATABASE = 'data/sky_headline_words.db'
 IND_DATABASE = 'data/ind_headline_words.db'
-
-# Database to use if not specified
-DEFAULT_DATABASE = BBC_DATABASE
 
 # Database dictionary
 DATABASES = {'bbc': BBC_DATABASE, 'nyt': NYT_DATABASE,
