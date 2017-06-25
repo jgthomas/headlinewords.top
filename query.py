@@ -195,11 +195,10 @@ def word_count_by_source(word, method, sources, date1=None, date2=None):
     date2   :  second date in a query with a range
 
     """
-    counts = {"word": word,
-              "data": {SOURCE_BASE[source]["title"]: 0 for source in sources}}
+    counts = {SOURCE_BASE[source]["title"]: 0 for source in sources}
     for source in sources:
         info = data(source, method, date1=date1, date2=date2, word=word)
         *_, count = chain.from_iterable(info)
         if count:
-            counts["data"][SOURCE_BASE[source]["title"]] = count
+            counts[SOURCE_BASE[source]["title"]] = count
     return counts

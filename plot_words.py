@@ -46,24 +46,25 @@ def plot_style(func):
 
 
 @plot_style
-def bar_plot(sources, filename, colour="blue", path=PLOT_PATH):
-    colour = COLOURS[colour]
-    plt.bar(range(len(sources["data"])),
-            sources["data"].values(),
+def bar_plot(data):
+    colour = COLOURS[data["colour"]]
+    plt.bar(range(len(data["sources"])),
+            data["sources"].values(),
             align="center",
             color=colour)
-    plt.xticks(range(len(sources["data"])),
-               list(sources["data"].keys()),
+    plt.xticks(range(len(data["sources"])),
+               list(data["sources"].keys()),
                rotation=55,
                fontsize=24,
                ha="right")
-    plt.yticks(fontsize=24, weight='bold')
-    plt.title("'{}'".format(sources["word"]),
+    plt.yticks(fontsize=24,
+               weight='bold')
+    plt.title("'{}'".format(data["word"]),
               fontsize=28)
 
     plt.subplots_adjust(bottom=0.33)
 
-    outfile = ''.join([path, filename])
+    outfile = ''.join([data["path"], data["filename"]])
     plt.savefig(outfile)
 
     plt.clf()

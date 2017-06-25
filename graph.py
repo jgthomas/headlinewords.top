@@ -48,6 +48,14 @@ class Graph(object):
         return (self.words, date_labels, counts)
 
 
+def make_bar_chart(word, sources, filename, colour, path):
+    return {"word": word,
+            "sources": sources,
+            "filename": filename,
+            "colour": colour,
+            "path": path}
+
+
 def get_plot(title, filename, source=None, path=GRAPH_PATH):
     """ Return graph object for display. """
     return {"title": title,
