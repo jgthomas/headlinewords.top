@@ -33,8 +33,11 @@ DML = get_headlines(DML_URL)
 FOX = get_headlines(FOX_URL)
 SMH = get_headlines(SMH_URL)
 ABC = get_headlines(ABC_URL)
+SKY = get_headlines(SKY_URL)
+IND = get_headlines(IND_URL)
 
 # Currently used sources
 SOURCES = [('bbc', BBC), ('nyt', NYT),
            ('dml', DML), ('fox', FOX),
-           ('smh', SMH), ('abc', ABC)]
+           ('smh', SMH), ('abc', ABC),
+           ('sky', SKY), ('ind', IND)]

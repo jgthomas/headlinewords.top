@@ -21,10 +21,14 @@ MAX_N_WORDS = 500
 # SOURCES
 
 # Three-letter codes for each source
-SOURCES = ["bbc", "nyt", "dml", "fox", "smh", "abc"]
-UK_SOURCES = ['bbc', 'dml']
+SOURCES = ["bbc", "nyt", "dml",
+           "fox", "smh", "abc",
+           "sky", "ind"]
+
+UK_SOURCES = ['bbc', 'dml', "sky", "ind"]
 US_SOURCES = ['nyt', 'fox']
 AU_SOURCES = ['smh', 'abc']
+
 COUNTRY_SOURCES = {"all": SOURCES, "all_uk": UK_SOURCES,
                    "all_us": US_SOURCES, "all_au": AU_SOURCES}
 
@@ -35,6 +39,8 @@ DML_DATABASE = 'data/dml_headline_words.db'
 FOX_DATABASE = 'data/fox_headline_words.db'
 SMH_DATABASE = 'data/smh_headline_words.db'
 ABC_DATABASE = 'data/abc_headline_words.db'
+SKY_DATABASE = 'data/sky_headline_words.db'
+IND_DATABASE = 'data/ind_headline_words.db'
 
 # Database to use if not specified
 DEFAULT_DATABASE = BBC_DATABASE
@@ -42,7 +48,8 @@ DEFAULT_DATABASE = BBC_DATABASE
 # Database dictionary
 DATABASES = {'bbc': BBC_DATABASE, 'nyt': NYT_DATABASE,
              'dml': DML_DATABASE, 'fox': FOX_DATABASE,
-             'smh': SMH_DATABASE, 'abc': ABC_DATABASE}
+             'smh': SMH_DATABASE, 'abc': ABC_DATABASE,
+             'sky': SKY_DATABASE, 'ind': IND_DATABASE}
 
 # Base data for queries
 BBC_BASE = {"source": "bbc", "title": "BBC"}
@@ -51,10 +58,13 @@ DML_BASE = {"source": "dml", "title": "Daily Mail"}
 FOX_BASE = {"source": "fox", "title": "Fox News"}
 SMH_BASE = {"source": "smh", "title": "Sydney Morning Herald"}
 ABC_BASE = {"source": "abc", "title": "ABC Australia"}
+SKY_BASE = {"source": "sky", "title": "SKY News"}
+IND_BASE = {"source": "ind", "title": "The Independent"}
 
 SOURCE_BASE = {"bbc": BBC_BASE, "nyt": NYT_BASE,
                "dml": DML_BASE, "fox": FOX_BASE,
-               "smh": SMH_BASE, "abc": ABC_BASE}
+               "smh": SMH_BASE, "abc": ABC_BASE,
+               "sky": SKY_BASE, "ind": IND_BASE}
 
 UK_BASE = {"source": "uk", "title": "UK"}
 US_BASE = {"source": "us", "title": "USA"}

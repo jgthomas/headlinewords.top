@@ -6,7 +6,8 @@ from flask_ask import Ask, statement, question
 from constants import (SHORT_N_WORDS,
                        BBC_BASE, NYT_BASE,
                        DML_BASE, FOX_BASE,
-                       SMH_BASE, ABC_BASE)
+                       SMH_BASE, ABC_BASE,
+                       SKY_BASE, IND_BASE)
 
 from query_functions import just_words
 from query import data
@@ -18,6 +19,8 @@ from publications.dml_pages import dml
 from publications.fox_pages import fox
 from publications.smh_pages import smh
 from publications.abc_pages import abc
+from publications.sky_pages import sky
+from publications.ind_pages import ind
 
 from overviews.by_country import by_country
 from overviews.uk import uk
@@ -35,6 +38,8 @@ app.register_blueprint(dml, url_prefix='/dml')
 app.register_blueprint(fox, url_prefix='/fox')
 app.register_blueprint(smh, url_prefix='/smh')
 app.register_blueprint(abc, url_prefix='/abc')
+app.register_blueprint(sky, url_prefix='/sky')
+app.register_blueprint(ind, url_prefix='/ind')
 
 app.register_blueprint(by_country, url_prefix='/country')
 app.register_blueprint(uk, url_prefix='/uk')
@@ -57,6 +62,8 @@ def home():
     fox_data = {**FOX_BASE, **{"data": data("fox", "ondate", "today")}}
     smh_data = {**SMH_BASE, **{"data": data("smh", "ondate", "today")}}
     abc_data = {**ABC_BASE, **{"data": data("abc", "ondate", "today")}}
+    sky_data = {**SKY_BASE, **{"data": data("sky", "ondate", "today")}}
+    ind_data = {**IND_BASE, **{"data": data("ind", "ondate", "today")}}
     plot_1 = get_plot(title="Manchester, then London",
                       filename="homepage_bbc_1.png",
                       source="BBC")
@@ -69,7 +76,8 @@ def home():
                            tag_line=tag_line,
                            sources=(bbc_data, nyt_data,
                                     dml_data, fox_data,
-                                    smh_data, abc_data),
+                                    smh_data, abc_data,
+                                    sky_data, ind_data),
                            display=SHORT_N_WORDS,
                            plots=(plot_1, plot_2))
 
