@@ -21,25 +21,31 @@ def pick_colours(colour_list, num):
     return colours
 
 
+def plot_style(func):
+    def style_wrapper(*args, **kwargs):
+        params = {'figure.figsize': [16, 12],
+                  'legend.frameon': False,
+                  'legend.fontsize': 28,
+                  'legend.loc': "upper right",
+                  'legend.markerscale': 0,
+                  'legend.handlelength': 0,
+                  'lines.linewidth': 6}
+        plt.rcParams.update(params)
+        # Remove frame
+        ax = plt.subplot(111)
+        ax.spines["top"].set_visible(False)
+        ax.spines["bottom"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+        ax.spines["left"].set_visible(False)
+        # Remove tick marks
+        plt.tick_params(bottom="off", left="off")
+        func(*args, **kwargs)
+    return style_wrapper
+
+
+@plot_style
 def bar_plot(sources, filename, colour="blue", path=PLOT_PATH):
-    # Set parameters
-    params = {'figure.figsize': [16, 12]}
-    plt.rcParams.update(params)
-
-    # Remove frame
-    ax = plt.subplot(111)
-    ax.spines["top"].set_visible(False)
-    ax.spines["bottom"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.spines["left"].set_visible(False)
-
-    # Remove tick marks
-    plt.tick_params(bottom="off", left="off")
-
-    # Set plot colour
     colour = COLOURS[colour]
-
-    # Plot graph and axes
     plt.bar(range(len(sources["data"])),
             sources["data"].values(),
             align="center",
@@ -53,44 +59,21 @@ def bar_plot(sources, filename, colour="blue", path=PLOT_PATH):
     plt.title("'{}'".format(sources["word"]),
               fontsize=28)
 
-    # Adjust
     plt.subplots_adjust(bottom=0.33)
 
-    # Save
     outfile = ''.join([path, filename])
     plt.savefig(outfile)
 
-    # Close
     plt.clf()
 
 
+@plot_style
 def line_plot(data):
     words, x_data, y_data = data.plot_data()
     filename = data.filename if data.filename else None
     colour = data.colour
     path = data.path if data.path else PLOT_PATH
 
-    # Set parameters
-    params = {'figure.figsize': [16, 12],
-              'legend.frameon': False,
-              'legend.fontsize': 28,
-              'legend.loc': "upper right",
-              'legend.markerscale': 0,
-              'legend.handlelength': 0,
-              'lines.linewidth': 6}
-    plt.rcParams.update(params)
-    
-    # Remove frame
-    ax = plt.subplot(111)
-    ax.spines["top"].set_visible(False)
-    ax.spines["bottom"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.spines["left"].set_visible(False)
-
-    # Remove tick marks
-    plt.tick_params(bottom="off", left="off")
-
-    # Format the axes
     plt.yticks(fontsize=24, weight='bold')
     plt.xticks(range(len(x_data)), x_data, rotation=45, fontsize=24)
 
@@ -115,18 +98,17 @@ def line_plot(data):
     leg = plt.legend(words, bbox_to_anchor=(1, 1),
                      bbox_transform=plt.gcf().transFigure,
                      ncol=len(words))
+
     # Match legend line- and text-colours (line is hidden by params)
     for line, text in zip(leg.get_lines(), leg.get_texts()):
         text.set_color(line.get_color())
 
-    # Adjust
     plt.subplots_adjust(bottom=0.25)
 
-    # Save: if no name specified, use first word
+    # If no name specified, use first word
     if not filename:
         filename, *rest = words
     outfile = ''.join([path, filename])
     plt.savefig(outfile)
 
-    # Close
     plt.clf()
