@@ -82,6 +82,7 @@ def line_plot(data):
 
     # Hide some labels for longer data sets
     if len(x_data) > 14:
+        ax = plt.subplot(1,1,1)
         for index, label in enumerate(ax.xaxis.get_ticklabels()):
             if index % 2 == 0:
                 label.set_visible(False)
