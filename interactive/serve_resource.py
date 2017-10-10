@@ -22,7 +22,7 @@ def graph():
 
     if source in COUNTRY_SOURCES:
         source_orgs = COUNTRY_SOURCES[source]
-        filename = ''.join([source, "_", word, ".png"])
+        filename = ''.join([source, "_", word, "_", colour, ".png"])
         if not os.path.isfile(''.join([ON_DEMAND_PATH, filename])):
             sources = word_count_by_source(word, "word_ever", source_orgs)
             graph = make_bar_chart(word,
@@ -37,11 +37,11 @@ def graph():
                         path=ON_DEMAND_LOAD)
 
     else:
-        filename = ''.join([word, "_", source, ".png"])
+        filename = ''.join([word, "_", source, "_", colour, ".png"])
 
         if not os.path.isfile(''.join([ON_DEMAND_PATH, filename])):
             graph = Graph(db = source,
-                    filename = ''.join([word, '_', source]),
+                    filename = ''.join([word, '_', source, '_', colour]),
                     path = ON_DEMAND_PATH,
                     days = 7,
                     words = [word],
